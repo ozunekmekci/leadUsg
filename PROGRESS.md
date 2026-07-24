@@ -86,4 +86,15 @@
 4. **Galeri & CTA Yapısı:** En az 2 görsellik galeri alanı (1 ana görsel + 3 küçük slot), "Teklif Al" ve "Karşılaştırmaya Ekle" yapışkan (sticky) butonları eklendi.
 5. **Önerilen Cihazlar (`RelatedProducts.tsx`):** Sayfa altına aynı kategoriden 3 adet alternatif ürün öneri alanı entegre edildi. `npm run build` ile doğrulandı.
 
-**Sıradaki adım:** CP-008 — Karşılaştırma modülü (2-4 cihaz yan yana).
+## ✅ CP-008 TAMAMLANDI — Karşılaştırma Modülü (2-4 Cihaz Yan Yana)
+
+**Yapılanlar:**
+1. **Event Tracking Taslağı (`src/lib/tracking.ts`):** `trackEvent(name, metadata)` stub fonksiyonu oluşturuldu. `CompareView` komponentinin mount edilmesinde `compare_start`, unmount edilmesinde ise geçirilen saniye cinsinden süre hesaplanarak `compare_end` event'i tetiklendi.
+2. **Çoklu Karşılaştırma Mantığı & Sınır Kontrolü (`/karsilastir?ids=1,2,3`):**
+   - Query parametresindeki ID'ler ayrıştırıldı. 0 veya 1 geçerli ID verilmesi durumunda otomatik olarak `/urunler/ultrason` kataloğuna yönlendiren fallback yazıldı.
+   - 4'ten fazla ID verilmesi durumunda liste ilk 4 cihaza kesilerek uyarı banner'ı gösterildi (*"En fazla 4 cihaz yan yana karşılaştırılabilir."*).
+3. **Fark Vurgulamalı SpecTable:** `SpecTable` komponentinde `highlightDifferences={true}` modunda, ürünler arasında farklılık gösteren spesifikasyon satırları vurgulu bir arka planla öne çıkarıldı.
+4. **Forma Yönlendiren Teklif CTA'sı:** Sayfa altında seçili cihaz ID'lerini `/teklif-al?products=1,2,3` şeklinde forma taşıyan "Seçili Cihazlar İçin Teklif Al" paneli entegre edildi.
+5. **Derleme Doğrulaması:** `npm run build` komutu çalıştırılarak tüm rotaların sorunsuz derlendiği doğrulandı.
+
+**Sıradaki adım:** CP-009 — Event tracking altyapısı (Consent-Gated) — KRİTİK.
