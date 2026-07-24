@@ -1,0 +1,88 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  name        String
+  brand       String
+  category    String
+  specs       Json     // Technical specs JSON object
+  description String
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("products")
+}
+
+model Session {
+  id              String   @id @default(uuid())
+  consentStatus   String   @default("none") @map("consent_status") // "none", "analytics", "full"
+  ipHash          String?  @map("ip_hash")
+  fingerprintHash String?  @map("fingerprint_hash")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  events          Event[]
+  leads           Lead[]
+
+  @@map("sessions")
+}
+
+model Event {
+  id        String   @id @default(uuid())
+  sessionId String   @map("session_id")
+  session   Session  @relation(fields: [sessionId], references: [id])
+  eventName String   @map("event_name")
+  metadata  Json
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // TODO: CP-009: Raw SQL migration to partition this table by monthly range on created_at
+  @@map("events")
+}
+
+model Lead {
+  id          String     @id @default(uuid())
+  name        String
+  company     String
+  phone       String
+  email       String?
+  budgetRange String?    @map("budget_range")
+  message     String?
+  status      String     @default("new") // AM State Machine: new (Lead Geldi), called (Arandı), warm (Sıcak), cold (Soğuk), sold (Satış), closed (Kapalı)
+  sessionId   String?    @map("session_id")
+  session     Session?   @relation(fields: [sessionId], references: [id])
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+  notes       LeadNote[]
+
+  @@map("leads")
+}
+
+model LeadNote {
+  id        String   @id @default(uuid())
+  leadId    String   @map("lead_id")
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  content   String
+  amUserId  String   @map("am_user_id")
+  amUser    AMUser   @relation(fields: [amUserId], references: [id])
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("lead_notes")
+}
+
+model AMUser {
+  id           String     @id @default(uuid())
+  email        String     @unique
+  passwordHash String     @map("password_hash")
+  name         String
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+  notes        LeadNote[]
+
+  @@map("am_users")
+}
