@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏥 leadUsg — Medikal Cihaz Broker Platformu
 
-## Getting Started
+**leadUsg**, Türkiye'deki klinik ve hastaneler için medikal görüntüleme cihazlarının (ultrason, MR, BT, röntgen) şeffaf karşılaştırılmasını sağlayan, arka planda KVKK uyumlu consent-gated davranışsal veri toplayarak Account Manager ekibine zenginleştirilmiş **Birleşik Lead Kartları** sunan B2B medikal cihaz brokerlik platformudur.
 
-First, run the development server:
+---
 
+## 🛠️ Teknolojiler (Tech Stack)
+
+- **Frontend & Server Components:** Next.js 14 (App Router, TypeScript)
+- **Styling & UI:** Tailwind CSS, shadcn/ui ilhamlı modern B2B karanlık tema
+- **Veritabanı & ORM:** PostgreSQL (Prisma ORM)
+- **Önbellek & Rate Limiter:** Redis (ioredis)
+- **Form & Validasyon:** React Hook Form + Zod
+- **Kimlik Doğrulama:** Edge-compatible Web Crypto JWT & HTTP-Only Cookie (`am_session`)
+- **Deployment:** Docker & Docker Compose (Multi-stage production build)
+
+---
+
+## 🌟 Ana Özellikler & Modüller
+
+1. **Cihaz Kataloğu (`/urunler/ultrason`):**
+   - Marka ve bütçe segmentine göre anlık URL paylaşılabilir filtreleme.
+   - Detaylı biyomedikal parametre kartları.
+
+2. **Yan Yana Karşılaştırma Modülü (`/karsilastir?ids=1,2,3`):**
+   - 2 ila 4 cihaz yan yana fark vurgulamalı `<SpecTable />` karşılaştırma matrisi.
+
+3. **Consent-Gated Davranışsal Tracking (`lib/tracking.ts` & `ConsentBanner`):**
+   - KVKK ve rıza mimarisine tam uyum: Açık onay vermeden önce hiçbir cihaz parmak izi, çerez veya localStorage ID'si üretilmez.
+   - İzin sonrasında 5 saniyede bir veya sayfa kapatılırken batch event gönderimi.
+
+4. **Teklif Al Formu (`/teklif-al`):**
+   - İstemci ve sunucu tarafı Zod validasyonu, Redis spam koruması (3 req/min) ve otomatik rıza seviyesi yükseltmesi (`consent_status = "full"`).
+
+5. **Account Manager Admin Paneli (`/admin/leads`):**
+   - Şifreli AM girişi, canlı istatistik özet kartları, arama/filtreleme ve sunucu doğrulamalı AM State Machine (`Lead Geldi` &rarr; `Arandı` &rarr; `Sıcak` &rarr; `Satış`).
+
+6. **Birleşik Lead Detay Kartı (`/admin/leads/[id]`):**
+   - Müşteri iletişim bilgileri, rıza durumuna göre birleştirilmiş oturumların kronolojik zaman çizelgesi, ürün adı çözümlemesi ve Optimistic UI destekli AM not modülü.
+
+---
+
+## 🚀 Hızlı Başlangıç (Local Development)
+
+### 1. Projeyi Klonlayın ve Bağımlılıkları Yükleyin
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd leadUsg
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Ortam Değişkenlerini Ayarlayın
+`.env.example` dosyasını `.env` olarak kopyalayın:
+```bash
+cp .env.example .env
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Veritabanı Seed ve Geliştirici Sunucusu
+```bash
+# Veritabanını tohumlayın (Ultrason cihazları + varsayılan AM kullanıcısı)
+npx prisma db seed
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Geliştirici sunucusunu başlatın
+npm run dev
+```
+Uygulamaya [http://localhost:3000](http://localhost:3000) adresinden erişebilirsiniz.
 
-## Learn More
+- **AM Kullanıcı Girişi:** `admin@leadusg.com`
+- **AM Şifresi:** `LeadUsg2026!`
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🐳 Docker ile Prodüksiyon Deployment (VPS)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Platform; Next.js uygulaması, PostgreSQL 16 ve Redis 7 servislerini içeren Docker Compose yapılandırmasına sahiptir.
 
-## Deploy on Vercel
+```bash
+# Servisleri oluşturup arka planda başlatın
+docker-compose up -d --build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Sistem sağlık kontrolü yapın
+curl http://localhost:3000/api/health
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🧪 Entegrasyon Testlerini Çalıştırma
+
+8 halkalı uçtan uca entegrasyon test paketini çalıştırmak için:
+
+```bash
+npx tsx scripts/integration_test.ts
+```
+
+---
+
+## 📡 API Endpoint'leri Referansı
+
+- `POST /api/events` — Davranışsal olayların batch gönderimi (Redis rate limit: 60/min).
+- `POST /api/leads` — Teklif formu gönderimi (Redis rate limit: 3/min).
+- `POST /api/admin/login` — AM kullanıcı girişi.
+- `POST /api/admin/logout` — AM oturum kapatma.
+- `GET /api/admin/leads` — Korumalı AM lead listesi sorgulama ve filtreleme.
+- `GET /api/admin/leads/[id]` — Birleşik lead kartı ve zaman çizelgesi verileri.
+- `PATCH /api/admin/leads/[id]/status` — AM State Machine statü güncellemesi.
+- `POST /api/admin/leads/[id]/notes` — AM not ekleme.
+- `GET /api/health` — PostgreSQL ve Redis servis canlılık kontrolü.

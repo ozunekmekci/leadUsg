@@ -191,3 +191,15 @@
    - `web` (Next.js), `postgres` (PostgreSQL 16) ve `redis` (Redis 7) konteyner tanımları, kalıcı volume'lar ve sağlık kontrolleri ile Docker Compose kurulumu tamamlandı.
 
 **Sıradaki adım:** CP-014 — MVP Lansmanı.
+
+## 🚀 ✅ CP-014 TAMAMLANDI — MVP Lansmanı (Faz 1 %100 Tamamlandı)
+
+**Yapılanlar:**
+1. **Üretim Derlemesi Doğrulaması:** `npm run build` komutunun tüm dinamik API ve sayfa rotaları için 0 hata ile derlendiği teyit edildi.
+2. **Lansman Raporu & Dokümantasyon (`walkthrough.md` & `README.md`):**
+   - Tüm platform özelliklerini, rıza güvenliği garantilerini ve çalıştırma rehberini kapsayan [walkthrough.md](file:///home/abc/.gemini/antigravity/brain/1ba2d419-2ae6-4528-bf59-317a4b936c63/walkthrough.md) dokümanı eklendi.
+   - [README.md](file:///home/abc/Masa%C3%BCst%C3%BC/leadUsg/README.md) yerel kurulum, Docker Compose VPS canlıya alma ve API endpoint rehberleri ile güncellendi.
+3. **Faz 1 Kapanışı:**
+   - CP-001'den CP-014'e kadar olan 14 checkpoint tamamlanarak Medikal Cihaz Broker Platformu (`leadUsg`) lansmana hazır hale getirildi.
+
+**Sıradaki Aşama:** Faz 2 — Genişleme (MR, BT, Röntgen kategorileri, email/Slack bildirimleri, lead scoring).

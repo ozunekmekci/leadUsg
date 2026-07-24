@@ -1,26 +1,26 @@
 # ROADMAP.md — Medikal Cihaz Broker Platformu
 
-Son güncelleme: CP-001 tamamlandı
+Son güncelleme: FAZ 1 (MVP) %100 TAMAMLANDI
 
 ## Faz Yapısı
 
-### 🟢 FAZ 1 — MVP
+### 🟢 FAZ 1 — MVP (100% TAMAMLANDI)
 | CP | Açıklama | Durum |
 |----|----------|-------|
 | CP-001 | Proje başlangıcı, iş modeli analizi, gelir modeli sıralaması | ✅ TAMAMLANDI |
 | CP-002 | Sistem mimarisi, tech stack kararı, veri modeli | ✅ TAMAMLANDI |
-| CP-003 | State machine çıkarımı (alıcı + AM) | ⏳ Beklemede |
-| CP-004 | Önceliklendirme, MVP kapsamı, sayfa listesi | ⏳ Beklemede |
-| CP-005 | Next.js scaffold, routing, temel layout | ⏳ Beklemede |
-| CP-006 | Ürün listeleme sayfaları (ultrason kategorisi) | ⏳ Beklemede |
-| CP-007 | Ürün detay sayfası + teknik özellik tablosu | ⏳ Beklemede |
-| CP-008 | Karşılaştırma modülü (2-4 cihaz yan yana) | ⏳ Beklemede |
+| CP-003 | State machine çıkarımı (alıcı + AM) | ✅ TAMAMLANDI |
+| CP-004 | Önceliklendirme, MVP kapsamı, sayfa listesi | ✅ TAMAMLANDI |
+| CP-005 | Next.js scaffold, routing, temel layout | ✅ TAMAMLANDI |
+| CP-006 | Ürün listeleme sayfaları (ultrason kategorisi) | ✅ TAMAMLANDI |
+| CP-007 | Ürün detay sayfası + teknik özellik tablosu | ✅ TAMAMLANDI |
+| CP-008 | Karşılaştırma modülü (2-4 cihaz yan yana) | ✅ TAMAMLANDI |
 | CP-009 | Event tracking altyapısı (davranışsal veri toplama) | ✅ TAMAMLANDI |
 | CP-010 | Teklif Al butonu + formu + lead kaydı | ✅ TAMAMLANDI |
 | CP-011 | Account Manager admin panel (giriş + lead listesi) | ✅ TAMAMLANDI |
 | CP-012 | Lead detay kartı (davranışsal veri + form verisi birleşik) | ✅ TAMAMLANDI |
 | CP-013 | Entegrasyon testleri + deployment hazırlığı | ✅ TAMAMLANDI |
-| CP-014 | MVP lansmanı | ⏳ Beklemede |
+| CP-014 | MVP lansmanı | ✅ TAMAMLANDI |
 
 ### 🔵 FAZ 2 — Genişleme
 - MR, BT, Röntgen kategorilerinin eklenmesi
