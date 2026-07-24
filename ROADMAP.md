@@ -15,7 +15,7 @@ Son güncelleme: CP-001 tamamlandı
 | CP-006 | Ürün listeleme sayfaları (ultrason kategorisi) | ⏳ Beklemede |
 | CP-007 | Ürün detay sayfası + teknik özellik tablosu | ⏳ Beklemede |
 | CP-008 | Karşılaştırma modülü (2-4 cihaz yan yana) | ⏳ Beklemede |
-| CP-009 | Event tracking altyapısı (davranışsal veri toplama) | ⏳ Beklemede |
+| CP-009 | Event tracking altyapısı (davranışsal veri toplama) | ✅ TAMAMLANDI |
 | CP-010 | Teklif Al butonu + formu + lead kaydı | ⏳ Beklemede |
 | CP-011 | Account Manager admin panel (giriş + lead listesi) | ⏳ Beklemede |
 | CP-012 | Lead detay kartı (davranışsal veri + form verisi birleşik) | ⏳ Beklemede |

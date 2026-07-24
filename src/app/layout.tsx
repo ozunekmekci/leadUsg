@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Link from "next/link";
+import ConsentBanner from "@/components/ConsentBanner";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -91,6 +92,9 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+
+        {/* Consent Banner */}
+        <ConsentBanner />
       </body>
     </html>
   );

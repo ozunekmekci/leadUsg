@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { trackEvent } from "@/lib/tracking";
 
 export interface ProductSpecs {
   screenSize?: string;
@@ -42,6 +43,11 @@ export default function ProductCard({
   const handleCompareClick = () => {
     const nextState = !compared;
     setCompared(nextState);
+    trackEvent("compare_toggle", {
+      productId: product.id,
+      productName: `${product.brand} ${product.name}`,
+      action: nextState ? "add" : "remove",
+    });
     if (onToggleCompare) {
       onToggleCompare(product.id);
     }
@@ -143,6 +149,13 @@ export default function ProductCard({
 
         <Link
           href={`/urunler/${product.category}/${product.slug}`}
+          onClick={() => {
+            trackEvent("product_card_click", {
+              productId: product.id,
+              productSlug: product.slug,
+              productName: `${product.brand} ${product.name}`,
+            });
+          }}
           className="inline-flex items-center gap-1 rounded-lg bg-slate-800 hover:bg-slate-700 px-3.5 py-1.5 text-xs font-semibold text-white transition-colors border border-slate-700/60"
         >
           <span>Detay</span>

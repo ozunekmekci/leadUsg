@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
+import { trackEvent } from "@/lib/tracking";
 
 interface ProductFiltersProps {
   availableBrands: string[];
@@ -55,12 +56,14 @@ export default function ProductFilters({
   );
 
   const handleBrandChange = (brand: string) => {
+    trackEvent("filter_applied", { filterType: "brand", brand });
     const queryString = createQueryString("brand", brand, "toggle");
     router.push(pathname + (queryString ? `?${queryString}` : ""), { scroll: false });
   };
 
   const handleBudgetChange = (budget: string) => {
     const nextValue = selectedBudget === budget ? "" : budget;
+    trackEvent("filter_applied", { filterType: "budget", budget: nextValue });
     const queryString = createQueryString("budget", nextValue, "set");
     router.push(pathname + (queryString ? `?${queryString}` : ""), { scroll: false });
   };

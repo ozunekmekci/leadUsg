@@ -97,4 +97,24 @@
 4. **Forma Yönlendiren Teklif CTA'sı:** Sayfa altında seçili cihaz ID'lerini `/teklif-al?products=1,2,3` şeklinde forma taşıyan "Seçili Cihazlar İçin Teklif Al" paneli entegre edildi.
 5. **Derleme Doğrulaması:** `npm run build` komutu çalıştırılarak tüm rotaların sorunsuz derlendiği doğrulandı.
 
-**Sıradaki adım:** CP-009 — Event tracking altyapısı (Consent-Gated) — KRİTİK.
+## ✅ CP-009 TAMAMLANDI — Event Tracking Altyapısı (Consent-Gated)
+
+**Yapılanlar:**
+1. **İstemci Rıza Yönetimi & Sıkı Kısıtlar (`ConsentBanner.tsx`):**
+   - Eşit görünürlükte "Kabul Et" ve "Sadece Gerekli" seçenekleri sunan rıza bildirim bileşeni eklendi.
+   - Onay öncesinde/red durumunda parmak izi, cookie veya kişisel cihaz ID'si üretilmesi/saklanması kesin olarak engellendi.
+2. **Anonim Parmak İzi Üretimi (`src/lib/fingerprint.ts`):**
+   - Yalnızca "analytics" veya "full" onayı sonrasında çalışan Canvas + UserAgent + Ekran çözünürlüğü tabanlı SHA-256 parmak izi üreteci yazıldı.
+3. **Structured Logger & PII Maskeleme (`src/lib/logger.ts`):**
+   - IP adresi ve parmak izi gibi kişisel verilerin (PII) düz metin yerine maskelenip/kısaltılarak (SHA-256 prefix) loglanmasını sağlayan güvenli loglama altyapısı kuruldu.
+4. **Client Event Tracking SDK (`src/lib/tracking.ts`):**
+   - Rıza durumunu kontrol eden (`none` ise no-op), event'leri yerel tampona ekleyen, 5 saniyede bir veya sayfa kapatılırken `navigator.sendBeacon` / `fetch` ile `/api/events` endpoint'ine toplu gönderen SDK yazıldı.
+5. **Backend Endpoint & Güvenlik (`POST /api/events`):**
+   - Gelen payload Zod şeması ile doğrulandı.
+   - Redis üzerinden IP başına dakikada max 60 istek sınırı (rate limit) uygulandı.
+   - Session ve event verileri Prisma üzerinden PostgreSQL veritabanına kaydedildi.
+6. **Bileşen Entegrasyonları & Derleme Doğrulaması:**
+   - `CompareView`, `ProductCard`, `ProductFilters` bileşenleri `trackEvent` çağrılarıyla donatıldı.
+   - `npm run build` komutunun hatasız tamamlandığı ve veritabanı yazma testlerinin başarılı olduğu doğrulandı.
+
+**Sıradaki adım:** CP-010 — "Teklif Al" Formu + Lead Kaydı.
