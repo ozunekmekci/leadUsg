@@ -211,5 +211,6 @@
 2. **Caddy Reverse Proxy ve TLS:** `docker-compose.yml` güncellenerek HTTPS yönlendirmesi yapan, Let's Encrypt sertifikasını otomatik yöneten Caddy reverse proxy stack'e eklendi. Web portu 3000 dış erişime kapatılarak stack güvenliği artırıldı. Port çakışmalarını önlemek için host portları `.env` üzerinden yapılandırılabilir hale getirildi.
 3. **Dockerfile Hata Düzeltmeleri:** Docker build'de `npm ci` esnasında postinstall'da tetiklenen `prisma generate`'in şema dosyalarını bulamaması hatası `prisma` klasörü kopyalanarak çözüldü. Alpine paket yöneticisi apk'daki `--no-co-cache` yazım hatası giderildi.
 4. **KVKK Aydınlatma Metni:** Dinamik `/kvkk` rotası oluşturularak detaylı Türkçe KVKK politikası eklendi ve çerez onay banner'ından linklendi.
+5. **Cloudflare Deployment Konfigürasyonu:** `npx wrangler deploy` komutunun çalışabilmesi için `@opennextjs/cloudflare` ve `wrangler` entegrasyonu tamamlandı. `next.config.mjs` standalone çıktı verecek şekilde güncellendi. `open-next.config.ts` ve `wrangler.jsonc` uyumlu hale getirildi. `@opennextjs/cloudflare build` komutunun sonsuz döngüye girmesi `--skipNextBuild` ve `--dangerouslyUseUnsupportedNextVersion` bayraklarıyla engellendi.
 
 **Sıradaki Aşama:** Faz 2 — Genişleme (MR, BT, Röntgen kategorileri, email/Slack bildirimleri, lead scoring).
