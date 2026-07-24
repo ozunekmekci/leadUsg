@@ -177,3 +177,17 @@
    - `npm run build` komutunun sorunsuz tamamlandığı ve veritabanı çözümleme testlerinin başarılı olduğu doğrulandı.
 
 **Sıradaki adım:** CP-013 — Entegrasyon Testleri + Deployment Hazırlığı.
+
+## ✅ CP-013 TAMAMLANDI — Entegrasyon Testleri + Deployment Hazırlığı
+
+**Yapılanlar:**
+1. **Sağlık Kontrolü Endpoint'i (`GET /api/health`):**
+   - PostgreSQL (`prisma.$queryRaw`) ve Redis (`redis.ping()`) servis canlılıklarını kontrol eden, `status`, `uptime` ve servis durumlarını içeren HTTP 200/503 JSON endpoint'i kuruldu.
+2. **8 Halka Uçtan Uca Entegrasyon Test Paketi (`scripts/integration_test.ts`):**
+   - Katalog ürün doğrulaması, consent session başlatma, event boru hattı, lead formu gönderimi & rıza upgrade'i, AM auth/JWT doğrulaması, birleşik lead kartı ürün çözümlenmesi, AM state machine kısıt doğrulaması ve AM not ekleme halkalarının tümünün yeşil geçtiği otomatik test yazıldı ve başarıyla çalıştırıldı (8/8 PASSED).
+3. **Multi-Stage Docker Yapılandırması (`Dockerfile`):**
+   - Next.js 14 App Router production ortamı için `deps`, `builder` ve `runner` aşamalarını içeren optimize edilmiş imaj hazırlığı yapıldı.
+4. **Docker Compose & Canlıya Alma Yapılandırması (`docker-compose.yml` & `.env.example`):**
+   - `web` (Next.js), `postgres` (PostgreSQL 16) ve `redis` (Redis 7) konteyner tanımları, kalıcı volume'lar ve sağlık kontrolleri ile Docker Compose kurulumu tamamlandı.
+
+**Sıradaki adım:** CP-014 — MVP Lansmanı.

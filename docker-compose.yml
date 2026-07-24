@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: leadusg-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: leadusg
+      POSTGRES_PASSWORD: leadusg_secret_pass_2026
+      POSTGRES_DB: leadusg_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U leadusg -d leadusg_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: leadusg-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: leadusg-web
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://leadusg:leadusg_secret_pass_2026@postgres:5432/leadusg_db?schema=public
+      REDIS_URL: redis://redis:6379
+      SESSION_SECRET: production_super_secret_key_leadusg_2026
+      AM_EMAIL: admin@leadusg.com
+      AM_PASSWORD: LeadUsg2026!
+      AM_WEBHOOK_URL: http://localhost:5678/webhook/lead-received
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  redis_data:
