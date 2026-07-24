@@ -1,16 +1,35 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { verifyAdminToken, AM_COOKIE_NAME } from "@/lib/auth";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  const sessionCookie = request.cookies.get(AM_COOKIE_NAME)?.value;
 
-  // Protect /admin/leads and subroutes
-  if (path.startsWith("/admin/leads")) {
-    const sessionCookie = request.cookies.get("am_session");
-    if (!sessionCookie) {
-      // In a real app, redirect to login page. For CP-005, let's allow it but log a warning.
-      console.log(`[Middleware Warning] Unauthenticated access attempt to ${path}`);
-      // Return NextResponse.redirect(new URL("/admin", request.url)); // Disabled for CP-005 testing
+  let isValidSession = false;
+  if (sessionCookie) {
+    const payload = await verifyAdminToken(sessionCookie);
+    if (payload) {
+      isValidSession = true;
+    }
+  }
+
+  // 1. Protect /admin/leads and /api/admin/leads
+  if (path.startsWith("/admin/leads") || path.startsWith("/api/admin/leads")) {
+    if (!isValidSession) {
+      if (path.startsWith("/api/")) {
+        return NextResponse.json({ error: "Unauthorized access." }, { status: 401 });
+      }
+      const loginUrl = new URL("/admin", request.url);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  // 2. Redirect logged-in AM user away from /admin (login page) to /admin/leads
+  if (path === "/admin" || path === "/admin/") {
+    if (isValidSession) {
+      const dashboardUrl = new URL("/admin/leads", request.url);
+      return NextResponse.redirect(dashboardUrl);
     }
   }
 
@@ -18,5 +37,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/api/admin/:path*"],
 };

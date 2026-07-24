@@ -175,6 +175,31 @@ async function main() {
   }
 
   console.log(`✅ Seeded ${ultrasoundProducts.length} ultrasound devices into database.`);
+
+  // Seed default Account Manager user
+  const amEmail = process.env.AM_EMAIL || "admin@leadusg.com";
+  const amPassword = process.env.AM_PASSWORD || "LeadUsg2026!";
+
+  // Simple scrypt hash for seed
+  const crypto = await import("crypto");
+  const salt = crypto.randomBytes(16).toString("hex");
+  const hash = crypto.scryptSync(amPassword, salt, 64).toString("hex");
+  const passwordHash = `${salt}:${hash}`;
+
+  await prisma.aMUser.upsert({
+    where: { email: amEmail },
+    update: {
+      passwordHash,
+      name: "Biyomedikal Account Manager",
+    },
+    create: {
+      email: amEmail,
+      passwordHash,
+      name: "Biyomedikal Account Manager",
+    },
+  });
+
+  console.log(`👤 Seeded AM user: ${amEmail}`);
 }
 
 main()

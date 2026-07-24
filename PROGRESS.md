@@ -138,3 +138,23 @@
    - Yeni gelen lead'ler için ortama göre Webhook (n8n/Slack) çağrısı atan ve sunucu tarafında maskelenmiş PII alert logu düşüren asenkron bildirim dağıtıcısı entegre edildi.
 
 **Sıradaki adım:** CP-011 — Account Manager Admin Panel (Auth + Lead Listesi).
+
+## ✅ CP-011 TAMAMLANDI — Account Manager Admin Panel (Auth + Lead Listesi)
+
+**Yapılanlar:**
+1. **Güvenli Kimlik Doğrulama (`src/lib/auth.ts` & `src/middleware.ts`):**
+   - Web Crypto API tabanlı Edge-uyumlu JWT imzalama/doğrulama modülü ve `scrypt` şifre hashleme yapısı kuruldu.
+   - HTTP-Only `am_session` cookie mekanizması yazıldı.
+   - `src/middleware.ts` güncellenerek `/admin/leads` rotaları koruma altına alındı (giriş yapmamış kullanıcılar doğrudan `/admin` login sayfasına yönlendirilir).
+2. **Account Manager Seed Script (`prisma/seed.ts`):**
+   - `.env` dosyasından okunan e-posta (`AM_EMAIL`) ve şifre (`AM_PASSWORD`) ile varsayılan Biyomedikal Account Manager kullanıcısı (`am_users` tablosuna) seed edildi.
+3. **Login & Logout API Rotaları (`/api/admin/login`, `/api/admin/logout`):**
+   - Şifre doğrulaması yapan login API'si ve güvenli çıkış yapan logout API'si yazıldı.
+4. **AM Yönetim Paneli & Filtreleme (`/admin/leads/page.tsx` & `/api/admin/leads`):**
+   - İstatistik özet kartları (Toplam Lead, Lead Geldi, Arandı, Sıcak, Satış) eklendi.
+   - Statüye göre filtreleme pills (Lead Geldi, Arandı, Sıcak, Soğuk, Satış, Kapalı) ve kurum/isim/telefon ile canlı arama çubuğu kuruldu.
+5. **Server-side AM State Machine Doğrulaması (`/api/admin/leads/[id]/status`):**
+   - Statü değişiklikleri CP-003 kurallarına göre sunucu API'sinde sert doğrulamaya tabi tutuldu.
+   - Örneğin "Lead Geldi" (`new`) durumundaki bir kaydı direkt "Satış" (`sold`) yapma denemeleri HTTP 400 Bad Request hatası ile reddedildi ve doğrulandı.
+
+**Sıradaki adım:** CP-012 — Lead Detay Kartı (Davranışsal Veri + Form Verisi Birleşik).
