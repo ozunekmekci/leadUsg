@@ -71,9 +71,10 @@
 ## ✅ CP-006 TAMAMLANDI — Ürün Listeleme Sayfası (Ultrason Kategorisi)
 
 **Yapılanlar:**
-1. **Dinamik Ürün Listesi:** `/urunler/ultrason` sayfası doldurularak, veritabanından `category="ultrason"` olan ürünlerin dinamik çekilmesi sağlandı.
-2. **Seed Script Hazırlandı:** `prisma/seed.ts` dosyası 8 adet gerçekçi ultrason cihazı verisiyle dolduruldu. Cihaz özellikleri ve fiyat bilgileri eklendi. Açıklama metinleri "humanizer" yaklaşımıyla yazıldı.
-3. **Ürün Filtreleme Altyapısı:** Marka ve Bütçe filtreleri eklendi. Filtreleme istemci tarafında (`ProductFilters`) Next.js `useTransition` kullanılarak sayfa yenilenmeden URL query parametrelerine (`?brand=GE&budget=2-3M`) yansıtıldı.
-4. **Ürün Kartı Tasarımı:** B2B standartlarına uygun, ince çerçeveli, fareyle üzerine gelindiğinde parıldama efekti olan `ProductCard` bileşeni oluşturuldu.
+1. **Seed Script Yazıldı (`prisma/seed.ts`):** 8 adet gerçekçi ultrason cihazı (GE Voluson E10, Logiq E10, Philips EPIQ Elite, Samsung Hera W9, Mindray Resona 7, Canon Aplio i800, Siemens ACUSON Sequoia, Sonosite LX) detaylı spec tabloları ve doğal Türkçe açıklamalarıyla DB'ye seed edildi. Toplam 11 ürün DB'de doğrulandı.
+2. **Ürün Kartı Komponenti (`ProductCard.tsx`):** Görsel alanı, marka etiketi, bütçe segmenti, öne çıkan 2-3 teknik özellik maddesi, prob ve ekran cip'leri, "Karşılaştırmaya Ekle" checkbox'ı ve "Detay" butonu ile oluşturuldu.
+3. **Dinamik Filtreleme (`ProductFilters.tsx`):** İstemci taraflı marka ve bütçe filtreleme yazıldı. Filtre durumları anlık olarak URL query parametrelerine (`?brand=GE+HealthCare&budget=2-3M+TL`) yansıtıldı.
+4. **Boş Durum (`EmptyState.tsx`):** Filtre sonucu 0 ürün kaldığında temiz bir uyarı ve filtre sıfırlama butonu tasarlandı.
+5. **Duyarlı Tasarım ve Derleme:** 375px mobil ekranlarda tek sütun grid ve mobil filtre çekmecesi sağlandı. `npm run build` komutunun sorunsuz çalıştığı doğrulandı.
 
-**Sıradaki adım:** CP-007 — Ürün detay sayfası + teknik özellik tablosu.
+**Sıradaki adım:** CP-007 — Ürün detay sayfası + spec tablosu.
