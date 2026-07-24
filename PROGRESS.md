@@ -77,4 +77,13 @@
 4. **Boş Durum (`EmptyState.tsx`):** Filtre sonucu 0 ürün kaldığında temiz bir uyarı ve filtre sıfırlama butonu tasarlandı.
 5. **Duyarlı Tasarım ve Derleme:** 375px mobil ekranlarda tek sütun grid ve mobil filtre çekmecesi sağlandı. `npm run build` komutunun sorunsuz çalıştığı doğrulandı.
 
-**Sıradaki adım:** CP-007 — Ürün detay sayfası + spec tablosu.
+## ✅ CP-007 TAMAMLANDI — Ürün Detay Sayfası + Spec Tablosu
+
+**Yapılanlar:**
+1. **Design System Spec (`DESIGN.md`):** Google `@google/design.md` açık spesifikasyon formatında `leadUsg` renk, tipografi, köşe yumuşatma, aralık ve bileşen token'ları yazıldı. `npx @google/design.md lint` ile 0 hata ve 0 uyarı ile doğrulandı.
+2. **Esnek SpecTable Komponenti (`SpecTable.tsx`):** Tek ürün detay görüntüsü (`[product]`) veya çoklu ürün karşılaştırma matrisi (`[p1, p2, p3]`) alabilen modüler teknik özellik tablosu tasarlandı. Biyomedikal parametreler 5 ana grup altında toplandı.
+3. **Ürün Detay Sayfası (`/urunler/[kategori]/[slug]`):** Prisma ile dinamik sunucu taraflı sorgulama yapıldı. Geçersiz/olmayan slug'lar için `notFound()` (404) fırlatma mekanizması kuruldu.
+4. **Galeri & CTA Yapısı:** En az 2 görsellik galeri alanı (1 ana görsel + 3 küçük slot), "Teklif Al" ve "Karşılaştırmaya Ekle" yapışkan (sticky) butonları eklendi.
+5. **Önerilen Cihazlar (`RelatedProducts.tsx`):** Sayfa altına aynı kategoriden 3 adet alternatif ürün öneri alanı entegre edildi. `npm run build` ile doğrulandı.
+
+**Sıradaki adım:** CP-008 — Karşılaştırma modülü (2-4 cihaz yan yana).
