@@ -202,4 +202,14 @@
 3. **Faz 1 Kapanışı:**
    - CP-001'den CP-014'e kadar olan 14 checkpoint tamamlanarak Medikal Cihaz Broker Platformu (`leadUsg`) lansmana hazır hale getirildi.
 
+**Sıradaki Aşama:** Faz 1 Pre-Launch Checklist Doğrulaması.
+
+### 🔒 FAZ 1 PRE-LAUNCH CHECKLIST DÜZELTMELERİ (TAMAMLANDI)
+
+**Yapılanlar:**
+1. **HTTP Seviyesi Entegrasyon Test Refaktörü:** `scripts/integration_test.ts` güncellenerek Prisma seviyesini aşan, doğrudan Next.js API Route Handler'larını test eden request/response simülasyon yapısı kuruldu. Consent-gate ("none" consent ile 400/403 hatası) ve AM State Machine geçişleri (new'den direkt sold'a geçiş denemesinde 400 hatası) API sınırlarında başarıyla doğrulandı.
+2. **Caddy Reverse Proxy ve TLS:** `docker-compose.yml` güncellenerek HTTPS yönlendirmesi yapan, Let's Encrypt sertifikasını otomatik yöneten Caddy reverse proxy stack'e eklendi. Web portu 3000 dış erişime kapatılarak stack güvenliği artırıldı. Port çakışmalarını önlemek için host portları `.env` üzerinden yapılandırılabilir hale getirildi.
+3. **Dockerfile Hata Düzeltmeleri:** Docker build'de `npm ci` esnasında postinstall'da tetiklenen `prisma generate`'in şema dosyalarını bulamaması hatası `prisma` klasörü kopyalanarak çözüldü. Alpine paket yöneticisi apk'daki `--no-co-cache` yazım hatası giderildi.
+4. **KVKK Aydınlatma Metni:** Dinamik `/kvkk` rotası oluşturularak detaylı Türkçe KVKK politikası eklendi ve çerez onay banner'ından linklendi.
+
 **Sıradaki Aşama:** Faz 2 — Genişleme (MR, BT, Röntgen kategorileri, email/Slack bildirimleri, lead scoring).

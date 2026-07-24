@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+.git
+.gitignore
+README.md
+walkthrough.md
+PROGRESS.md
+ROADMAP.md
+PRE_LAUNCH_CHECKLIST.md
+Dockerfile
+docker-compose.yml
+.agents
+Caddyfile
+*.log

@@ -40,8 +40,17 @@ export default function ConsentBanner() {
           <p className="font-semibold text-slate-100">
             🔒 Gizlilik ve Çerez Tercihleri
           </p>
-          <p className="text-slate-400 max-w-3xl">
-            Deneyiminizi ve medikal cihaz karşılaştırma hizmetlerimizi iyileştirmek için anonim kullanım verileri (analitik) topluyoruz. Onay vermediğiniz takdirde hiçbir kişisel cihaz parmak izi veya takip verisi saklanmaz.
+          <p className="text-slate-400 max-w-3xl font-normal text-slate-300">
+            Deneyiminizi ve medikal cihaz karşılaştırma hizmetlerimizi iyileştirmek için anonim kullanım verileri (analitik) topluyoruz. Detaylı bilgi için{" "}
+            <a
+              href="/kvkk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 underline font-medium"
+            >
+              KVKK Aydınlatma Metni
+            </a>
+            &apos;ni inceleyebilirsiniz. Onay vermediğiniz takdirde hiçbir kişisel cihaz parmak izi veya takip verisi saklanmaz.
           </p>
         </div>
 
