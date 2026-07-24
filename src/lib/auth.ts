@@ -25,9 +25,16 @@ export function verifyPassword(password: string, storedHash: string): boolean {
   return crypto.timingSafeEqual(Buffer.from(hash, "hex"), Buffer.from(originalHash, "hex"));
 }
 
-// 2. Clean Base64URL Helpers for Web Crypto JWT
 function bufferToBase64Url(buf: ArrayBuffer | Buffer | string): string {
-  return Buffer.from(buf as unknown as WithImplicitCoercion<string>)
+  if (typeof buf === "string") {
+    return Buffer.from(buf, "utf-8")
+      .toString("base64")
+      .replace(/=/g, "")
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_");
+  }
+  const b = buf instanceof Buffer ? buf : Buffer.from(buf as ArrayBuffer);
+  return b
     .toString("base64")
     .replace(/=/g, "")
     .replace(/\+/g, "-")

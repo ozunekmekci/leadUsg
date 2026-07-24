@@ -158,3 +158,22 @@
    - Örneğin "Lead Geldi" (`new`) durumundaki bir kaydı direkt "Satış" (`sold`) yapma denemeleri HTTP 400 Bad Request hatası ile reddedildi ve doğrulandı.
 
 **Sıradaki adım:** CP-012 — Lead Detay Kartı (Davranışsal Veri + Form Verisi Birleşik).
+
+## ✅ CP-012 TAMAMLANDI — Lead Detay Kartı (Davranışsal Veri + Form Verisi Birleşik)
+
+**Yapılanlar:**
+1. **Birleşik Lead Detay API (`GET /api/admin/leads/[id]`):**
+   - Müşteri form verileri, ilişkili oturum(lar) ve davranışsal etkinlikler birleştirilerek tek API çıktısında sunuldu.
+   - Parmak izi (`fingerprintHash`) eşleşen tüm oturumlara ait event'ler ortak zaman çizelgesinde birleştirildi.
+   - Event metadata'larındaki ürün ID'leri `products` tablosu üzerinden `brand + name` olarak çözüldü (ör. "GE HealthCare Logiq E10 vs Samsung Hera W9").
+   - Davranışsal zeka metrikleri (toplam olay, aktif gün sayısı "3 ziyaret, son 7 gün", rıza durumu, karşılaştırılan ürünler özeti) hesaplandı.
+2. **Optimistic UI AM Not Sistemi (`LeadNotesSection.tsx` & `/api/admin/leads/[id]/notes`):**
+   - Account Manager not eklediğinde arayüz milisaniyeler içerisinde (optimistic update) güncellenecek şekilde tasarlandı.
+   - Sunucu veya ağ hatası durumunda yazılan notun geri alınması (rollback) ve hata uyarısı gösterilmesi sağlandı.
+3. **Davranışsal Etkinlik Zaman Çizelgesi (`LeadTimeline.tsx`):**
+   - Karşılaştırma başlatma/sonlandırma, cihaz detay tıklamaları, filtre tercihleri ve teklif formu gönderim anını özel simge ve renklerle kronolojik sırayla gösteren timeline bileşeni geliştirildi.
+4. **AM State Machine Entegrasyonu & Derleme Doğrulaması:**
+   - Detay kartı sayfasında (`/admin/leads/[id]`) da CP-011'de kurulan sunucu doğrulamalı AM state machine geçiş butonları sağlandı.
+   - `npm run build` komutunun sorunsuz tamamlandığı ve veritabanı çözümleme testlerinin başarılı olduğu doğrulandı.
+
+**Sıradaki adım:** CP-013 — Entegrasyon Testleri + Deployment Hazırlığı.

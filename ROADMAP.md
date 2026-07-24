@@ -18,7 +18,7 @@ Son güncelleme: CP-001 tamamlandı
 | CP-009 | Event tracking altyapısı (davranışsal veri toplama) | ✅ TAMAMLANDI |
 | CP-010 | Teklif Al butonu + formu + lead kaydı | ✅ TAMAMLANDI |
 | CP-011 | Account Manager admin panel (giriş + lead listesi) | ✅ TAMAMLANDI |
-| CP-012 | Lead detay kartı (davranışsal veri + form verisi birleşik) | ⏳ Beklemede |
+| CP-012 | Lead detay kartı (davranışsal veri + form verisi birleşik) | ✅ TAMAMLANDI |
 | CP-013 | Entegrasyon testleri + deployment hazırlığı | ⏳ Beklemede |
 | CP-014 | MVP lansmanı | ⏳ Beklemede |
 
