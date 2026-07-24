@@ -68,4 +68,12 @@
 4. **Layout ve Placeholder Rotalar Tanımlandı:** Ürünler, detay, karşılaştırma, teklif alma ve AM admin panel placeholder sayfaları ile Header/Footer tasarlandı.
 5. **Derleme Doğrulandı:** `npm run build` komutunun sorunsuz çalıştığı doğrulandı.
 
-**Sıradaki adım:** CP-006 — Ürün listeleme sayfaları (ultrason kategorisi).
+## ✅ CP-006 TAMAMLANDI — Ürün Listeleme Sayfası (Ultrason Kategorisi)
+
+**Yapılanlar:**
+1. **Dinamik Ürün Listesi:** `/urunler/ultrason` sayfası doldurularak, veritabanından `category="ultrason"` olan ürünlerin dinamik çekilmesi sağlandı.
+2. **Seed Script Hazırlandı:** `prisma/seed.ts` dosyası 8 adet gerçekçi ultrason cihazı verisiyle dolduruldu. Cihaz özellikleri ve fiyat bilgileri eklendi. Açıklama metinleri "humanizer" yaklaşımıyla yazıldı.
+3. **Ürün Filtreleme Altyapısı:** Marka ve Bütçe filtreleri eklendi. Filtreleme istemci tarafında (`ProductFilters`) Next.js `useTransition` kullanılarak sayfa yenilenmeden URL query parametrelerine (`?brand=GE&budget=2-3M`) yansıtıldı.
+4. **Ürün Kartı Tasarımı:** B2B standartlarına uygun, ince çerçeveli, fareyle üzerine gelindiğinde parıldama efekti olan `ProductCard` bileşeni oluşturuldu.
+
+**Sıradaki adım:** CP-007 — Ürün detay sayfası + teknik özellik tablosu.
