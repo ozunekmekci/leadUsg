@@ -76,25 +76,17 @@ export default function ProductFilters({
   const hasActiveFilters = selectedBrands.length > 0 || !!selectedBudget;
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 font-mono-tech">
       {/* Mobile Filter Toggle Button */}
-      <div className="lg:hidden flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-xl">
-        <span className="text-sm font-semibold text-white">
+      <div className="lg:hidden flex items-center justify-between bg-slate-950 text-white border border-slate-800 p-4 rounded">
+        <span className="text-xs font-bold text-slate-200 uppercase tracking-wider">
           Filtreler ({selectedBrands.length + (selectedBudget ? 1 : 0)})
         </span>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-500 transition-colors"
+          className="inline-flex items-center gap-2 rounded bg-cyan-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-cyan-500 transition-colors"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-            />
-          </svg>
-          {mobileOpen ? "Filtreleri Kapat" : "Filtrele"}
+          {mobileOpen ? "Kapat" : "Filtrele"}
         </button>
       </div>
 
@@ -102,14 +94,14 @@ export default function ProductFilters({
       <div
         className={`${
           mobileOpen ? "block" : "hidden"
-        } lg:block rounded-2xl border border-slate-800 bg-slate-900/90 p-6 flex flex-col gap-6 shadow-xl`}
+        } lg:block rounded border border-slate-300 bg-white p-5 flex flex-col gap-6 shadow-sm`}
       >
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-          <h2 className="text-base font-bold text-white tracking-wide">Filtreleme</h2>
+        <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+          <h2 className="font-display text-lg font-bold text-slate-950 tracking-tight">Katalog Filtreleri</h2>
           {hasActiveFilters && (
             <button
               onClick={handleClearAll}
-              className="text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+              className="text-xs font-semibold text-cyan-600 hover:underline transition-colors"
             >
               Temizle
             </button>
@@ -118,24 +110,24 @@ export default function ProductFilters({
 
         {/* Brands Section */}
         <div className="flex flex-col gap-3">
-          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+          <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
             Markalar
           </h3>
-          <div className="space-y-2.5">
+          <div className="space-y-2">
             {availableBrands.map((brand) => {
               const isChecked = selectedBrands.includes(brand);
               return (
                 <label
                   key={brand}
-                  className="flex items-center gap-3 text-sm text-slate-300 hover:text-white cursor-pointer select-none transition-colors"
+                  className="flex items-center gap-3 text-xs text-slate-800 hover:text-cyan-700 cursor-pointer select-none transition-colors"
                 >
                   <input
                     type="checkbox"
                     checked={isChecked}
                     onChange={() => handleBrandChange(brand)}
-                    className="h-4 w-4 rounded border-slate-700 bg-slate-800 text-blue-600 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                    className="h-4 w-4 rounded border-slate-300 bg-white text-cyan-600 focus:ring-0 cursor-pointer"
                   />
-                  <span>{brand}</span>
+                  <span className="font-medium">{brand}</span>
                 </label>
               );
             })}
@@ -143,8 +135,8 @@ export default function ProductFilters({
         </div>
 
         {/* Budget Segment Section */}
-        <div className="flex flex-col gap-3 border-t border-slate-800 pt-6">
-          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+        <div className="flex flex-col gap-3 border-t border-slate-200 pt-5">
+          <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
             Bütçe Aralığı
           </h3>
           <div className="space-y-2">
@@ -154,10 +146,10 @@ export default function ProductFilters({
                 <button
                   key={budget}
                   onClick={() => handleBudgetChange(budget)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-xs font-semibold border transition-all ${
+                  className={`w-full text-left px-3 py-2 rounded text-xs font-semibold border transition-all ${
                     isSelected
-                      ? "bg-blue-600/20 border-blue-500/50 text-blue-300"
-                      : "bg-slate-850/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white"
+                      ? "bg-cyan-50 border-cyan-600 text-cyan-900"
+                      : "bg-slate-50 border-slate-200 text-slate-700 hover:border-slate-400 hover:bg-white"
                   }`}
                 >
                   {budget}
@@ -168,9 +160,8 @@ export default function ProductFilters({
         </div>
 
         {/* Total Count Footnote */}
-        <div className="border-t border-slate-800 pt-4 text-xs text-slate-500 text-center">
-          Toplam <span className="font-bold text-slate-300">{totalResultsCount}</span> cihaz
-          listeleniyor.
+        <div className="border-t border-slate-200 pt-4 text-xs text-slate-500 text-center">
+          Toplam <span className="font-bold text-slate-900">{totalResultsCount}</span> sistem listeleniyor.
         </div>
       </div>
     </div>

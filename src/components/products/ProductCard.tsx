@@ -57,66 +57,56 @@ export default function ProductCard({
   const highlights = specs.highlights || [];
 
   return (
-    <div className="group relative rounded-2xl border border-slate-800 bg-slate-900/90 p-6 transition-all duration-300 hover:border-slate-700 hover:bg-slate-900 hover:shadow-xl hover:shadow-blue-500/5 flex flex-col justify-between">
+    <div className="group relative rounded border border-slate-300 bg-white p-5 transition-all duration-300 hover:border-cyan-600 hover:shadow-md flex flex-col justify-between">
       <div>
         {/* Top Header & Badges */}
-        <div className="flex items-center justify-between gap-2 mb-4">
-          <span className="inline-flex items-center rounded-full bg-blue-500/10 px-2.5 py-0.5 text-xs font-semibold text-blue-400 ring-1 ring-inset ring-blue-500/20">
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <span className="inline-flex items-center text-xs font-mono-tech font-bold text-cyan-800 uppercase tracking-wide">
             {product.brand}
           </span>
           {specs.priceSegment && (
-            <span className="text-xs font-semibold text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded">
+            <span className="text-xs font-mono-tech font-semibold text-slate-600 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
               {specs.priceSegment}
             </span>
           )}
         </div>
 
-        {/* Visual Slot */}
-        <div className="relative aspect-[16/10] w-full rounded-xl bg-gradient-to-br from-slate-950 to-slate-900 border border-slate-800/80 overflow-hidden mb-5 flex items-center justify-center group-hover:border-slate-700 transition-colors">
-          <div className="flex flex-col items-center justify-center gap-2 text-slate-500">
-            <svg
-              className="w-10 h-10 text-slate-600 group-hover:text-blue-400 transition-colors"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
-              />
-            </svg>
-            <span className="text-xs font-medium tracking-wide">
+        {/* Visual Telemetry Slot */}
+        <div className="relative aspect-[16/10] w-full rounded bg-slate-950 border border-slate-800 overflow-hidden mb-4 flex items-center justify-center group-hover:border-cyan-600 transition-colors">
+          <div className="flex flex-col items-center justify-center gap-1.5 text-slate-400 p-4 text-center">
+            <div className="h-8 w-8 rounded-full bg-cyan-950 border border-cyan-800 flex items-center justify-center text-cyan-400 font-bold text-xs font-mono-tech">
+              USG
+            </div>
+            <span className="text-xs font-mono-tech font-bold text-white tracking-wide">
               {product.brand} {product.name}
             </span>
           </div>
           {specs.portable && (
-            <span className="absolute top-3 right-3 rounded-full bg-indigo-500/20 text-indigo-300 text-[10px] font-bold px-2 py-0.5 border border-indigo-500/30">
-              Taşınabilir (POC)
+            <span className="absolute top-2.5 right-2.5 rounded bg-cyan-950 text-cyan-400 text-[10px] font-mono-tech font-bold px-2 py-0.5 border border-cyan-800">
+              POC Taşınabilir
             </span>
           )}
         </div>
 
         {/* Product Title */}
-        <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-blue-300 transition-colors">
+        <h3 className="font-display text-xl font-bold text-slate-950 tracking-tight group-hover:text-cyan-700 transition-colors">
           {product.name}
         </h3>
 
         {/* Short Description */}
-        <p className="mt-2 text-sm text-slate-400 line-clamp-2 leading-relaxed">
+        <p className="mt-2 text-sm text-slate-600 line-clamp-2 leading-relaxed">
           {product.description}
         </p>
 
         {/* Spec Chips */}
-        <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-300">
+        <div className="mt-4 flex flex-wrap gap-2 text-xs font-mono-tech text-slate-700">
           {specs.screenSize && (
-            <span className="inline-flex items-center gap-1 rounded-md bg-slate-800 px-2 py-1 font-medium text-slate-300 border border-slate-750">
+            <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-1 font-medium border border-slate-200">
               🖥️ {specs.screenSize}
             </span>
           )}
           {specs.probePorts !== undefined && (
-            <span className="inline-flex items-center gap-1 rounded-md bg-slate-800 px-2 py-1 font-medium text-slate-300 border border-slate-750">
+            <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-1 font-medium border border-slate-200">
               🔌 {specs.probePorts} Port
             </span>
           )}
@@ -124,10 +114,10 @@ export default function ProductCard({
 
         {/* Spec Highlights List */}
         {highlights.length > 0 && (
-          <ul className="mt-4 space-y-1.5 border-t border-slate-800/80 pt-4 text-xs text-slate-300">
+          <ul className="mt-4 space-y-1.5 border-t border-slate-100 pt-3 text-xs font-mono-tech text-slate-600">
             {highlights.slice(0, 3).map((item, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <span className="text-blue-400 font-bold">•</span>
+                <span className="text-cyan-600 font-bold">•</span>
                 <span className="leading-snug">{item}</span>
               </li>
             ))}
@@ -136,13 +126,13 @@ export default function ProductCard({
       </div>
 
       {/* Action Footer */}
-      <div className="mt-6 flex items-center justify-between border-t border-slate-800/80 pt-4 gap-3">
-        <label className="inline-flex items-center gap-2 cursor-pointer text-xs font-semibold text-slate-300 hover:text-white transition-colors">
+      <div className="mt-5 flex items-center justify-between border-t border-slate-200 pt-3.5 gap-3">
+        <label className="inline-flex items-center gap-2 cursor-pointer text-xs font-mono-tech font-semibold text-slate-700 hover:text-slate-950 transition-colors">
           <input
             type="checkbox"
             checked={compared}
             onChange={handleCompareClick}
-            className="h-4 w-4 rounded border-slate-700 bg-slate-800 text-blue-600 focus:ring-0 focus:ring-offset-0 cursor-pointer"
+            className="h-4 w-4 rounded border-slate-300 bg-white text-cyan-600 focus:ring-0 cursor-pointer"
           />
           <span>Karşılaştır</span>
         </label>
@@ -156,12 +146,10 @@ export default function ProductCard({
               productName: `${product.brand} ${product.name}`,
             });
           }}
-          className="inline-flex items-center gap-1 rounded-lg bg-slate-800 hover:bg-slate-700 px-3.5 py-1.5 text-xs font-semibold text-white transition-colors border border-slate-700/60"
+          className="inline-flex items-center gap-1 rounded bg-slate-950 hover:bg-cyan-700 px-3.5 py-1.5 text-xs font-semibold text-white transition-colors border border-slate-800"
         >
           <span>Detay</span>
-          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
+          <span>→</span>
         </Link>
       </div>
     </div>

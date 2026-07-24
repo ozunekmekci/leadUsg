@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { ProductItem } from "./ProductCard";
 
 interface SpecTableProps {
@@ -68,17 +69,17 @@ export default function SpecTable({
   ];
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-900/90 shadow-xl">
-      <table className="w-full text-left text-sm text-slate-300 border-collapse">
+    <div className="overflow-x-auto rounded border border-slate-300 bg-white shadow-sm font-mono-tech">
+      <table className="w-full text-left text-sm text-slate-800 border-collapse">
         {/* Comparison Header for multi-product mode */}
         {!isSingle && (
           <thead>
-            <tr className="border-b border-slate-800 bg-slate-950/80">
-              <th className="p-4 font-bold text-white w-1/4">Teknik Parametre</th>
+            <tr className="border-b border-slate-300 bg-slate-950 text-white">
+              <th className="p-4 font-bold font-display text-base w-1/4">Teknik Parametre</th>
               {products.map((product) => (
-                <th key={product.id} className="p-4 font-bold text-white border-l border-slate-800">
-                  <div className="text-xs text-blue-400 uppercase font-semibold">{product.brand}</div>
-                  <div className="text-base text-white font-bold">{product.name}</div>
+                <th key={product.id} className="p-4 font-bold border-l border-slate-800">
+                  <div className="text-xs text-cyan-400 uppercase tracking-wider">{product.brand}</div>
+                  <div className="text-lg font-display text-white font-bold">{product.name}</div>
                 </th>
               ))}
             </tr>
@@ -89,10 +90,10 @@ export default function SpecTable({
           {rows.map((group, groupIdx) => (
             <React.Fragment key={groupIdx}>
               {/* Group Header Row */}
-              <tr className="border-b border-slate-800/80 bg-slate-950/60">
+              <tr className="border-b border-slate-200 bg-slate-100">
                 <td
                   colSpan={isSingle ? 2 : products.length + 1}
-                  className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-blue-400"
+                  className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-cyan-800"
                 >
                   {group.group}
                 </td>
@@ -104,30 +105,30 @@ export default function SpecTable({
                 return (
                   <tr
                     key={itemIdx}
-                    className={`border-b border-slate-800/60 transition-colors ${
-                      diff ? "bg-amber-500/10 hover:bg-amber-500/15" : "hover:bg-slate-850/40"
+                    className={`border-b border-slate-200 transition-colors ${
+                      diff ? "bg-amber-50/70 hover:bg-amber-100/70" : "hover:bg-slate-50"
                     }`}
                   >
-                    <td className="p-4 font-semibold text-slate-200 w-1/3 sm:w-1/4 border-r border-slate-800/40">
+                    <td className="p-4 font-semibold text-slate-900 w-1/3 sm:w-1/4 border-r border-slate-200">
                       <div className="flex items-center gap-2">
                         <span>{item.label}</span>
                         {diff && (
-                          <span className="text-[10px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-mono">
-                            Farklı
+                          <span className="delta-badge text-[10px] px-1.5 py-0.5 rounded font-mono-tech font-bold">
+                            ⌐ FARK
                           </span>
                         )}
                       </div>
                     </td>
 
                     {isSingle ? (
-                      <td className="p-4 text-slate-300 font-medium">
+                      <td className="p-4 text-slate-800 font-medium">
                         {item.getValue(products[0])}
                       </td>
                     ) : (
                       products.map((product) => (
                         <td
                           key={product.id}
-                          className="p-4 text-slate-300 font-medium border-l border-slate-800/40"
+                          className="p-4 text-slate-800 font-semibold border-l border-slate-200"
                         >
                           {item.getValue(product)}
                         </td>
@@ -140,20 +141,20 @@ export default function SpecTable({
           ))}
 
           {/* Highlights Row */}
-          <tr className="border-b border-slate-800/80 bg-slate-950/60">
+          <tr className="border-b border-slate-200 bg-slate-100">
             <td
               colSpan={isSingle ? 2 : products.length + 1}
-              className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-blue-400"
+              className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-cyan-800"
             >
               Öne Çıkan Teknolojiler & Biyomedikal Özellikler
             </td>
           </tr>
-          <tr className="hover:bg-slate-850/40">
-            <td className="p-4 font-semibold text-slate-200 border-r border-slate-800/40">
+          <tr className="hover:bg-slate-50">
+            <td className="p-4 font-semibold text-slate-900 border-r border-slate-200">
               Teknoloji Maddeleri
             </td>
             {isSingle ? (
-              <td className="p-4 text-slate-300">
+              <td className="p-4 text-slate-800">
                 <ul className="space-y-1.5 list-disc list-inside text-xs leading-relaxed">
                   {getHighlights(products[0]).map((h, i) => (
                     <li key={i}>{h}</li>
@@ -162,7 +163,7 @@ export default function SpecTable({
               </td>
             ) : (
               products.map((product) => (
-                <td key={product.id} className="p-4 text-slate-300 border-l border-slate-800/40">
+                <td key={product.id} className="p-4 text-slate-800 border-l border-slate-200">
                   <ul className="space-y-1.5 list-disc list-inside text-xs leading-relaxed">
                     {getHighlights(product).map((h, i) => (
                       <li key={i}>{h}</li>
@@ -177,6 +178,3 @@ export default function SpecTable({
     </div>
   );
 }
-
-// React import needed for React.Fragment in tsx
-import React from "react";

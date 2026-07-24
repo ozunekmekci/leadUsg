@@ -214,3 +214,19 @@
 5. **Cloudflare Deployment Konfigürasyonu:** `npx wrangler deploy` komutunun çalışabilmesi için `@opennextjs/cloudflare` ve `wrangler` entegrasyonu tamamlandı. `next.config.mjs` standalone çıktı verecek şekilde güncellendi. `open-next.config.ts` ve `wrangler.jsonc` uyumlu hale getirildi. `@opennextjs/cloudflare build` komutunun sonsuz döngüye girmesi `--skipNextBuild` ve `--dangerouslyUseUnsupportedNextVersion` bayraklarıyla engellendi. Ayrıca, uzaktaki derleme ortamında otomatik çalışan `npm clean-install`'ın peer dependency hataları nedeniyle çökmesini engellemek için `.npmrc` dosyası aracılığıyla `legacy-peer-deps=true` kuralı tanımlandı.
 
 **Sıradaki Aşama:** Faz 2 — Genişleme (MR, BT, Röntgen kategorileri, email/Slack bildirimleri, lead scoring).
+
+## 🎨 ✅ TASARIM YENİLEME — Ultrason Klinik Telemetri & Sharp Modern 2026 UI (DESIGN.md, test.html & Next.js React Entegrasyonu)
+
+**Yapılanlar:**
+1. **Ultrason Biyomedikal Kimliği & Genişletilmiş Sektör Ekranı:**
+   - Jenerik koyu mavi SaaS temaları yerine; ultrason sektör tarama konisi (V-Shape sector wedge), Renkli Doppler kan akış skalası (+62cm/s - -62cm/s), HUD kaliper ölçüm notasyonları ve EKG nabız çizgisi entegre edildi.
+   - Hero konsolu 7 sütuna genişletilerek ekran yüksekliği `480px`'e çıkarıldı. "CARDIAC SECTOR ACTIVE" metni "LIVE SCANNER ACTIVE" olarak güncellendi. Kardiyoloji Sektör taraması (Cardiac Sweep GIF) varsayılan aktif görüntü olarak sabitlendi. Diğer GIF varlıkları pasifize olarak saklandı.
+2. **Vektörel Marka Logoları Portföyü (`public/brands/*.svg`):**
+   - **GE HealthCare**, **Philips**, **Samsung Medison**, **Siemens Healthineers**, **Canon Medical** ve **Mindray** resmi SVG vektör logoları indirilip entegre edildi.
+3. **Next.js React Bileşen Entegrasyonu:**
+   - `Space Grotesk`, `IBM Plex Mono` ve `Plus Jakarta Sans` Google fontları entegre edildi.
+   - `layout.tsx`, `page.tsx`, `ProductCard.tsx`, `SpecTable.tsx`, `ProductFilters.tsx`, `ProposalForm.tsx` ve `CompareView.tsx` bileşenleri yeni tasarım sistemine göre tamamen güncellendi.
+4. **Tasarım Spesifikasyonu & Derleme Doğrulaması:**
+   - `@google/design.md` standartlarında [DESIGN.md](file:///home/abc/Masa%C3%BCst%C3%BC/leadUsg/DESIGN.md) güncellendi, `npx @google/design.md lint` ile 0 hata/uyarı elde edildi.
+   - `npm run build` komutu çalıştırılarak tüm rotaların hatasız derlendiği doğrulandı.
+

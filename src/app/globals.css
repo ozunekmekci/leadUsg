@@ -1,27 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --bg-main: #f8fafc;
+  --surface-white: #ffffff;
+  --surface-dark: #090d16;
+  --border-sharp: #e2e8f0;
+  --text-main: #0f172a;
+  --teal-clinical: #0284c7;
+  --cyan-bright: #06b6d4;
+  --amber-diff: #d97706;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.font-mono-tech {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.font-display {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.03em;
+}
+
+/* Grid backdrop for medical precision feel */
+.clinical-grid-bg {
+  background-image: 
+    linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Diagnostics HUD Monitor */
+.ultrasound-console {
+  background: #060911;
+  border: 1px solid #1e293b;
+  box-shadow: 0 20px 40px -15px rgba(2, 6, 23, 0.6);
+  border-radius: 4px;
+  position: relative;
+}
+
+.sector-cone-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ECG Waveform animation */
+@keyframes ecgPulse {
+  0% { stroke-dashoffset: 600; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.ecg-line {
+  stroke-dasharray: 600;
+  animation: ecgPulse 3s linear infinite;
+}
+
+/* Sector scanner line */
+@keyframes sectorSweep {
+  0% { transform: rotate(-35deg); }
+  50% { transform: rotate(35deg); }
+  100% { transform: rotate(-35deg); }
+}
+
+.sweep-beam {
+  transform-origin: 50% 12px;
+  animation: sectorSweep 2.4s ease-in-out infinite;
+}
+
+.delta-badge {
+  background: rgba(217, 119, 6, 0.1);
+  border: 1px solid rgba(217, 119, 6, 0.3);
+  color: #d97706;
 }

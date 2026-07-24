@@ -64,11 +64,9 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
 
   // Apply filters to products
   const filteredProducts = allProducts.filter((product) => {
-    // Brand filter matching
     if (selectedBrands.length > 0 && !selectedBrands.includes(product.brand)) {
       return false;
     }
-    // Budget filter matching
     if (selectedBudget && product.specs?.priceSegment !== selectedBudget) {
       return false;
     }
@@ -78,18 +76,18 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Category Hero Header */}
-      <div className="flex flex-col gap-4 border-b border-slate-800 pb-8 mb-10">
-        <div className="flex items-center gap-2 text-xs font-semibold text-blue-400 uppercase tracking-widest">
+      <div className="flex flex-col gap-3 border-b border-slate-200 pb-8 mb-10">
+        <div className="flex items-center gap-2 text-xs font-mono-tech font-bold text-cyan-700 uppercase tracking-widest">
           <span>Katalog</span>
           <span>&gt;</span>
-          <span className="text-slate-300">{currentCategory}</span>
+          <span className="text-slate-900">{currentCategory}</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white capitalize">
+        <h1 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-950 capitalize">
           {currentCategory} Cihazları ve Modelleri
         </h1>
-        <p className="text-slate-400 max-w-3xl leading-relaxed text-sm sm:text-base">
-          Klinikler ve görüntüleme merkezleri için öne çıkan {currentCategory} sistemleri. 
-          Teknik spesifikasyonları inceleyin, filtrelere göre eleyin ve karşılaştırma listenize ekleyin.
+        <p className="text-slate-600 max-w-3xl leading-relaxed text-sm sm:text-base">
+          Klinikler ve hastaneler için öne çıkan {currentCategory} sistemleri. 
+          Biyomedikal spesifikasyonları inceleyin, filtreleyin ve karşılaştırma listenize ekleyin.
         </p>
       </div>
 
