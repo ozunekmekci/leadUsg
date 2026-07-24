@@ -118,3 +118,23 @@
    - `npm run build` komutunun hatasız tamamlandığı ve veritabanı yazma testlerinin başarılı olduğu doğrulandı.
 
 **Sıradaki adım:** CP-010 — "Teklif Al" Formu + Lead Kaydı.
+
+## ✅ CP-010 TAMAMLANDI — "Teklif Al" Formu + Lead Kaydı
+
+**Yapılanlar:**
+1. **İstemci Formu (`ProposalForm.tsx`):**
+   - React Hook Form + `@hookform/resolvers` + `zod` kullanılarak istemci tarafında zengin validasyonlu teklif alma formu yazıldı.
+   - Ad Soyad (min 2 harf), Kurum Adı (min 2 harf) ve Telefon (Türkiye cep tel regex formatı) alanları zorunlu kılındı.
+   - E-posta, Bütçe Aralığı ve Mesaj alanları opsiyonel olarak sunuldu.
+   - Form gönderildikten sonra sayfa yönlendirmesi yapılmaksızın aynı sayfada onay/teşekkür kartı state değişimi sağlandı.
+2. **Sunucu API & Güvenlik Koruması (`POST /api/leads`):**
+   - Sunucu tarafında sert Zod validasyonu uygulandı; istemci validasyonu bypass edilse bile geçersiz veriler HTTP 400 ile reddedildi.
+   - Redis üzerinden IP bazlı dakikada maks 3 form gönderim sınırı (anti-spam rate limit) kuruldu.
+3. **Session Consent Upgrade (`consent_status = "full"`):**
+   - Kullanıcı iletişim bilgilerini kendi rızasıyla gönderdiği anda `sessions.consent_status` değeri `"full"` seviyesine yükseltildi.
+4. **Duplicate Engelleme / Upsert Mantığı:**
+   - Aynı session içinden tekrar form doldurulması durumunda mükerrer kayıt oluşturmak yerine mevcut `Lead` kaydının güncellenmesi (`update`) sağlandı ve doğrulandı.
+5. **Account Manager Bildirim Altyapısı:**
+   - Yeni gelen lead'ler için ortama göre Webhook (n8n/Slack) çağrısı atan ve sunucu tarafında maskelenmiş PII alert logu düşüren asenkron bildirim dağıtıcısı entegre edildi.
+
+**Sıradaki adım:** CP-011 — Account Manager Admin Panel (Auth + Lead Listesi).
