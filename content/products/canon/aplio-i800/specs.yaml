@@ -5,8 +5,9 @@ tier: "HIGH_END"
 clinicalUnits:
   - RADIOLOGY
   - OBGYN
-competitors: {}
-
+competitors:
+  "Samsung": "RS80 Evo"
+  "GE": "Logiq E9 / Voluson E8"
 specs:
   signalProcessing: "iBeam & aBeam High-Density Architecture"
   probeTechnology: "iDMS, Dynamic Micro Slice, XBT Transducers"

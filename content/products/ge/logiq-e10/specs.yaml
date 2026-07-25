@@ -4,8 +4,9 @@ model: "Logiq E10"
 tier: "PREMIUM"
 clinicalUnits:
   - RADIOLOGY
-competitors: {}
-
+competitors:
+  "Samsung": "RS85 Prestige"
+  "Siemens": "Acuson Sequoia"
 specs:
   signalProcessing: "cSound, Agile & Radiance Architecture"
   probeTechnology: "Matrix Array, XDclear Technology, Acoustic Amplifier"

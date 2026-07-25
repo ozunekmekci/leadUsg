@@ -5,8 +5,10 @@ tier: "PREMIUM"
 clinicalUnits:
   - RADIOLOGY
   - OBGYN
-competitors: {}
-
+  - CARDIOLOGY
+competitors:
+  "Samsung": "RS85 / HERA W10"
+  "GE": "Logiq E10 / Voluson E10"
 specs:
   signalProcessing: "nSIGHT Imaging Architecture"
   probeTechnology: "xMATRIX array, PureWave Crystal Technology"

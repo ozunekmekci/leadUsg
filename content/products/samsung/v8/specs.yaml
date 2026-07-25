@@ -1,0 +1,21 @@
+# TODO: teknik specler üretici datasheet'inden eklenecek
+brand: "Samsung"
+model: "V8"
+tier: "HIGH_END"
+clinicalUnits:
+  - OBGYN
+  - RADIOLOGY
+competitors:
+  "GE": "Voluson E8 / Logiq S8"
+  "Philips": "EPIQ 7"
+specs:
+  signalProcessing: "CrystalBeam, S-Vision Architecture"
+  probeTechnology: "S-Vue Technology, Matrix Transducers"
+  autoOptimization: "QuickScan"
+  compoundImaging: "MultiVision"
+  speckleReduction: "ClearVision"
+  flowImaging: "S-Flow, MV-Flow, LumiFlow"
+  workflowProtocol: "EZ Exam+"
+  shearwave: "Point & 2D Shearwave (S-Shearwave)"
+  fusionImaging: "S-Fusion"
+  fourDImaging: "Realistic Vue, Crystal Vue"

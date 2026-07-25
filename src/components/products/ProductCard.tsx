@@ -15,6 +15,7 @@ export interface ProductSpecs {
   beamformer?: string;
   elastography?: boolean;
   transducerType?: string;
+  imageUrl?: string;
 }
 
 export interface ProductItem {
@@ -83,7 +84,7 @@ export default function ProductCard({
     >
       <div>
         {/* Top Section: Clean Product Graphic Header */}
-        <div className="aspect-[4/3] bg-surface-light rounded-lg overflow-hidden relative mb-4 flex items-center justify-center border border-border-subtle group-hover:border-brand-teal/40 transition-colors p-6">
+        <div className="aspect-[4/3] bg-surface-light rounded-lg overflow-hidden relative mb-4 flex items-center justify-center border border-border-subtle group-hover:border-brand-teal/40 transition-colors p-4">
           {/* Status Badge Overlay */}
           {specs.priceSegment && (
             <div className="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 bg-brand-dark/80 text-white text-[10px] font-mono-tech font-bold rounded backdrop-blur-xs">
@@ -91,9 +92,15 @@ export default function ProductCard({
             </div>
           )}
 
-          {/* Clean Studio Product Backdrop with Brand Logo */}
-          <div className="w-full h-full flex flex-col items-center justify-center text-center">
-            {brandLogoPath ? (
+          {/* Clean Studio Product Backdrop with Device Image or Brand Logo */}
+          <div className="w-full h-full flex flex-col items-center justify-center text-center relative">
+            {specs.imageUrl ? (
+              <img
+                src={specs.imageUrl}
+                alt={`${product.brand} ${product.name}`}
+                className="max-h-full max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300"
+              />
+            ) : brandLogoPath ? (
               <Image
                 src={brandLogoPath}
                 alt={`${product.brand} logo`}
@@ -106,9 +113,11 @@ export default function ProductCard({
                 {product.brand}
               </span>
             )}
-            <span className="mt-2 text-xs font-mono-tech text-text-muted">
-              {specs.portable ? "Taşınabilir Sistem" : "Konsol Tipi Ultrason"}
-            </span>
+            {!specs.imageUrl && (
+              <span className="mt-2 text-xs font-mono-tech text-text-muted">
+                {specs.portable ? "Taşınabilir Sistem" : "Konsol Tipi Ultrason"}
+              </span>
+            )}
           </div>
         </div>
 

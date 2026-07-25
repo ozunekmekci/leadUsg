@@ -1,12 +1,13 @@
 # TODO: teknik specler üretici datasheet'inden eklenecek
 brand: "Siemens"
-model: "Acuson Sequoia"
-tier: "PREMIUM"
+model: "Acuson Juniper"
+tier: "MID_RANGE"
 clinicalUnits:
   - RADIOLOGY
+  - OBGYN
 competitors:
-  "Samsung": "RS85 Prestige"
-  "GE": "Logiq E10"
+  "Samsung": "HS50 / HS40"
+  "GE": "Logiq P9 / P7"
 specs:
   signalProcessing: "BioAcoustic, SieStream Core Architecture"
   probeTechnology: "DAX, HD Single Crystal, Multi-D Array, Hanafy Lens"
