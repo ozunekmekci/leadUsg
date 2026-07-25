@@ -1,4 +1,4 @@
-# TODO: teknik specler üretici datasheet'inden eklenecek
+# Samsung & Medikal ultrason teknik parametreleri
 brand: "Samsung"
 model: "V5"
 tier: "MID_RANGE"
@@ -9,13 +9,13 @@ competitors:
   "GE": "Voluson S6 / Logiq P7"
   "Siemens": "Juniper"
 specs:
-  signalProcessing: "CrystalBeam, S-Vision Architecture"
-  probeTechnology: "S-Vue Technology, Matrix Transducers"
-  autoOptimization: "QuickScan"
+  signalProcessing: "CrystalBeam, S-Vision & Crystal Architecture"
+  probeTechnology: "S-Vue Transducers, Matrix Array Probes"
+  autoOptimization: "QuickScan, Auto Biometry"
   compoundImaging: "MultiVision"
-  speckleReduction: "ClearVision"
+  speckleReduction: "ClearVision, HQ-Vision"
   flowImaging: "S-Flow, MV-Flow, LumiFlow"
-  workflowProtocol: "EZ Exam+"
+  workflowProtocol: "EZ Exam+, BiometryAssist"
   shearwave: "Point & 2D Shearwave (S-Shearwave)"
   fusionImaging: "S-Fusion"
-  fourDImaging: "Realistic Vue, Crystal Vue"
+  fourDImaging: "Realistic Vue, Crystal Vue, 3D XI"

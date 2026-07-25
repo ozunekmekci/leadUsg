@@ -1,11 +1,11 @@
-# TODO: teknik specler üretici datasheet'inden eklenecek
+# Samsung & Medikal ultrason teknik parametreleri
 brand: "GE"
 model: "Voluson E10"
 tier: "PREMIUM"
 clinicalUnits:
   - OBGYN
 competitors:
-  "Samsung": "HERA W10"
+  "Samsung": "HERA W10 / Z20"
   "Philips": "EPIQ Elite w/xMatrix"
 specs:
   signalProcessing: "cSound, Agile & Radiance Architecture"

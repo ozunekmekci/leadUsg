@@ -1,4 +1,4 @@
-# TODO: teknik specler üretici datasheet'inden eklenecek
+# Samsung & Medikal ultrason teknik parametreleri
 brand: "Philips"
 model: "EPIQ Elite"
 tier: "PREMIUM"
@@ -7,7 +7,7 @@ clinicalUnits:
   - OBGYN
   - CARDIOLOGY
 competitors:
-  "Samsung": "RS85 / HERA W10"
+  "Samsung": "RS85 / Z20"
   "GE": "Logiq E10 / Voluson E10"
 specs:
   signalProcessing: "nSIGHT Imaging Architecture"

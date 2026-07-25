@@ -69,7 +69,7 @@ export default function NewArrivalsCarousel({ items }: NewArrivalsCarouselProps)
       {/* Horizontal Scroll Track */}
       <div
         ref={scrollRef}
-        className="flex gap-5 overflow-x-auto pb-4 pt-1 scroll-smooth snap-x snap-mandatory"
+        className="flex gap-3 overflow-x-auto pb-3 pt-1 scroll-smooth snap-x snap-mandatory"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {items.map((item) => {
@@ -79,27 +79,27 @@ export default function NewArrivalsCarousel({ items }: NewArrivalsCarouselProps)
           return (
             <div
               key={item.id}
-              className="snap-start shrink-0 w-[280px] sm:w-[300px] card-premium bg-white border border-border-subtle rounded-card p-5 flex flex-col justify-between group/card"
+              className="snap-start shrink-0 w-[240px] sm:w-[260px] bg-white border border-slate-200 rounded-card p-3 flex flex-col justify-between group/card shadow-2xs hover:border-brand-teal hover:shadow-card-hover transition-all"
             >
               <div>
                 {/* Top Row: Brand & Added Days Ago Badge */}
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="text-xs font-mono-tech font-semibold text-brand-teal uppercase tracking-wide">
+                <div className="flex items-center justify-between gap-1.5 mb-1.5">
+                  <span className="text-[11px] font-mono-tech font-bold text-brand-teal uppercase tracking-wide">
                     {item.brand}
                   </span>
 
-                  <span className="text-[10px] font-mono-tech font-medium bg-brand-gold-light text-brand-gold px-2 py-0.5 rounded-md">
-                    {item.daysAgo === 0 ? "Bugün" : `${item.daysAgo} gün önce`}
+                  <span className="text-[9px] font-mono-tech font-medium bg-amber-50 text-amber-700 border border-amber-200 px-1.5 py-0.5 rounded">
+                    {item.daysAgo === 0 ? "Bugün" : `${item.daysAgo}g önce`}
                   </span>
                 </div>
 
-                {/* Clean Product Header Graphic */}
-                <div className="relative aspect-[4/3] w-full rounded-lg bg-surface-light border border-border-subtle overflow-hidden mb-4 flex items-center justify-center p-3">
+                {/* Large Clean Product Image Container */}
+                <div className="relative h-[210px] w-full rounded-lg bg-slate-50 border border-slate-100 overflow-hidden mb-2 flex items-center justify-center p-2 group-hover/card:bg-white transition-colors">
                   {item.imageUrl ? (
                     <img
                       src={item.imageUrl}
                       alt={`${item.brand} ${item.name}`}
-                      className="max-h-full max-w-full object-contain filter group-hover/card:scale-105 transition-transform duration-300"
+                      className="max-h-[195px] max-w-full object-contain filter drop-shadow-md group-hover/card:scale-105 transition-transform duration-300"
                     />
                   ) : brandLogoPath ? (
                     <Image
@@ -107,50 +107,43 @@ export default function NewArrivalsCarousel({ items }: NewArrivalsCarouselProps)
                       alt={`${item.brand} logo`}
                       width={120}
                       height={40}
-                      className="max-h-10 max-w-full object-contain filter group-hover/card:scale-105 transition-transform duration-300"
+                      className="max-h-12 max-w-full object-contain filter group-hover/card:scale-105 transition-transform duration-300"
                     />
                   ) : (
-                    <span className="text-lg font-mono-tech font-bold text-text-primary uppercase tracking-wide">
+                    <span className="text-base font-mono-tech font-bold text-text-primary uppercase tracking-wide">
                       {item.brand}
                     </span>
                   )}
-                  
-                  {/* Model Name Overlay */}
-                  <div className="absolute bottom-2 left-2 right-2 text-center">
-                    <span className="text-xs font-semibold text-text-primary bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md border border-border-subtle shadow-sm inline-block">
-                      {item.name}
-                    </span>
-                  </div>
                 </div>
 
-                {/* Title */}
-                <h3 className="font-semibold text-card-title text-text-primary group-hover/card:text-brand-teal transition-colors leading-tight">
+                {/* Model Title */}
+                <h3 className="font-bold text-sm text-slate-900 group-hover/card:text-brand-teal transition-colors leading-tight">
                   {item.name}
                 </h3>
 
                 {/* Technical Summary */}
-                <p className="mt-1.5 text-xs font-mono-tech text-text-muted truncate">
+                <p className="mt-0.5 text-[11px] font-mono-tech text-slate-500 truncate">
                   {item.techSummary}
                 </p>
 
                 {/* Spec Badges */}
-                <div className="mt-3 flex flex-wrap gap-1.5">
+                <div className="mt-1.5 flex flex-wrap gap-1">
                   {item.priceSegment && (
-                    <span className="text-[10px] font-mono-tech font-medium text-text-body bg-surface-light border border-border-subtle px-2 py-0.5 rounded-md">
+                    <span className="text-[9px] font-mono-tech font-medium text-slate-700 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">
                       {item.priceSegment}
                     </span>
                   )}
-                  <span className="text-[10px] font-mono-tech font-medium text-text-body bg-surface-light border border-border-subtle px-2 py-0.5 rounded-md">
+                  <span className="text-[9px] font-mono-tech font-medium text-slate-700 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">
                     {item.portable ? "Taşınabilir" : "Konsol Tipi"}
                   </span>
                 </div>
               </div>
 
               {/* Link Footer */}
-              <div className="mt-4 pt-3 border-t border-border-subtle flex items-center justify-end">
+              <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-end">
                 <Link
                   href={`/urunler/${item.category}/${item.slug}`}
-                  className="text-xs font-semibold text-brand-teal inline-flex items-center gap-1 link-underline group-hover/card:gap-2 transition-all"
+                  className="text-xs font-semibold text-brand-teal inline-flex items-center gap-1 link-underline group-hover/card:gap-1.5 transition-all"
                 >
                   <span>Detay</span>
                   <span>→</span>

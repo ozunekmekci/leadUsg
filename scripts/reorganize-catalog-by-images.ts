@@ -33,16 +33,16 @@ interface TechnicalSpecMap {
 
 const BRAND_SPECS: Record<string, TechnicalSpecMap> = {
   Samsung: {
-    signalProcessing: "CrystalBeam, S-Vision Architecture",
-    probeTechnology: "S-Vue Technology, Matrix Transducers",
-    autoOptimization: "QuickScan",
+    signalProcessing: "CrystalBeam, S-Vision & Crystal Architecture",
+    probeTechnology: "S-Vue Transducers, Matrix Array Probes",
+    autoOptimization: "QuickScan, Auto Biometry",
     compoundImaging: "MultiVision",
-    speckleReduction: "ClearVision",
+    speckleReduction: "ClearVision, HQ-Vision",
     flowImaging: "S-Flow, MV-Flow, LumiFlow",
-    workflowProtocol: "EZ Exam+",
+    workflowProtocol: "EZ Exam+, BiometryAssist",
     shearwave: "Point & 2D Shearwave (S-Shearwave)",
     fusionImaging: "S-Fusion",
-    fourDImaging: "Realistic Vue, Crystal Vue",
+    fourDImaging: "Realistic Vue, Crystal Vue, 3D XI",
   },
   GE: {
     signalProcessing: "cSound, Agile & Radiance Architecture",
@@ -92,18 +92,6 @@ const BRAND_SPECS: Record<string, TechnicalSpecMap> = {
     fusionImaging: "Smart Fusion",
     fourDImaging: "Luminance, Shadow Glass",
   },
-  Mindray: {
-    signalProcessing: "ZST+ & X-Insight Architecture",
-    probeTechnology: "3T Single Crystal Transducers",
-    autoOptimization: "iTouch Auto Optimization",
-    compoundImaging: "iBeam Spatial Compounding",
-    speckleReduction: "iClear Speckle Suppression",
-    flowImaging: "HR Flow, V Flow (High Resolution Flow)",
-    workflowProtocol: "Smart Exam Protocol",
-    shearwave: "STE Elastography",
-    fusionImaging: "iFusion",
-    fourDImaging: "iLive & Hyaline 4D Modu",
-  },
 };
 
 const ACTIVE_PRODUCTS = [
@@ -113,7 +101,6 @@ const ACTIVE_PRODUCTS = [
     tier: "MID_RANGE",
     clinicalUnits: ["OBGYN", "RADIOLOGY"],
     competitors: { GE: "Voluson S6 / Logiq P7", Siemens: "Juniper" },
-    sourceImage: "public/products/samsung/v5/main.png",
     targetExt: "png",
     description: "Samsung V5 çok branşlı kadın doğum ve genel radyoloji ultrasonu.",
   },
@@ -123,9 +110,17 @@ const ACTIVE_PRODUCTS = [
     tier: "HIGH_END",
     clinicalUnits: ["OBGYN", "RADIOLOGY"],
     competitors: { GE: "Voluson E8 / Logiq S8", Philips: "EPIQ 7" },
-    sourceImage: "public/products/samsung/v8/main.jpg",
     targetExt: "jpg",
     description: "Samsung V8 üst segment kristal görüntüleme teknolojili tanı ultrasonu.",
+  },
+  {
+    brand: "Samsung",
+    model: "Z20",
+    tier: "HIGH_END",
+    clinicalUnits: ["OBGYN", "RADIOLOGY"],
+    competitors: { GE: "Voluson E10 / Voluson Signature", Philips: "EPIQ 7W" },
+    targetExt: "jpg",
+    description: "Samsung Z20 Kadın Sağlığı ve Perinatoloji odaklı gelişmiş 3D/4D akıllı ultrason konsolu.",
   },
   {
     brand: "Samsung",
@@ -133,7 +128,6 @@ const ACTIVE_PRODUCTS = [
     tier: "MID_RANGE",
     clinicalUnits: ["RADIOLOGY", "OBGYN", "CARDIOLOGY"],
     competitors: { GE: "Logiq P7", Siemens: "Juniper", Philips: "Affiniti 50" },
-    sourceImage: "public/products/hs40.jpg",
     targetExt: "jpg",
     description: "Samsung HS40 günlük klinik teşhisler için kompakt ve güçlü ultrason ünitesi.",
   },
@@ -143,7 +137,6 @@ const ACTIVE_PRODUCTS = [
     tier: "PREMIUM",
     clinicalUnits: ["RADIOLOGY"],
     competitors: { Samsung: "RS85 Prestige", Siemens: "Acuson Sequoia" },
-    sourceImage: "public/products/ge/logiq-e10/main.webp",
     targetExt: "webp",
     description: "GE Logiq E10 genel radyoloji ve girişimsel biyopsi amiral gemisi konsol ultrasonu.",
   },
@@ -152,8 +145,7 @@ const ACTIVE_PRODUCTS = [
     model: "Voluson E10",
     tier: "PREMIUM",
     clinicalUnits: ["OBGYN"],
-    competitors: { Samsung: "HERA W10", Philips: "EPIQ Elite w/xMatrix" },
-    sourceImage: "public/products/voluson e10 .jpg",
+    competitors: { Samsung: "HERA W10 / Z20", Philips: "EPIQ Elite w/xMatrix" },
     targetExt: "jpg",
     description: "GE Voluson E10 perinatoloji ve yüksek riskli gebelik 4D Matrix ultrason sistemi.",
   },
@@ -163,7 +155,6 @@ const ACTIVE_PRODUCTS = [
     tier: "MID_RANGE",
     clinicalUnits: ["CARDIOLOGY", "RADIOLOGY"],
     competitors: { Philips: "Affiniti 50", Siemens: "Acuson NX3 Elite", Samsung: "HS40-CV" },
-    sourceImage: "public/products/Vivid-T8_cardiac.png",
     targetExt: "png",
     description: "GE Vivid T8 kardiyoloji odaklı ve genel dahiliye hibrit konsol ultrason ünitesi.",
   },
@@ -172,8 +163,7 @@ const ACTIVE_PRODUCTS = [
     model: "EPIQ Elite",
     tier: "PREMIUM",
     clinicalUnits: ["RADIOLOGY", "OBGYN", "CARDIOLOGY"],
-    competitors: { Samsung: "RS85 / HERA W10", GE: "Logiq E10 / Voluson E10" },
-    sourceImage: "public/products/philips/epiq-elite/main.png",
+    competitors: { Samsung: "RS85 / Z20", GE: "Logiq E10 / Voluson E10" },
     targetExt: "png",
     description: "Philips EPIQ Elite nSIGHT mimarili amiral gemisi tıbbi görüntüleme çözümü.",
   },
@@ -183,7 +173,6 @@ const ACTIVE_PRODUCTS = [
     tier: "MID_RANGE",
     clinicalUnits: ["RADIOLOGY", "CARDIOLOGY", "OBGYN"],
     competitors: { Samsung: "HS50 / HS40", GE: "Logiq P9 / P7", Siemens: "Juniper" },
-    sourceImage: "public/products/affiniti 50.jpg",
     targetExt: "jpg",
     description: "Philips Affiniti 50 hassas akustik performanslı çok branşlı muayene ultrasonu.",
   },
@@ -192,8 +181,7 @@ const ACTIVE_PRODUCTS = [
     model: "Aplio i800",
     tier: "HIGH_END",
     clinicalUnits: ["RADIOLOGY", "OBGYN"],
-    competitors: { Samsung: "RS80 Evo", GE: "Logiq E9 / Voluson E8" },
-    sourceImage: "public/products/canon/aplio-i800/main.png",
+    competitors: { Samsung: "RS80 Evo / Z20", GE: "Logiq E9 / Voluson E8" },
     targetExt: "png",
     description: "Canon Aplio i800 mikro damarlanma (SMI) odaklı yüksek frekanslı konsol ultrasonu.",
   },
@@ -203,7 +191,6 @@ const ACTIVE_PRODUCTS = [
     tier: "PREMIUM",
     clinicalUnits: ["RADIOLOGY"],
     competitors: { Samsung: "RS85 Prestige", GE: "Logiq E10" },
-    sourceImage: "public/products/siemens/acuson-sequoia/main.jpg",
     targetExt: "jpg",
     description: "Siemens Acuson Sequoia derin doku ve bariatrik penetrasyon amiral gemisi ultrason platformu.",
   },
@@ -213,19 +200,8 @@ const ACTIVE_PRODUCTS = [
     tier: "MID_RANGE",
     clinicalUnits: ["RADIOLOGY", "OBGYN"],
     competitors: { Samsung: "HS50 / HS40", GE: "Logiq P9 / P7" },
-    sourceImage: "public/products/siemens/acuson-juniper/main.png",
     targetExt: "png",
     description: "Siemens Acuson Juniper esnek ve sessiz çalışan genel tanı ultrason ünitesi.",
-  },
-  {
-    brand: "Mindray",
-    model: "Z20",
-    tier: "LOW_END",
-    clinicalUnits: ["PORTABLE", "RADIOLOGY", "OBGYN"],
-    competitors: { GE: "Versana / Logiq V", Samsung: "HS30" },
-    sourceImage: "public/products/z20 main .jpg",
-    targetExt: "jpg",
-    description: "Mindray Z20 kompakt hasta başı (POC) ve acil servis dijital ultrason ünitesi.",
   },
 ];
 
@@ -239,24 +215,40 @@ async function main() {
   const imageBuffers: Record<string, { buffer: Buffer; ext: string }> = {};
 
   for (const item of ACTIVE_PRODUCTS) {
-    const slug = `${toKebabCase(item.brand)}-${toKebabCase(item.model)}`;
-    let fullSourcePath = path.join(process.cwd(), item.sourceImage);
+    const brandSlug = toKebabCase(item.brand);
+    const modelSlug = toKebabCase(item.model);
+    const slug = `${brandSlug}-${modelSlug}`;
 
-    // Fallback search if path doesn't exist
-    if (!fs.existsSync(fullSourcePath)) {
-      if (item.model === "Z20" && fs.existsSync(path.join(process.cwd(), "public/products/z20.jpg"))) {
-        fullSourcePath = path.join(process.cwd(), "public/products/z20.jpg");
+    // Search anywhere under content or public or mindray folder for Z20/HS40 images
+    const searchDirs = [
+      path.join(baseContentDir, brandSlug, modelSlug, "images"),
+      path.join(baseContentDir, "mindray", modelSlug, "images"),
+      path.join(publicProductsDir, brandSlug, modelSlug),
+      path.join(publicProductsDir, "mindray", modelSlug),
+    ];
+
+    let foundFile: string | null = null;
+
+    for (const sDir of searchDirs) {
+      if (fs.existsSync(sDir)) {
+        const files = fs.readdirSync(sDir);
+        const imgFile = files.find((f) => /\.(png|jpg|jpeg|webp)$/i.test(f));
+        if (imgFile) {
+          foundFile = path.join(sDir, imgFile);
+          break;
+        }
       }
     }
 
-    if (fs.existsSync(fullSourcePath)) {
+    if (foundFile && fs.existsSync(foundFile)) {
+      const ext = path.extname(foundFile).replace(".", "").toLowerCase();
       imageBuffers[slug] = {
-        buffer: fs.readFileSync(fullSourcePath),
-        ext: item.targetExt,
+        buffer: fs.readFileSync(foundFile),
+        ext,
       };
-      console.log(`  ✓ Saved image buffer for ${slug} (${fullSourcePath})`);
+      console.log(`  ✓ Saved image buffer for ${slug} (${foundFile})`);
     } else {
-      console.warn(`  ⚠️ Source image missing for ${slug} at ${fullSourcePath}`);
+      console.warn(`  ⚠️ Source image missing for ${slug}`);
     }
   }
 
@@ -294,24 +286,26 @@ async function main() {
     const publicProductDir = path.join(publicProductsDir, brandSlug, modelSlug);
     fs.mkdirSync(publicProductDir, { recursive: true });
 
-    let imageUrl = `/products/${brandSlug}/${modelSlug}/main.${item.targetExt}`;
+    let ext = item.targetExt;
+    let imageUrl = `/products/${brandSlug}/${modelSlug}/main.${ext}`;
 
     if (imageBuffers[slug]) {
-      const { buffer, ext } = imageBuffers[slug];
+      const imgData = imageBuffers[slug];
+      ext = imgData.ext;
       // Save inside content/products/
       const contentImgPath = path.join(imagesDir, `main.${ext}`);
-      fs.writeFileSync(contentImgPath, buffer);
+      fs.writeFileSync(contentImgPath, imgData.buffer);
 
       // Save inside public/products/ for Next.js static serving
       const publicImgPath = path.join(publicProductDir, `main.${ext}`);
-      fs.writeFileSync(publicImgPath, buffer);
+      fs.writeFileSync(publicImgPath, imgData.buffer);
 
       imageUrl = `/products/${brandSlug}/${modelSlug}/main.${ext}`;
     }
 
     const techSpecs = BRAND_SPECS[item.brand] || {};
 
-    const yamlContent = `# TODO: teknik specler üretici datasheet'inden eklenecek
+    const yamlContent = `# Samsung & Medikal ultrason teknik parametreleri
 brand: "${item.brand}"
 model: "${item.model}"
 tier: "${item.tier}"

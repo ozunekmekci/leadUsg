@@ -49,50 +49,22 @@ export default function RootLayout({
             </Link>
 
             {/* NAV LINKS — Center */}
-            <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-text-body">
+            <div className="flex items-center gap-6 sm:gap-8 text-sm font-medium text-text-body">
               <Link href="/" className="link-underline hover:text-text-primary transition-colors py-1">
                 Ana Sayfa
               </Link>
               <Link href="/urunler/ultrason" className="link-underline hover:text-text-primary transition-colors py-1">
                 Ultrason Cihazları
               </Link>
-              <Link href="/karsilastir" className="link-underline hover:text-text-primary transition-colors py-1">
-                Karşılaştırma Modülü
-              </Link>
-              <Link href="/#servis" className="link-underline hover:text-text-primary transition-colors py-1">
-                Teknik Servis &amp; Garanti
-              </Link>
-              <Link href="/#kurumsal" className="link-underline hover:text-text-primary transition-colors py-1">
-                Kurumsal
-              </Link>
-              <Link href="/#blog" className="link-underline hover:text-text-primary transition-colors py-1">
-                Sağlık Teknolojileri Blog
-              </Link>
             </div>
 
             {/* RIGHT ACTIONS */}
             <div className="flex items-center gap-3">
               <Link
-                href="/karsilastir"
-                className="hidden md:inline-flex items-center gap-2 text-sm font-medium text-text-body border border-border-subtle hover:border-brand-teal hover:text-brand-teal px-4 py-2 rounded-pill transition-all"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
-                </svg>
-                Matrix
-              </Link>
-              <Link
                 href="/teklif-al"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-brand-teal hover:bg-brand-teal-hover px-5 py-2.5 rounded-pill transition-all shadow-sm"
               >
                 <span>Teklif Al</span>
-                <span>→</span>
-              </Link>
-              <Link
-                href="/admin"
-                className="hidden lg:inline text-xs font-mono-tech text-text-subtle hover:text-text-muted transition-colors"
-              >
-                AM
               </Link>
             </div>
           </nav>

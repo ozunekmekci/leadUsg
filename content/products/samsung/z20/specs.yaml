@@ -1,15 +1,13 @@
 # Samsung & Medikal ultrason teknik parametreleri
 brand: "Samsung"
-model: "HS40"
-tier: "MID_RANGE"
+model: "Z20"
+tier: "HIGH_END"
 clinicalUnits:
-  - RADIOLOGY
   - OBGYN
-  - CARDIOLOGY
+  - RADIOLOGY
 competitors:
-  "GE": "Logiq P7"
-  "Siemens": "Juniper"
-  "Philips": "Affiniti 50"
+  "GE": "Voluson E10 / Voluson Signature"
+  "Philips": "EPIQ 7W"
 specs:
   signalProcessing: "CrystalBeam, S-Vision & Crystal Architecture"
   probeTechnology: "S-Vue Transducers, Matrix Array Probes"

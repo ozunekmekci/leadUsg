@@ -1,4 +1,4 @@
-# TODO: teknik specler üretici datasheet'inden eklenecek
+# Samsung & Medikal ultrason teknik parametreleri
 brand: "Canon"
 model: "Aplio i800"
 tier: "HIGH_END"
@@ -6,7 +6,7 @@ clinicalUnits:
   - RADIOLOGY
   - OBGYN
 competitors:
-  "Samsung": "RS80 Evo"
+  "Samsung": "RS80 Evo / Z20"
   "GE": "Logiq E9 / Voluson E8"
 specs:
   signalProcessing: "iBeam & aBeam High-Density Architecture"

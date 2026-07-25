@@ -10,9 +10,7 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 import QualityAndPrecision from "@/components/QualityAndPrecision";
 import AIAndAutomation from "@/components/AIAndAutomation";
 import SmartComparison from "@/components/SmartComparison";
-import AfterSalesAndSupport from "@/components/AfterSalesAndSupport";
 import ProposalForm from "@/components/ProposalForm";
-import InformationCenter from "@/components/InformationCenter";
 import TrustBadgeStrip from "@/components/TrustBadgeStrip";
 
 export const dynamic = "force-dynamic";
@@ -76,8 +74,8 @@ export default async function Home() {
       {/* 8. Akıllı Karşılaştırma Aracı */}
       <SmartComparison products={products} />
 
-      {/* 9. Satış Sonrası & Hizmet Güvencesi */}
-      <AfterSalesAndSupport />
+      {/* 9. Satış Sonrası & Hizmet Güvencesi (Deaktif) */}
+      {/* <AfterSalesAndSupport /> */}
 
       {/* 10. Teklif & Demo Formu */}
       <section id="teklif" className="py-section-sm md:py-section-md lg:py-section-lg bg-white border-b border-border-subtle">
@@ -138,8 +136,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 11. Bilgi Merkezi & SEO Rehberi */}
-      <InformationCenter />
+      {/* 11. Bilgi Merkezi & SEO Rehberi (Deaktif) */}
+      {/* <InformationCenter /> */}
 
       {/* Trust Badge Strip */}
       <TrustBadgeStrip />

@@ -16,71 +16,71 @@ export default function BrandsBanner() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {/* BRAND 1: GE HEALTHCARE */}
-          <div className="p-5 rounded border border-border-subtle bg-white hover:border-brand-teal hover:shadow-card-hover transition-all flex flex-col justify-between items-center text-center group h-36">
-            <div className="w-full h-14 flex items-center justify-center p-2">
-              <Image src="/brands/ge.svg" alt="GE HealthCare Logo" width={80} height={40} className="max-h-10 max-w-full object-contain filter group-hover:scale-105 transition-transform" />
-            </div>
-            <div>
-              <div className="font-sans text-xs font-semibold text-text-primary group-hover:text-brand-teal">GE HealthCare</div>
-              <div className="text-[10px] font-mono-tech text-text-muted">Voluson · Logiq · Vivid</div>
-            </div>
+          <div className="p-4 rounded-lg border border-slate-200 bg-white hover:border-brand-teal hover:shadow-md transition-all flex items-center justify-center group h-24">
+            <Image
+              src="/brands/ge.png"
+              alt="GE HealthCare Logo"
+              width={120}
+              height={50}
+              className="max-h-14 max-w-[85%] object-contain filter group-hover:scale-105 transition-transform"
+            />
           </div>
 
           {/* BRAND 2: PHILIPS */}
-          <div className="p-5 rounded border border-border-subtle bg-white hover:border-brand-teal hover:shadow-card-hover transition-all flex flex-col justify-between items-center text-center group h-36">
-            <div className="w-full h-14 flex items-center justify-center p-2">
-              <Image src="/brands/philips.svg" alt="Philips Logo" width={80} height={40} className="max-h-8 max-w-full object-contain filter group-hover:scale-105 transition-transform" />
-            </div>
-            <div>
-              <div className="font-sans text-xs font-semibold text-text-primary group-hover:text-brand-teal">Philips</div>
-              <div className="text-[10px] font-mono-tech text-text-muted">EPIQ · Affiniti · InnoSight</div>
-            </div>
+          <div className="p-4 rounded-lg border border-slate-200 bg-white hover:border-brand-teal hover:shadow-md transition-all flex items-center justify-center group h-24">
+            <Image
+              src="/brands/philips.svg"
+              alt="Philips Logo"
+              width={120}
+              height={50}
+              className="max-h-12 max-w-[85%] object-contain filter group-hover:scale-105 transition-transform"
+            />
           </div>
 
           {/* BRAND 3: SAMSUNG MEDISON */}
-          <div className="p-5 rounded border border-border-subtle bg-white hover:border-brand-teal hover:shadow-card-hover transition-all flex flex-col justify-between items-center text-center group h-36">
-            <div className="w-full h-14 flex items-center justify-center p-2">
-              <Image src="/brands/samsung.svg" alt="Samsung Medison Logo" width={80} height={40} className="max-h-8 max-w-full object-contain filter group-hover:scale-105 transition-transform" />
-            </div>
-            <div>
-              <div className="font-sans text-xs font-semibold text-text-primary group-hover:text-brand-teal">Samsung Medison</div>
-              <div className="text-[10px] font-mono-tech text-text-muted">HERA · V8 · RS85</div>
-            </div>
+          <div className="p-4 rounded-lg border border-slate-200 bg-white hover:border-brand-teal hover:shadow-md transition-all flex items-center justify-center group h-24">
+            <Image
+              src="/brands/samsung.svg"
+              alt="Samsung Medison Logo"
+              width={120}
+              height={50}
+              className="max-h-12 max-w-[85%] object-contain filter group-hover:scale-105 transition-transform"
+            />
           </div>
 
           {/* BRAND 4: SIEMENS HEALTHINEERS */}
-          <div className="p-5 rounded border border-border-subtle bg-white hover:border-brand-teal hover:shadow-card-hover transition-all flex flex-col justify-between items-center text-center group h-36">
-            <div className="w-full h-14 flex items-center justify-center p-2">
-              <Image src="/brands/siemens.svg" alt="Siemens Healthineers Logo" width={80} height={40} className="max-h-12 max-w-full object-contain filter group-hover:scale-105 transition-transform" />
-            </div>
-            <div>
-              <div className="font-sans text-xs font-semibold text-text-primary group-hover:text-brand-teal">Siemens Healthineers</div>
-              <div className="text-[10px] font-mono-tech text-text-muted">ACUSON Sequoia</div>
-            </div>
+          <div className="p-4 rounded-lg border border-slate-200 bg-white hover:border-brand-teal hover:shadow-md transition-all flex items-center justify-center group h-24">
+            <Image
+              src="/brands/siemens.svg"
+              alt="Siemens Healthineers Logo"
+              width={120}
+              height={50}
+              className="max-h-14 max-w-[85%] object-contain filter group-hover:scale-105 transition-transform"
+            />
           </div>
 
           {/* BRAND 5: CANON MEDICAL */}
-          <div className="p-5 rounded border border-border-subtle bg-white hover:border-brand-teal hover:shadow-card-hover transition-all flex flex-col justify-between items-center text-center group h-36">
-            <div className="w-full h-14 flex items-center justify-center p-2">
-              <Image src="/brands/canon.svg" alt="Canon Medical Logo" width={80} height={40} className="max-h-8 max-w-full object-contain filter group-hover:scale-105 transition-transform" />
-            </div>
-            <div>
-              <div className="font-sans text-xs font-semibold text-text-primary group-hover:text-brand-teal">Canon Medical</div>
-              <div className="text-[10px] font-mono-tech text-text-muted">Aplio i800 · Aplio a</div>
-            </div>
+          <div className="p-4 rounded-lg border border-slate-200 bg-white hover:border-brand-teal hover:shadow-md transition-all flex items-center justify-center group h-24">
+            <Image
+              src="/brands/canon.svg"
+              alt="Canon Medical Logo"
+              width={120}
+              height={50}
+              className="max-h-12 max-w-[85%] object-contain filter group-hover:scale-105 transition-transform"
+            />
           </div>
 
           {/* BRAND 6: MINDRAY */}
-          <div className="p-5 rounded border border-border-subtle bg-white hover:border-brand-teal hover:shadow-card-hover transition-all flex flex-col justify-between items-center text-center group h-36">
-            <div className="w-full h-14 flex items-center justify-center p-2">
-              <Image src="/brands/mindray.svg" alt="Mindray Logo" width={80} height={40} className="max-h-10 max-w-full object-contain filter group-hover:scale-105 transition-transform" />
-            </div>
-            <div>
-              <div className="font-sans text-xs font-semibold text-text-primary group-hover:text-brand-teal">Mindray</div>
-              <div className="text-[10px] font-mono-tech text-text-muted">Resona 7 · Nuewa I9</div>
-            </div>
+          <div className="p-4 rounded-lg border border-slate-200 bg-white hover:border-brand-teal hover:shadow-md transition-all flex items-center justify-center group h-24">
+            <Image
+              src="/brands/mindray.png"
+              alt="Mindray Logo"
+              width={120}
+              height={50}
+              className="max-h-14 max-w-[85%] object-contain filter group-hover:scale-105 transition-transform"
+            />
           </div>
         </div>
       </div>
