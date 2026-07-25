@@ -11,16 +11,19 @@ export default function RelatedProducts({ products, category }: RelatedProductsP
   }
 
   return (
-    <div className="mt-16 border-t border-slate-800 pt-12 flex flex-col gap-6">
+    <div className="mt-16 border-t border-slate-200 pt-12 flex flex-col gap-6 font-sans">
       <div className="flex flex-col gap-1">
-        <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest">
-          Önerilen Cihazlar
-        </span>
-        <h2 className="text-2xl font-bold text-white tracking-tight">
+        <div className="flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-cyan-600"></span>
+          <span className="text-xs font-mono-tech font-bold text-cyan-800 uppercase tracking-widest">
+            KLİNİK ALTERNATİFLER
+          </span>
+        </div>
+        <h2 className="font-display text-2xl font-bold text-slate-950 tracking-tight mt-1">
           Benzer {category.toUpperCase()} Sistemleri
         </h2>
-        <p className="text-sm text-slate-400">
-          Benzer özellikler ve bütçe aralığı sunan diğer alternatif cihaz modelleri.
+        <p className="text-sm text-slate-600 font-sans">
+          Eşdeğer biyomedikal özellikler ve bütçe aralığı sunan diğer alternatif ultrason sistemleri.
         </p>
       </div>
 
@@ -32,3 +35,4 @@ export default function RelatedProducts({ products, category }: RelatedProductsP
     </div>
   );
 }
+

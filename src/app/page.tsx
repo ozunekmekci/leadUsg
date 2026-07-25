@@ -1,4 +1,8 @@
 import Link from "next/link";
+import NewArrivalsStrip from "@/components/NewArrivalsStrip";
+import TrustStatsBar from "@/components/TrustStatsBar";
+import BeforeAfterTeaser from "@/components/BeforeAfterTeaser";
+import TrustBadgeStrip from "@/components/TrustBadgeStrip";
 
 export default function Home() {
   return (
@@ -57,7 +61,7 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* TRUST FOOTPRINT */}
+              {/* TRUST FOOTPRINT (Inline Quick Stats) */}
               <div className="pt-5 border-t border-slate-200 flex items-center gap-6 text-xs font-mono-tech text-slate-500">
                 <div>
                   <span className="block text-lg font-bold text-slate-950 font-display">12+</span>
@@ -181,6 +185,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CP-015-A: YENİ EKLENEN CİHAZLAR ŞERİDİ (Hero'nun Hemen Altı) */}
+      <NewArrivalsStrip />
+
       {/* BRANDS PORTFOLIO SECTION WITH OFFICIAL SVG LOGOS */}
       <section id="markalar" className="py-14 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -264,6 +271,12 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CP-015-C: SAYISAL GÜVEN ŞERİDİ (Marka Portföyü Altı) */}
+      <TrustStatsBar />
+
+      {/* CP-015-B: ÖNCE / SONRA KARŞILAŞTIRMA TEASER BLOĞU */}
+      <BeforeAfterTeaser />
+
       {/* CLINICAL CATEGORIES & SPECIALIZATIONS */}
       <section id="kategoriler" className="py-16 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -336,6 +349,9 @@ export default function Home() {
 
         </div>
       </section>
+
+      {/* CP-015-E: GÜVEN ROZETİ ŞERİDİ (Footer Üstü) */}
+      <TrustBadgeStrip />
 
     </div>
   );

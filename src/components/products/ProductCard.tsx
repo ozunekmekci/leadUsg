@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 import { trackEvent } from "@/lib/tracking";
 
 export interface ProductSpecs {
@@ -11,6 +12,9 @@ export interface ProductSpecs {
   applicationAreas?: string[];
   priceSegment?: string;
   highlights?: string[];
+  beamformer?: string;
+  elastography?: boolean;
+  transducerType?: string;
 }
 
 export interface ProductItem {
@@ -21,6 +25,7 @@ export interface ProductItem {
   category: string;
   description: string;
   specs: ProductSpecs;
+  previewVideoUrl?: string | null;
 }
 
 interface ProductCardProps {
@@ -29,16 +34,67 @@ interface ProductCardProps {
   isCompared?: boolean;
 }
 
+// Brand SVG map helper
+const BRAND_LOGO_MAP: Record<string, string> = {
+  "ge healthcare": "/brands/ge.svg",
+  "ge": "/brands/ge.svg",
+  "philips": "/brands/philips.svg",
+  "samsung medison": "/brands/samsung.svg",
+  "samsung": "/brands/samsung.svg",
+  "siemens healthineers": "/brands/siemens.svg",
+  "siemens": "/brands/siemens.svg",
+  "canon medical": "/brands/canon.svg",
+  "canon": "/brands/canon.svg",
+  "mindray": "/brands/mindray.svg",
+};
+
 export default function ProductCard({
   product,
   onToggleCompare,
   isCompared = false,
 }: ProductCardProps) {
   const [compared, setCompared] = useState(isCompared);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setCompared(isCompared);
   }, [isCompared]);
+
+  // Mobile viewport IntersectionObserver for autoplaying previewVideoUrl when visible
+  useEffect(() => {
+    if (!product.previewVideoUrl || !cardRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (videoRef.current) {
+            if (entry.isIntersecting) {
+              videoRef.current.play().catch(() => {});
+            } else {
+              videoRef.current.pause();
+            }
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(cardRef.current);
+    return () => observer.disconnect();
+  }, [product.previewVideoUrl]);
+
+  const handleMouseEnter = () => {
+    if (product.previewVideoUrl && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (product.previewVideoUrl && videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
 
   const handleCompareClick = () => {
     const nextState = !compared;
@@ -55,37 +111,119 @@ export default function ProductCard({
 
   const specs = product.specs || {};
   const highlights = specs.highlights || [];
+  const brandKey = (product.brand || "").toLowerCase().trim();
+  const brandLogoPath = BRAND_LOGO_MAP[brandKey];
 
   return (
-    <div className="group relative rounded border border-slate-300 bg-white p-5 transition-all duration-300 hover:border-cyan-600 hover:shadow-md flex flex-col justify-between">
+    <div
+      ref={cardRef}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="group relative rounded border border-slate-200 bg-white p-5 transition-all duration-200 hover:border-cyan-600 hover:shadow-lg hover:shadow-cyan-950/5 flex flex-col justify-between"
+    >
       <div>
-        {/* Top Header & Badges */}
-        <div className="flex items-center justify-between gap-2 mb-3">
-          <span className="inline-flex items-center text-xs font-mono-tech font-bold text-cyan-800 uppercase tracking-wide">
-            {product.brand}
-          </span>
+        {/* Header: Brand Logo / Name & Price Segment Badge */}
+        <div className="flex items-center justify-between gap-2 mb-3.5 pb-3 border-b border-slate-100">
+          <div className="flex items-center gap-2 h-7">
+            {brandLogoPath ? (
+              <div className="relative h-6 w-20 flex items-center">
+                <Image
+                  src={brandLogoPath}
+                  alt={`${product.brand} logo`}
+                  width={80}
+                  height={24}
+                  className="max-h-6 max-w-full object-contain filter group-hover:brightness-110 transition-all"
+                />
+              </div>
+            ) : (
+              <span className="text-xs font-mono-tech font-bold text-cyan-800 uppercase tracking-wide">
+                {product.brand}
+              </span>
+            )}
+          </div>
+
           {specs.priceSegment && (
-            <span className="text-xs font-mono-tech font-semibold text-slate-600 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
+            <span className="text-[11px] font-mono-tech font-semibold text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
               {specs.priceSegment}
             </span>
           )}
         </div>
 
-        {/* Visual Telemetry Slot */}
-        <div className="relative aspect-[16/10] w-full rounded bg-slate-950 border border-slate-800 overflow-hidden mb-4 flex items-center justify-center group-hover:border-cyan-600 transition-colors">
-          <div className="flex flex-col items-center justify-center gap-1.5 text-slate-400 p-4 text-center">
-            <div className="h-8 w-8 rounded-full bg-cyan-950 border border-cyan-800 flex items-center justify-center text-cyan-400 font-bold text-xs font-mono-tech">
-              USG
-            </div>
-            <span className="text-xs font-mono-tech font-bold text-white tracking-wide">
-              {product.brand} {product.name}
+        {/* Visual Telemetry HUD Viewport / Optional Video Preview */}
+        <div className="relative aspect-[16/10] w-full rounded bg-[#060911] border border-slate-800 overflow-hidden mb-4 p-3 flex flex-col justify-between group-hover:border-cyan-600/80 transition-colors">
+          {/* Top HUD Telemetry Info */}
+          <div className="flex items-center justify-between text-[10px] font-mono-tech text-slate-400 z-10">
+            <span className="inline-flex items-center gap-1 text-cyan-400 font-bold">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+              {product.brand.toUpperCase()}
             </span>
+            <span className="text-slate-400 font-medium">FREQ: 4.2 MHz</span>
           </div>
-          {specs.portable && (
-            <span className="absolute top-2.5 right-2.5 rounded bg-cyan-950 text-cyan-400 text-[10px] font-mono-tech font-bold px-2 py-0.5 border border-cyan-800">
-              POC Taşınabilir
-            </span>
-          )}
+
+          {/* Video Preview or Fallback SVG Sector Cone & HUD Graphic */}
+          <div className="relative flex-1 flex items-center justify-center my-1 overflow-hidden">
+            {product.previewVideoUrl ? (
+              <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-black">
+                <video
+                  ref={videoRef}
+                  src={product.previewVideoUrl}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover opacity-90"
+                />
+                <div className="absolute top-1 right-1 px-1.5 py-0.5 bg-cyan-950/90 text-cyan-400 border border-cyan-800 text-[9px] font-mono-tech font-bold rounded">
+                  DEMO VIDEO
+                </div>
+              </div>
+            ) : (
+              <svg viewBox="0 0 200 110" className="w-full h-full max-h-24 opacity-85">
+                {/* Sector arc gridlines */}
+                <path
+                  d="M100 10 L40 100 A90 90 0 0 0 160 100 Z"
+                  fill="rgba(6, 182, 212, 0.06)"
+                  stroke="rgba(6, 182, 212, 0.3)"
+                  strokeWidth="1"
+                  strokeDasharray="3 2"
+                />
+                <path
+                  d="M100 10 L60 65 A50 50 0 0 0 140 65 Z"
+                  fill="none"
+                  stroke="rgba(6, 182, 212, 0.2)"
+                  strokeWidth="0.75"
+                />
+                <circle cx="100" cy="10" r="2" fill="#ef4444" />
+                {/* Measurement caliper line */}
+                <line x1="80" y1="55" x2="120" y2="65" stroke="#f59e0b" strokeWidth="1" strokeDasharray="2 2" />
+                <circle cx="80" cy="55" r="1.5" fill="#f59e0b" />
+                <circle cx="120" cy="65" r="1.5" fill="#f59e0b" />
+                <text x="124" y="67" fontFamily="IBM Plex Mono" fontSize="6" fill="#f59e0b" fontWeight="bold">
+                  4.8cm
+                </text>
+              </svg>
+            )}
+
+            {/* Model Overlay Name */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+              <span className="text-xs font-display font-bold text-white tracking-wide bg-slate-950/80 px-2 py-1 rounded border border-slate-800/80 backdrop-blur-xs">
+                {product.name}
+              </span>
+            </div>
+          </div>
+
+          {/* Bottom HUD Telemetry Status */}
+          <div className="flex items-center justify-between text-[9px] font-mono-tech text-slate-400 z-10 border-t border-slate-900 pt-1">
+            <span className="text-slate-400">FPS: <strong className="text-cyan-400">58Hz</strong></span>
+            {specs.portable ? (
+              <span className="rounded bg-cyan-950 text-cyan-300 font-bold px-1.5 py-0.5 border border-cyan-800 text-[9px]">
+                POC Taşınabilir
+              </span>
+            ) : (
+              <span className="text-slate-400">Konsol Tipi</span>
+            )}
+          </div>
         </div>
 
         {/* Product Title */}
@@ -94,30 +232,35 @@ export default function ProductCard({
         </h3>
 
         {/* Short Description */}
-        <p className="mt-2 text-sm text-slate-600 line-clamp-2 leading-relaxed">
+        <p className="mt-2 text-sm text-slate-600 line-clamp-2 leading-relaxed font-sans">
           {product.description}
         </p>
 
-        {/* Spec Chips */}
-        <div className="mt-4 flex flex-wrap gap-2 text-xs font-mono-tech text-slate-700">
+        {/* Spec Chips (IBM Plex Mono) */}
+        <div className="mt-3.5 flex flex-wrap gap-1.5 text-xs font-mono-tech text-slate-700">
           {specs.screenSize && (
-            <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-1 font-medium border border-slate-200">
+            <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-0.5 font-medium border border-slate-200">
               🖥️ {specs.screenSize}
             </span>
           )}
           {specs.probePorts !== undefined && (
-            <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-1 font-medium border border-slate-200">
+            <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-0.5 font-medium border border-slate-200">
               🔌 {specs.probePorts} Port
+            </span>
+          )}
+          {specs.beamformer && (
+            <span className="inline-flex items-center gap-1 rounded bg-cyan-50 text-cyan-900 px-2 py-0.5 font-medium border border-cyan-200">
+              ⚡ {specs.beamformer}
             </span>
           )}
         </div>
 
-        {/* Spec Highlights List */}
+        {/* Spec Highlights Bullet Points */}
         {highlights.length > 0 && (
-          <ul className="mt-4 space-y-1.5 border-t border-slate-100 pt-3 text-xs font-mono-tech text-slate-600">
+          <ul className="mt-3.5 space-y-1 border-t border-slate-100 pt-3 text-xs font-mono-tech text-slate-600">
             {highlights.slice(0, 3).map((item, idx) => (
-              <li key={idx} className="flex items-start gap-2">
-                <span className="text-cyan-600 font-bold">•</span>
+              <li key={idx} className="flex items-start gap-1.5">
+                <span className="text-cyan-600 font-bold text-sm leading-none">•</span>
                 <span className="leading-snug">{item}</span>
               </li>
             ))}
@@ -132,7 +275,7 @@ export default function ProductCard({
             type="checkbox"
             checked={compared}
             onChange={handleCompareClick}
-            className="h-4 w-4 rounded border-slate-300 bg-white text-cyan-600 focus:ring-0 cursor-pointer"
+            className="h-4 w-4 rounded border-slate-300 text-cyan-600 focus:ring-0 cursor-pointer accent-cyan-600"
           />
           <span>Karşılaştır</span>
         </label>
@@ -146,7 +289,7 @@ export default function ProductCard({
               productName: `${product.brand} ${product.name}`,
             });
           }}
-          className="inline-flex items-center gap-1 rounded bg-slate-950 hover:bg-cyan-700 px-3.5 py-1.5 text-xs font-semibold text-white transition-colors border border-slate-800"
+          className="inline-flex items-center gap-1.5 rounded bg-slate-950 hover:bg-cyan-700 px-3.5 py-1.5 text-xs font-semibold text-white transition-colors border border-slate-800 font-mono-tech"
         >
           <span>Detay</span>
           <span>→</span>
@@ -155,3 +298,4 @@ export default function ProductCard({
     </div>
   );
 }
+

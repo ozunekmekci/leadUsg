@@ -230,3 +230,20 @@
    - `@google/design.md` standartlarında [DESIGN.md](file:///home/abc/Masa%C3%BCst%C3%BC/leadUsg/DESIGN.md) güncellendi, `npx @google/design.md lint` ile 0 hata/uyarı elde edildi.
    - `npm run build` komutu çalıştırılarak tüm rotaların hatasız derlendiği doğrulandı.
 
+## 🌟 ✅ CP-015 TAMAMLANDI — Anasayfa Hibrit Redesign (CP-015-A - CP-015-E)
+
+**Yapılanlar:**
+1. **CP-015-A — "Yeni Eklenen Cihazlar" Şeridi (`NewArrivalsStrip.tsx` & `NewArrivalsCarousel.tsx`):**
+   - Prisma `products` tablosundan `createdAt DESC` sıralı son 10 cihazı çeken sunucu bileşeni ve masaüstü ok butonlu / mobil native touch-swipe (`scroll-snap-x`) destekli istemci carousel bileşeni geliştirildi.
+   - Her kartta "eklendi: X gün önce" amber rozeti, tek satırlık teknik özet ve HUD visual viewport sunuldu. Hero'nun hemen altına yerleştirildi.
+2. **CP-015-C — Sayısal Güven Şeridi (`TrustStatsBar.tsx`):**
+   - Veritabanından dinamik olarak hesaplanan ürün ve marka sayılarıyla `%100 Bağımsız Veri`, `0₺ Gizli Komisyon`, `12+ Premium Sistem`, `06 Global Üretici` değerlerini IBM Plex Mono büyük rakamlar ve dikey ince ayraçlarla sunan şerit oluşturuldu. Marka portföyü ile CP-015-B arasına yerleştirildi.
+3. **CP-015-B — "Önce/Sonra" Karşılaştırma Teaser Bloğu (`BeforeAfterTeaser.tsx`):**
+   - Sol tarafta jenerik uydurma üretici pazarlama metni ("Klinik Mükemmellik & Sezgisel İnovasyon" klişeleri), sağ tarafta `SpecTable` komponentini yeniden kullanan doğrulanmış teknik parametre tablosu ile 50/50 hibrit karşılaştırma kartı yazıldı. `/karsilastir` CTA'sı entegre edildi.
+4. **CP-015-D — Video-Önizlemeli Ürün Kartları (`ProductCard.tsx`):**
+   - `Product` Prisma modeline nullable `previewVideoUrl` alanı eklendi (`npx prisma db push` ile veritabanına uygulandı).
+   - `ProductCard` bileşenine `previewVideoUrl?: string | null` opsiyonel prop'u, masaüstü hover (`onMouseEnter`) ve mobil viewport `IntersectionObserver` ile muted autoplay video oynatma yeteneği eklendi. Prop yoksa mevcut HUD visual SVG gösterimi kesintisiz korundu (regresyon testi 8/8 ürün ile doğrulandı).
+5. **CP-015-E — Güven Rozeti Şeridi (`TrustBadgeStrip.tsx`):**
+   - "TİTUBB Kayıtlı Üreticiler", "Yetkili Servis Garantili" ve "KVKK Uyumlu Veri Politikası" rozetleri monokrom ikonlar ve `title` açıklama öznitelikleriyle tasarlanıp footer'ın hemen üstüne yerleştirildi.
+6. **Derleme Doğrulaması:**
+   - `npx next build` komutunun hatasız tamamlandığı ve 14 statik sayfanın başarıyla derlendiği doğrulandı.

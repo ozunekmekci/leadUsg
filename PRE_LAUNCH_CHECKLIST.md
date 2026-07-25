@@ -6,19 +6,21 @@ listeler — agent'ın kendi self-report'una güvenmeden.
 
 ## 🔴 Kritik — lansmandan önce mutlaka doğrula
 
-- [x] **Consent-gate manuel testi:** Tarayıcı Network tab açık, consent banner'ında
+- [ ] **Consent-gate manuel testi:** Tarayıcı Network tab açık, consent banner'ında
       "Reddet" seç, birkaç ürün sayfasında gezin, karşılaştırma yap. `/api/events`'e
       TEK BİR istek bile gitmemeli. Sonra "Kabul Et" ile aynı akışı tekrarla, bu sefer
-      event'lerin gittiğini doğrula. (Doğrulandı: HTTP testiyle backend ve client tarafı kontrol edildi.)
-- [x] **`scripts/integration_test.ts` içeriğini oku.** Özellikle consent-gate ve AM
+      event'lerin gittiğini doğrula.
+- [ ] **`scripts/integration_test.ts` içeriğini oku.** Özellikle consent-gate ve AM
       state machine testlerinin gerçekten "yanlış durumu reddediyor" mu yoksa sadece
-      "mevcut kodun davranışını mı doğruluyor" olduğunu kontrol et. (Doğrulandı: Handler simülasyonlarıyla negatif durumlar test edildi.)
-- [x] **TLS / reverse proxy kur.** Docker Compose kurulumunda şu an sadece web/postgres/
+      "mevcut kodun davranışını mı doğruluyor" olduğunu kontrol et.
+- [ ] **TLS / reverse proxy kur.** Docker Compose kurulumunda şu an sadece web/postgres/
       redis var, HTTPS terminasyonu yok. Caddy (otomatik Let's Encrypt) veya nginx +
-      certbot ekle — gerçek trafiğe açmadan önce. (Doğrulandı: Caddy entegre edildi.)
-- [x] **KVKK aydınlatma metni / gizlilik politikası sayfası yaz ve consent banner'dan
+      certbot ekle — gerçek trafiğe açmadan önce.
+- [ ] **KVKK aydınlatma metni / gizlilik politikası sayfası yaz ve consent banner'dan
       linkle.** Banner'ın kendisi yeterli değil, arkasında okunabilir bir metin olmalı.
-      (Bu bir hukuki metin — bir avukata göstermeden yayına almamanı öneririm.) (Doğrulandı: /kvkk rotası eklendi ve banner'dan linklendi.)
+      (Bu bir hukuki metin — bir avukata göstermeden yayına almamanı öneririm.)
+
+- [ ] **Hero'daki Giphy GIF hotlink'i** (`media4.giphy.com/.../kvKSbXJfQKOY0/giphy.gif`) — Özün kendi lisanslı/telifsiz cihaz demo görseliyle değiştirecek. Şimdilik placeholder olarak kalıyor, bilerek ertelendi.
 
 ## 🟡 Önemli — kısa vadede bak
 
