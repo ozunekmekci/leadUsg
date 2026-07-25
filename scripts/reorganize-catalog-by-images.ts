@@ -92,17 +92,30 @@ const BRAND_SPECS: Record<string, TechnicalSpecMap> = {
     fusionImaging: "Smart Fusion",
     fourDImaging: "Luminance, Shadow Glass",
   },
+  Mindray: {
+    signalProcessing: "ZST+ & X-Insight Architecture",
+    probeTechnology: "3T Single Crystal Transducers",
+    autoOptimization: "iTouch Auto Optimization",
+    compoundImaging: "iBeam Spatial Compounding",
+    speckleReduction: "iClear Speckle Suppression",
+    flowImaging: "HR Flow, V Flow (High Resolution Flow)",
+    workflowProtocol: "Smart Exam Protocol",
+    shearwave: "STE Elastography",
+    fusionImaging: "iFusion",
+    fourDImaging: "iLive & Hyaline 4D Modu",
+  },
 };
 
-const PRODUCTS_WITH_IMAGES = [
+const ACTIVE_PRODUCTS = [
   {
     brand: "Samsung",
     model: "V5",
     tier: "MID_RANGE",
     clinicalUnits: ["OBGYN", "RADIOLOGY"],
     competitors: { GE: "Voluson S6 / Logiq P7", Siemens: "Juniper" },
-    sourceImage: "content/products/samsung/v5.png",
+    sourceImage: "public/products/samsung/v5/main.png",
     targetExt: "png",
+    description: "Samsung V5 çok branşlı kadın doğum ve genel radyoloji ultrasonu.",
   },
   {
     brand: "Samsung",
@@ -110,8 +123,19 @@ const PRODUCTS_WITH_IMAGES = [
     tier: "HIGH_END",
     clinicalUnits: ["OBGYN", "RADIOLOGY"],
     competitors: { GE: "Voluson E8 / Logiq S8", Philips: "EPIQ 7" },
-    sourceImage: "content/products/samsung/v8.jpg",
+    sourceImage: "public/products/samsung/v8/main.jpg",
     targetExt: "jpg",
+    description: "Samsung V8 üst segment kristal görüntüleme teknolojili tanı ultrasonu.",
+  },
+  {
+    brand: "Samsung",
+    model: "HS40",
+    tier: "MID_RANGE",
+    clinicalUnits: ["RADIOLOGY", "OBGYN", "CARDIOLOGY"],
+    competitors: { GE: "Logiq P7", Siemens: "Juniper", Philips: "Affiniti 50" },
+    sourceImage: "public/products/hs40.jpg",
+    targetExt: "jpg",
+    description: "Samsung HS40 günlük klinik teşhisler için kompakt ve güçlü ultrason ünitesi.",
   },
   {
     brand: "GE",
@@ -119,8 +143,29 @@ const PRODUCTS_WITH_IMAGES = [
     tier: "PREMIUM",
     clinicalUnits: ["RADIOLOGY"],
     competitors: { Samsung: "RS85 Prestige", Siemens: "Acuson Sequoia" },
-    sourceImage: "content/products/ge/GE-Logiq-E10.webp",
+    sourceImage: "public/products/ge/logiq-e10/main.webp",
     targetExt: "webp",
+    description: "GE Logiq E10 genel radyoloji ve girişimsel biyopsi amiral gemisi konsol ultrasonu.",
+  },
+  {
+    brand: "GE",
+    model: "Voluson E10",
+    tier: "PREMIUM",
+    clinicalUnits: ["OBGYN"],
+    competitors: { Samsung: "HERA W10", Philips: "EPIQ Elite w/xMatrix" },
+    sourceImage: "public/products/voluson e10 .jpg",
+    targetExt: "jpg",
+    description: "GE Voluson E10 perinatoloji ve yüksek riskli gebelik 4D Matrix ultrason sistemi.",
+  },
+  {
+    brand: "GE",
+    model: "Vivid T8",
+    tier: "MID_RANGE",
+    clinicalUnits: ["CARDIOLOGY", "RADIOLOGY"],
+    competitors: { Philips: "Affiniti 50", Siemens: "Acuson NX3 Elite", Samsung: "HS40-CV" },
+    sourceImage: "public/products/Vivid-T8_cardiac.png",
+    targetExt: "png",
+    description: "GE Vivid T8 kardiyoloji odaklı ve genel dahiliye hibrit konsol ultrason ünitesi.",
   },
   {
     brand: "Philips",
@@ -128,8 +173,19 @@ const PRODUCTS_WITH_IMAGES = [
     tier: "PREMIUM",
     clinicalUnits: ["RADIOLOGY", "OBGYN", "CARDIOLOGY"],
     competitors: { Samsung: "RS85 / HERA W10", GE: "Logiq E10 / Voluson E10" },
-    sourceImage: "content/products/philips/Epiq Elite w⁄xMatrix.png",
+    sourceImage: "public/products/philips/epiq-elite/main.png",
     targetExt: "png",
+    description: "Philips EPIQ Elite nSIGHT mimarili amiral gemisi tıbbi görüntüleme çözümü.",
+  },
+  {
+    brand: "Philips",
+    model: "Affiniti 50",
+    tier: "MID_RANGE",
+    clinicalUnits: ["RADIOLOGY", "CARDIOLOGY", "OBGYN"],
+    competitors: { Samsung: "HS50 / HS40", GE: "Logiq P9 / P7", Siemens: "Juniper" },
+    sourceImage: "public/products/affiniti 50.jpg",
+    targetExt: "jpg",
+    description: "Philips Affiniti 50 hassas akustik performanslı çok branşlı muayene ultrasonu.",
   },
   {
     brand: "Canon",
@@ -137,8 +193,9 @@ const PRODUCTS_WITH_IMAGES = [
     tier: "HIGH_END",
     clinicalUnits: ["RADIOLOGY", "OBGYN"],
     competitors: { Samsung: "RS80 Evo", GE: "Logiq E9 / Voluson E8" },
-    sourceImage: "content/products/canon/aplio-i800/images/main.png",
+    sourceImage: "public/products/canon/aplio-i800/main.png",
     targetExt: "png",
+    description: "Canon Aplio i800 mikro damarlanma (SMI) odaklı yüksek frekanslı konsol ultrasonu.",
   },
   {
     brand: "Siemens",
@@ -146,8 +203,9 @@ const PRODUCTS_WITH_IMAGES = [
     tier: "PREMIUM",
     clinicalUnits: ["RADIOLOGY"],
     competitors: { Samsung: "RS85 Prestige", GE: "Logiq E10" },
-    sourceImage: "content/products/siemens/acuson-sequoia/images/main.jpg",
+    sourceImage: "public/products/siemens/acuson-sequoia/main.jpg",
     targetExt: "jpg",
+    description: "Siemens Acuson Sequoia derin doku ve bariatrik penetrasyon amiral gemisi ultrason platformu.",
   },
   {
     brand: "Siemens",
@@ -155,23 +213,42 @@ const PRODUCTS_WITH_IMAGES = [
     tier: "MID_RANGE",
     clinicalUnits: ["RADIOLOGY", "OBGYN"],
     competitors: { Samsung: "HS50 / HS40", GE: "Logiq P9 / P7" },
-    sourceImage: "content/products/siemens/acoson-juniper/SIEMENS-ACUSON-JUNIPER-2.png",
+    sourceImage: "public/products/siemens/acuson-juniper/main.png",
     targetExt: "png",
+    description: "Siemens Acuson Juniper esnek ve sessiz çalışan genel tanı ultrason ünitesi.",
+  },
+  {
+    brand: "Mindray",
+    model: "Z20",
+    tier: "LOW_END",
+    clinicalUnits: ["PORTABLE", "RADIOLOGY", "OBGYN"],
+    competitors: { GE: "Versana / Logiq V", Samsung: "HS30" },
+    sourceImage: "public/products/z20 main .jpg",
+    targetExt: "jpg",
+    description: "Mindray Z20 kompakt hasta başı (POC) ve acil servis dijital ultrason ünitesi.",
   },
 ];
 
 async function main() {
-  console.log("🧹 Reorganizing product catalog: keeping only 7 products with images...");
+  console.log(`🧹 Reorganizing product catalog for ${ACTIVE_PRODUCTS.length} active devices with images...`);
 
   const baseContentDir = path.join(process.cwd(), "content", "products");
   const publicProductsDir = path.join(process.cwd(), "public", "products");
 
-  // Temp save image buffers before cleanup
+  // Read and buffer images before wiping
   const imageBuffers: Record<string, { buffer: Buffer; ext: string }> = {};
 
-  for (const item of PRODUCTS_WITH_IMAGES) {
+  for (const item of ACTIVE_PRODUCTS) {
     const slug = `${toKebabCase(item.brand)}-${toKebabCase(item.model)}`;
-    const fullSourcePath = path.join(process.cwd(), item.sourceImage);
+    let fullSourcePath = path.join(process.cwd(), item.sourceImage);
+
+    // Fallback search if path doesn't exist
+    if (!fs.existsSync(fullSourcePath)) {
+      if (item.model === "Z20" && fs.existsSync(path.join(process.cwd(), "public/products/z20.jpg"))) {
+        fullSourcePath = path.join(process.cwd(), "public/products/z20.jpg");
+      }
+    }
+
     if (fs.existsSync(fullSourcePath)) {
       imageBuffers[slug] = {
         buffer: fs.readFileSync(fullSourcePath),
@@ -179,17 +256,17 @@ async function main() {
       };
       console.log(`  ✓ Saved image buffer for ${slug} (${fullSourcePath})`);
     } else {
-      console.warn(`  ⚠️ Source image missing: ${fullSourcePath}`);
+      console.warn(`  ⚠️ Source image missing for ${slug} at ${fullSourcePath}`);
     }
   }
 
-  // Wipe content/products directory
+  // Wipe content/products
   if (fs.existsSync(baseContentDir)) {
     fs.rmSync(baseContentDir, { recursive: true, force: true });
   }
   fs.mkdirSync(baseContentDir, { recursive: true });
 
-  // Wipe public/products directory
+  // Wipe public/products
   if (fs.existsSync(publicProductsDir)) {
     fs.rmSync(publicProductsDir, { recursive: true, force: true });
   }
@@ -200,7 +277,7 @@ async function main() {
 
   let idCounter = 1;
 
-  for (const item of PRODUCTS_WITH_IMAGES) {
+  for (const item of ACTIVE_PRODUCTS) {
     const brandSlug = toKebabCase(item.brand);
     const modelSlug = toKebabCase(item.model);
     const slug = `${brandSlug}-${modelSlug}`;
@@ -212,7 +289,6 @@ async function main() {
 
     fs.mkdirSync(imagesDir, { recursive: true });
     fs.mkdirSync(docsDir, { recursive: true });
-
     fs.writeFileSync(path.join(docsDir, ".gitkeep"), "");
 
     const publicProductDir = path.join(publicProductsDir, brandSlug, modelSlug);
@@ -274,10 +350,13 @@ specs:
         tier: item.tier as DeviceTier,
         clinicalUnits: item.clinicalUnits as ClinicalUnit[],
         competitors: item.competitors,
+        description: item.description,
         specs: {
           ...techSpecs,
           imageUrl,
           priceSegment: item.tier,
+          clinicalUnits: item.clinicalUnits,
+          competitors: item.competitors,
         },
       },
       create: {
@@ -289,8 +368,10 @@ specs:
           ...techSpecs,
           imageUrl,
           priceSegment: item.tier,
+          clinicalUnits: item.clinicalUnits,
+          competitors: item.competitors,
         },
-        description: `${item.brand} ${item.model} medikal ultrason görüntüleme sistemi.`,
+        description: item.description,
         tier: item.tier as DeviceTier,
         clinicalUnits: item.clinicalUnits as ClinicalUnit[],
         competitors: item.competitors,
@@ -308,14 +389,16 @@ specs:
         ...techSpecs,
         imageUrl,
         priceSegment: item.tier,
+        clinicalUnits: item.clinicalUnits,
+        competitors: item.competitors,
       },
-      description: `${item.brand} ${item.model} medikal ultrason görüntüleme sistemi.`,
+      description: item.description,
     });
 
     console.log(`  ✓ Restructured & Saved: ${slug} (${imageUrl})`);
   }
 
-  // Delete products from DB that are not in the 7 image products
+  // Delete non-active products from DB
   await prisma.product.deleteMany({
     where: {
       slug: {
