@@ -16,6 +16,18 @@ export interface ProductSpecs {
   elastography?: boolean;
   transducerType?: string;
   imageUrl?: string;
+  signalProcessing?: string;
+  probeTechnology?: string;
+  autoOptimization?: string;
+  compoundImaging?: string;
+  speckleReduction?: string;
+  flowImaging?: string;
+  workflowProtocol?: string;
+  shearwave?: string;
+  fusionImaging?: string;
+  fourDImaging?: string;
+  clinicalUnits?: string[];
+  competitors?: Record<string, string>;
 }
 
 export interface ProductItem {

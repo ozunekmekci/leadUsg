@@ -69,6 +69,7 @@ export default async function NewArrivalsStrip() {
       daysAgo,
       priceSegment: specs.priceSegment,
       portable: specs.portable,
+      imageUrl: specs.imageUrl,
     };
   });
 

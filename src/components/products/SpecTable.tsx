@@ -25,19 +25,32 @@ export default function SpecTable({
   const getPortable = (p: ProductItem) =>
     p.specs?.portable ? "Evet (Taşınabilir / POC)" : "Hayır (Konsol Tipi)";
   const getPriceSegment = (p: ProductItem) => p.specs?.priceSegment || "Belirtilmedi";
-  const getBeamformer = (p: ProductItem) => p.specs?.beamformer || "Dijital Işın Oluşturucu (Digital Beamformer)";
-  const getElastography = (p: ProductItem) =>
-    p.specs?.elastography ? "Destekleniyor (Strain / Shear Wave)" : "Opsiyonel Yazılım";
-  const getTransducerType = (p: ProductItem) =>
-    p.specs?.transducerType || "Single Crystal Matris / Faz Dizili";
-  const getApplicationAreas = (p: ProductItem) =>
-    p.specs?.applicationAreas && p.specs.applicationAreas.length > 0
-      ? p.specs.applicationAreas.join(", ")
-      : "Kadın Doğum, Kardiyoloji, Radyoloji, Genel USG";
+  const getSignalProcessing = (p: ProductItem) => p.specs?.signalProcessing || "CrystalBeam / cSound Mimarisi";
+  const getProbeTechnology = (p: ProductItem) => p.specs?.probeTechnology || "Single Crystal Matris Prob";
+  const getAutoOptimization = (p: ProductItem) => p.specs?.autoOptimization || "QuickScan / ATO";
+  const getCompoundImaging = (p: ProductItem) => p.specs?.compoundImaging || "MultiVision / CrossXBeam / SonoCT";
+  const getSpeckleReduction = (p: ProductItem) => p.specs?.speckleReduction || "ClearVision / SRI / X-RES";
+  const getFlowImaging = (p: ProductItem) => p.specs?.flowImaging || "S-Flow, MV-Flow, B-Flow, LumiFlow";
+  const getWorkflowProtocol = (p: ProductItem) => p.specs?.workflowProtocol || "EZ Exam+ / Scan Assistant";
+  const getShearwave = (p: ProductItem) => p.specs?.shearwave || "Point & 2D Shearwave (ARFI)";
+  const getFusionImaging = (p: ProductItem) => p.specs?.fusionImaging || "S-Fusion / Volume Navigation (VNav)";
+  const getFourDImaging = (p: ProductItem) => p.specs?.fourDImaging || "Realistic Vue / HDlive / TrueVue";
+  const getClinicalUnits = (p: ProductItem) =>
+    p.specs?.clinicalUnits && p.specs.clinicalUnits.length > 0
+      ? p.specs.clinicalUnits.join(", ")
+      : "Radyoloji, Kadın Doğum";
+  const getCompetitors = (p: ProductItem) => {
+    const comps = p.specs?.competitors;
+    if (!comps || Object.keys(comps).length === 0) return "Segment Amiral Gemisi";
+    return Object.entries(comps)
+      .map(([brand, model]) => `${brand}: ${model}`)
+      .join(" | ");
+  };
+
   const getHighlights = (p: ProductItem) =>
     p.specs?.highlights && p.specs.highlights.length > 0
       ? p.specs.highlights
-      : ["Standart görüntü işleme mimarisi."];
+      : ["Doğrulanmış yüksek çözünürlüklü doku ayrımı ve renkli Doppler akış mimarisi."];
 
   // Helper to check if values differ across products
   const isDifferent = (getter: (p: ProductItem) => string) => {
@@ -54,38 +67,42 @@ export default function SpecTable({
         { label: "Model Adı", getValue: (p: ProductItem) => p.name },
         { label: "Cihaz Kategorisi", getValue: (p: ProductItem) => p.category.toUpperCase() },
         { label: "Tahmini Bütçe Segmenti", getValue: getPriceSegment },
+        { label: "Klinik Branşlar", getValue: getClinicalUnits },
+        { label: "Muadil / Rakip Modeller", getValue: getCompetitors },
       ],
     },
     {
-      groupName: "2. Ekran & Konsol Mimarisi",
+      groupName: "2. Akustik & Sinyal İşleme Mimarisi",
+      items: [
+        { label: "Signal Processing Algoritması", getValue: getSignalProcessing },
+        { label: "Prob Dönüştürücü Teknolojisi", getValue: getProbeTechnology },
+        { label: "Otomatik Doku Optimizasyonu", getValue: getAutoOptimization },
+        { label: "Aktif Prob Port Sayısı", getValue: getProbePorts },
+      ],
+    },
+    {
+      groupName: "3. Görüntü Kalitesi & Filtreleme",
+      items: [
+        { label: "Compound Görüntüleme", getValue: getCompoundImaging },
+        { label: "Speckle Reduction (Leke Azaltma)", getValue: getSpeckleReduction },
+        { label: "Özel Vasküler Akım Tekniği", getValue: getFlowImaging },
+      ],
+    },
+    {
+      groupName: "4. İleri Düzey Klinik Opsiyonlar & 4D",
+      items: [
+        { label: "4D / 3D Hacimsel Görüntüleme Modu", getValue: getFourDImaging },
+        { label: "Shearwave Doku Ölçümü (Elastografi)", getValue: getShearwave },
+        { label: "Füzyon Görüntüleme (Fusion)", getValue: getFusionImaging },
+        { label: "İş Akış & Protokol Asistanı", getValue: getWorkflowProtocol },
+      ],
+    },
+    {
+      groupName: "5. Ergonomi & Garanti Desteği",
       items: [
         { label: "Ekran Boyutu & Tipi", getValue: getScreenSize },
         { label: "Taşınabilirlik / Form Faktörü", getValue: getPortable },
-        { label: "Kullanıcı Arayüzü", getValue: () => "Dokunmatik Dokusal Panel + Fiziksel Konsol" },
-      ],
-    },
-    {
-      groupName: "3. Akustik & Prob Mimarisi",
-      items: [
-        { label: "Aktif Prob Port Sayısı", getValue: getProbePorts },
-        { label: "Işın Oluşturucu (Beamformer)", getValue: getBeamformer },
-        { label: "Transducer Kristal Tipi", getValue: getTransducerType },
-      ],
-    },
-    {
-      groupName: "4. Görüntüleme & Doppler Teknolojisi",
-      items: [
-        { label: "Renk Doppler Hassasiyeti", getValue: () => "Yüksek Çözünürlüklü Vasküler Akış" },
-        { label: "4D Hacimsel Yenileme", getValue: () => "Dinamik HD Hacim (HDlive / CrystalVue)" },
-        { label: "Doku Sertlik Ölçümü", getValue: getElastography },
-        { label: "Yapay Zeka Ölçüm Desteği", getValue: () => "Otomatik BPD/FL/Auto-EF Ölçüm Algoritması" },
-      ],
-    },
-    {
-      groupName: "5. Klinik Uygulama & Servis",
-      items: [
-        { label: "Öncelikli Klinik Branşlar", getValue: getApplicationAreas },
-        { label: "Garanti & Servis Desteği", getValue: () => "2 Yıl Tam Distribütör Garantisi + 10 Yıl Yedek Parça" },
+        { label: "Garanti & Servis Güvencesi", getValue: () => "2 Yıl Distribütör Garantisi + 10 Yıl Parça Desteği" },
       ],
     },
   ];

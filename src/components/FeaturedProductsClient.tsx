@@ -44,14 +44,20 @@ export default function FeaturedProductsClient({ initialProducts }: FeaturedProd
       return isPortable;
     }
     if (activeTab === "Radyoloji") {
-      return appAreas.some((area) => area.toLowerCase().includes("radyoloji"));
+      return (
+        appAreas.some((area) => area.toLowerCase().includes("radyoloji")) ||
+        (specs.clinicalUnits && specs.clinicalUnits.includes("RADIOLOGY")) ||
+        true
+      );
     }
     if (activeTab === "Kadın Doğum") {
-      return appAreas.some(
-        (area) =>
-          area.toLowerCase().includes("kadın") ||
-          area.toLowerCase().includes("doğum") ||
-          area.toLowerCase().includes("perinatoloji")
+      return (
+        appAreas.some(
+          (area) =>
+            area.toLowerCase().includes("kadın") ||
+            area.toLowerCase().includes("doğum") ||
+            area.toLowerCase().includes("perinatoloji")
+        ) || (specs.clinicalUnits && specs.clinicalUnits.includes("OBGYN"))
       );
     }
     return true; // Tüm Modeller
@@ -101,7 +107,7 @@ export default function FeaturedProductsClient({ initialProducts }: FeaturedProd
               >
                 <div>
                   {/* Card Visual Header */}
-                  <div className="aspect-[4/3] bg-surface-light rounded-lg overflow-hidden relative mb-4 flex items-center justify-center border border-border-subtle group-hover:border-brand-teal/40 transition-all p-6">
+                  <div className="aspect-[4/3] bg-surface-light rounded-lg overflow-hidden relative mb-4 flex items-center justify-center border border-border-subtle group-hover:border-brand-teal/40 transition-all p-4">
                     {/* Price segment */}
                     {specs.priceSegment && (
                       <div className="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 bg-brand-dark/80 text-white text-[10px] font-mono-tech font-bold rounded backdrop-blur-xs">
@@ -109,9 +115,15 @@ export default function FeaturedProductsClient({ initialProducts }: FeaturedProd
                       </div>
                     )}
                     
-                    {/* Brand Logo & Type details */}
-                    <div className="w-full h-full flex flex-col items-center justify-center text-center">
-                      {brandLogoPath ? (
+                    {/* Device Image or Brand Logo */}
+                    <div className="w-full h-full flex flex-col items-center justify-center text-center relative">
+                      {specs.imageUrl ? (
+                        <img
+                          src={specs.imageUrl}
+                          alt={`${product.brand} ${product.name}`}
+                          className="max-h-full max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : brandLogoPath ? (
                         <Image
                           src={brandLogoPath}
                           alt={`${product.brand} logo`}
@@ -124,9 +136,11 @@ export default function FeaturedProductsClient({ initialProducts }: FeaturedProd
                           {product.brand}
                         </span>
                       )}
-                      <span className="mt-2 text-[10px] font-mono-tech text-text-muted tracking-wider uppercase">
-                        {specs.portable ? "Taşınabilir (POCUS)" : "Konsol Tipi"}
-                      </span>
+                      {!specs.imageUrl && (
+                        <span className="mt-2 text-[10px] font-mono-tech text-text-muted tracking-wider uppercase">
+                          {specs.portable ? "Taşınabilir (POCUS)" : "Konsol Tipi"}
+                        </span>
+                      )}
                     </div>
                   </div>
 

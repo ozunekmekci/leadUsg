@@ -14,6 +14,7 @@ export interface NewArrivalItem {
   daysAgo: number;
   priceSegment?: string;
   portable?: boolean;
+  imageUrl?: string;
 }
 
 interface NewArrivalsCarouselProps {
@@ -93,8 +94,14 @@ export default function NewArrivalsCarousel({ items }: NewArrivalsCarouselProps)
                 </div>
 
                 {/* Clean Product Header Graphic */}
-                <div className="relative aspect-[4/3] w-full rounded-lg bg-surface-light border border-border-subtle overflow-hidden mb-4 flex items-center justify-center p-4">
-                  {brandLogoPath ? (
+                <div className="relative aspect-[4/3] w-full rounded-lg bg-surface-light border border-border-subtle overflow-hidden mb-4 flex items-center justify-center p-3">
+                  {item.imageUrl ? (
+                    <img
+                      src={item.imageUrl}
+                      alt={`${item.brand} ${item.name}`}
+                      className="max-h-full max-w-full object-contain filter group-hover/card:scale-105 transition-transform duration-300"
+                    />
+                  ) : brandLogoPath ? (
                     <Image
                       src={brandLogoPath}
                       alt={`${item.brand} logo`}
@@ -110,7 +117,7 @@ export default function NewArrivalsCarousel({ items }: NewArrivalsCarouselProps)
                   
                   {/* Model Name Overlay */}
                   <div className="absolute bottom-2 left-2 right-2 text-center">
-                    <span className="text-xs font-semibold text-text-primary bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-md border border-border-subtle shadow-sm inline-block">
+                    <span className="text-xs font-semibold text-text-primary bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md border border-border-subtle shadow-sm inline-block">
                       {item.name}
                     </span>
                   </div>
