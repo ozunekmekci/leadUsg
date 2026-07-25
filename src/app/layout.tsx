@@ -40,27 +40,33 @@ export default function RootLayout({
               </div>
               <div>
                 <span className="text-xl font-bold tracking-tight text-text-primary">
-                  lead<span className="text-brand-teal">USG</span>
+                  Lead<span className="text-brand-teal">USG</span>
                 </span>
                 <span className="hidden sm:block text-[10px] font-mono-tech tracking-widest text-text-muted uppercase">
-                  Ultrasound Intelligence
+                  MedUltrasound
                 </span>
               </div>
             </Link>
 
             {/* NAV LINKS — Center */}
             <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-text-body">
+              <Link href="/" className="link-underline hover:text-text-primary transition-colors py-1">
+                Ana Sayfa
+              </Link>
               <Link href="/urunler/ultrason" className="link-underline hover:text-text-primary transition-colors py-1">
-                Cihazlar
+                Ultrason Cihazları
               </Link>
               <Link href="/karsilastir" className="link-underline hover:text-text-primary transition-colors py-1">
-                Karşılaştır
+                Karşılaştırma Modülü
               </Link>
-              <Link href="/#markalar" className="link-underline hover:text-text-primary transition-colors py-1">
-                Markalar
+              <Link href="/#servis" className="link-underline hover:text-text-primary transition-colors py-1">
+                Teknik Servis &amp; Garanti
               </Link>
-              <Link href="/#kategoriler" className="link-underline hover:text-text-primary transition-colors py-1">
-                Uzmanlık Alanları
+              <Link href="/#kurumsal" className="link-underline hover:text-text-primary transition-colors py-1">
+                Kurumsal
+              </Link>
+              <Link href="/#blog" className="link-underline hover:text-text-primary transition-colors py-1">
+                Sağlık Teknolojileri Blog
               </Link>
             </div>
 
@@ -111,45 +117,68 @@ export default function RootLayout({
                     </svg>
                   </div>
                   <span className="text-lg font-bold text-white tracking-tight">
-                    lead<span className="text-brand-teal">USG</span>
+                    Lead<span className="text-brand-teal">USG</span>
                   </span>
                 </div>
                 <p className="text-sm text-white/40 leading-relaxed max-w-xs">
-                  Türkiye&apos;nin bağımsız medikal ultrason karşılaştırma ve danışmanlık platformu.
-                  Tarafsız teknik veri, şeffaf süreç.
+                  Sağlık kurumları ve hekimler için en uygun ultrason cihazlarını şeffaf karşılaştırma, hızlı teklif süreci ve güvenilir teknik destek ile buluşturan medikal teknoloji platformu.
                 </p>
               </div>
 
               {/* Column 2: Quick Links */}
               <div>
                 <h4 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
-                  Platform
+                  Ürünler
                 </h4>
                 <ul className="space-y-3 text-sm">
                   <li>
-                    <Link href="/urunler/ultrason" className="text-white/50 hover:text-white transition-colors">
-                      Ultrason Kataloğu
+                    <Link href="/urunler/ultrason?type=console" className="text-white/50 hover:text-white transition-colors">
+                      Konsol Ultrasonlar
                     </Link>
                   </li>
                   <li>
-                    <Link href="/karsilastir" className="text-white/50 hover:text-white transition-colors">
-                      Cihaz Karşılaştırma
+                    <Link href="/urunler/ultrason?type=portable" className="text-white/50 hover:text-white transition-colors">
+                      Taşınabilir Sistemler
                     </Link>
                   </li>
                   <li>
-                    <Link href="/teklif-al" className="text-white/50 hover:text-white transition-colors">
-                      Teklif Al
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/#kategoriler" className="text-white/50 hover:text-white transition-colors">
-                      Uzmanlık Alanları
+                    <Link href="/urunler/ultrason?type=probe" className="text-white/50 hover:text-white transition-colors">
+                      Problar &amp; Aksesuarlar
                     </Link>
                   </li>
                 </ul>
               </div>
 
-              {/* Column 3: Legal */}
+              {/* Column 3: Process */}
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
+                  Süreç
+                </h4>
+                <ul className="space-y-3 text-sm">
+                  <li>
+                    <Link href="/teklif-al" className="text-white/50 hover:text-white transition-colors">
+                      Teklif İste
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/karsilastir" className="text-white/50 hover:text-white transition-colors">
+                      Cihaz Karşılaştır
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/teklif-al?demo=true" className="text-white/50 hover:text-white transition-colors">
+                      Demo Talebi
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/#servis" className="text-white/50 hover:text-white transition-colors">
+                      Garanti Şartları
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 4: Legal */}
               <div>
                 <h4 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
                   Yasal
@@ -172,34 +201,12 @@ export default function RootLayout({
                   </li>
                 </ul>
               </div>
-
-              {/* Column 4: Contact */}
-              <div>
-                <h4 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
-                  İletişim
-                </h4>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex items-center gap-2 text-white/50">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/>
-                    </svg>
-                    <span>Bize Ulaşın</span>
-                  </li>
-                  <li className="flex items-center gap-2 text-white/50">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect x="2" y="4" width="20" height="16" rx="2"/>
-                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                    </svg>
-                    <span>info@leadusg.com</span>
-                  </li>
-                </ul>
-              </div>
             </div>
 
             {/* Bottom Bar */}
             <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
               <p className="text-xs text-white/30">
-                © {new Date().getFullYear()} leadUSG Platforms. Tüm hakları saklıdır.
+                © 2026 LeadUSG. Tüm Hakları Saklıdır.
               </p>
               <p className="text-xs text-white/20 font-mono-tech">
                 Medikal Ultrason Karşılaştırma ve Danışmanlık Platformu

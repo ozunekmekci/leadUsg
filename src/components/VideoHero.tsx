@@ -1,5 +1,4 @@
 import Link from "next/link";
-import TrustStatsBar from "./TrustStatsBar";
 
 export default function VideoHero() {
   return (
@@ -26,16 +25,16 @@ export default function VideoHero() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-brand-teal/20 border border-brand-teal/40 rounded-full mb-6 backdrop-blur-md">
             <span className="h-2 w-2 rounded-full bg-brand-teal animate-pulse"></span>
             <span className="font-sans uppercase tracking-widest text-brand-teal-light text-xs font-semibold">
-              ◆ ULTRASON SEÇİMİNDE BAĞIMSIZ TEKNİK REHBER
+              KLİNİK GÖRÜNTÜLEME ÇÖZÜMLERİ
             </span>
           </div>
           
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white font-bold leading-tight mb-6 drop-shadow-sm">
-            Ultrason seçimi, tahminle değil ölçülebilir veriyle olmalı.
+            Sağlıkta Güvenilir Çözüm Ortaklığınız
           </h1>
           
           <p className="text-lg text-white/85 max-w-xl mb-10 mx-auto lg:mx-0 leading-relaxed font-sans drop-shadow-sm">
-            Prob tipini, Doppler hassasiyetini ve ışın oluşturma mimarisini yan yana görün — kataloğun değil, cihazın kendisini karşılaştırın.
+            Doğru ultrason seçimi şeffaf veri ve doğru yönlendirmeyle mümkündür. Kliniğinizin ihtiyacına ve bütçesine en uygun ultrason cihazını belirleyin, en rekabetçi koşullarla hızlı teklif alın.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 lg:mb-20 justify-center lg:justify-start">
@@ -53,8 +52,27 @@ export default function VideoHero() {
             </Link>
           </div>
           
-          {/* Trust Stats */}
-          <TrustStatsBar variant="hero" />
+          {/* Trust/Service Commitments */}
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-8 gap-y-6 pt-8 border-t border-white/15 backdrop-blur-xs">
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+              <span className="font-display text-lg font-bold text-white mb-0.5">Şeffaf Karşılaştırma</span>
+              <span className="font-mono-tech text-[11px] text-white/60 tracking-wider uppercase">Tarafsız Donanım Verileri</span>
+            </div>
+            
+            <div className="w-px h-10 bg-white/15 hidden sm:block"></div>
+            
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+              <span className="font-display text-lg font-bold text-white mb-0.5">Hızlı Fiyatlandırma</span>
+              <span className="font-mono-tech text-[11px] text-white/60 tracking-wider uppercase">Aynı Gün İçinde Özel Teklif</span>
+            </div>
+            
+            <div className="w-px h-10 bg-white/15 hidden sm:block"></div>
+            
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+              <span className="font-display text-lg font-bold text-brand-teal-light mb-0.5">Garantili Teknik Servis</span>
+              <span className="font-mono-tech text-[11px] text-white/60 tracking-wider uppercase">Kesintisiz Yedek Parça ve Bakım</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

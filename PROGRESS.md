@@ -284,7 +284,32 @@
    - Footer tagline'ı `"Medikal Ultrason Karşılaştırma ve Danışmanlık Platformu"` olarak değiştirildi; footer ve KVKK aydınlatma metnindeki "Broker" / "Brokerlik" ifadeleri temizlendi.
    - Admin giriş sayfası altındaki "Broker ekibi" ibaresi "Hesap Yöneticileri" olarak güncellendi.
 6. **Statik Prototip Güncellemesi (`test.html`):**
-   - Statik prototip de yukarıdaki tüm yeni metin revizyonlarıyla (Hero, Marka Portföyü, Ticker, Footer) uyumlu hale getirildi.
+   - Statik prototip de yukarıdaki tüm yeni metin revizyonlarıyla (Hero, Marka Portföyü, Ticker, Footer) uyumlu hale verildi.
 7. **Doğrulama ve Derleme:**
-   - E2E entegrasyon test paketi (`npx tsx scripts/integration_test.ts`) çalıştırılarak 8/8 test adımının yeşil geçtiği doğrulandı.
+   - E2E entegran test paketi (`npx tsx scripts/integration_test.ts`) çalıştırılarak 8/8 test adımının yeşil geçtiği doğrulandı.
    - `npm run build` komutu çalıştırılarak tüm Next.js App Router sayfalarının hatasız derlendiği onaylandı.
+
+## 📝 ✅ CP-018 — Şeffaflık ve Teklif Odaklı Site Geneli Yeniden Yazım (SEO Uyumlu Metin Revizyonu)
+
+**Yapılanlar:**
+1. **Header ve Footer Menü Güncellemesi (`layout.tsx`):**
+   - Logo MedUltrasound alt başlığıyla güncellendi (`LeadUSG / MedUltrasound`).
+   - Navigasyon menüsü: `Ana Sayfa`, `Ultrason Cihazları`, `Karşılaştırma Modülü`, `Teknik Servis & Garanti`, `Kurumsal`, `Sağlık Teknolojileri Blog` olacak şekilde yapılandırıldı.
+   - Footer tagline'ı ve hızlı linkleri yeni yapıyla tam uyumlu hale getirildi.
+2. **Hero Bölümü ve Hizmet Standartları Overhaul (`VideoHero.tsx` & `TrustStatsBar.tsx`):**
+   - Hero metinleri `"Sağlıkta Güvenilir Çözüm Ortaklığınız"` H1 başlığı ve teklif odaklı alt başlıkla güncellendi.
+   - Hero altındaki metrik sayılar tamamen kaldırılarak `"Şeffaf Karşılaştırma"`, `"Hızlı Fiyatlandırma"`, `"Garantili Teknik Servis"` gerçek değerleriyle değiştirildi.
+   - `TrustStatsBar` bileşeni (metrics bar yerine) `"Hizmet Standartlarımız"` olarak güncellenerek `"Geniş Marka & Model Seçeneği"`, `"Yerinde Demo & Deneyim"`, `"Sorunsuz Garanti & Destek"` vaatleriyle yeniden modellendi.
+3. **Klinik Uygulamalar / Uzmanlık Alanları (`SpecialtiesSection.tsx`):**
+   - Eski branş listesi yerine 5 adet yeni SEO odaklı uzmanlık kartı (`Kadın Doğum & Jinekoloji`, `Kardiyoloji & Damar Sağlığı`, `Radyoloji & Genel`, `POCUS & Mobil Taşınabilir`, `Kas-İskelet & Anestezi`) içeren modüler `<SpecialtiesSection />` geliştirildi.
+4. **Öne Çıkan Ürünler / Dinamik Filtreleme Modülü (`FeaturedProducts.tsx` & `FeaturedProductsClient.tsx`):**
+   - `/urunler` sayfasındaki gibi dinamik tab filtrelemesi (`Tüm Modeller | Konsol Tipi | Taşınabilir (POCUS) | Radyoloji | Kadın Doğum`) sunan ve her kartta `Teklif Al` + `Detayları İncele` butonları barındıran akıllı featured products modülü yerleştirildi.
+5. **SEO ve Teknoloji Blokları:**
+   - `<QualityAndPrecision />`: Gelişmiş tek kristal prob ve Doppler teknolojisi detaylandırıldı.
+   - `<AIAndAutomation />`: GE, Samsung, Mindray, Siemens ve Canon markalarının en güncel AI yazılımları (SonoLyst, BiometryAssist, Smart Scene 3D) listelendi.
+   - `<SmartComparison />`: İki model seçip karşılaştırma modülünü başlatan interaktif selector arayüzü kuruldu.
+   - `<AfterSalesAndSupport />`: Aplikatör eğitimi ve teknik destek taahhütleri eklendi.
+   - `<InformationCenter />`: 3 adet yeni SEO uyumlu blog rehber makale başlığı listelendi.
+6. **Statik Prototip ve Testler (`test.html`):**
+   - Eski ve devre dışı bırakılan karşılaştırma/kategori bölümleri `test.html` içerisinden tamamen kaldırıldı; hero ve marka portföyü metinleri yenilendi.
+   - Next.js production build başarıyla tamamlandı, E2E entegrasyon testlerinin tamamı (8/8) yeşil geçti.
