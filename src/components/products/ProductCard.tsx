@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { trackEvent } from "@/lib/tracking";
 
 export interface ProductSpecs {
@@ -54,47 +54,10 @@ export default function ProductCard({
   isCompared = false,
 }: ProductCardProps) {
   const [compared, setCompared] = useState(isCompared);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setCompared(isCompared);
   }, [isCompared]);
-
-  // Mobile viewport IntersectionObserver for autoplaying previewVideoUrl when visible
-  useEffect(() => {
-    if (!product.previewVideoUrl || !cardRef.current) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (videoRef.current) {
-            if (entry.isIntersecting) {
-              videoRef.current.play().catch(() => {});
-            } else {
-              videoRef.current.pause();
-            }
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    observer.observe(cardRef.current);
-    return () => observer.disconnect();
-  }, [product.previewVideoUrl]);
-
-  const handleMouseEnter = () => {
-    if (product.previewVideoUrl && videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (product.previewVideoUrl && videoRef.current) {
-      videoRef.current.pause();
-    }
-  };
 
   const handleCompareClick = () => {
     const nextState = !compared;
@@ -116,151 +79,83 @@ export default function ProductCard({
 
   return (
     <div
-      ref={cardRef}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className="group relative rounded border border-slate-200 bg-white p-5 transition-all duration-200 hover:border-cyan-600 hover:shadow-lg hover:shadow-cyan-950/5 flex flex-col justify-between"
+      className="bg-white rounded-card border border-border-subtle card-premium group relative p-5 flex flex-col justify-between hover:border-brand-teal transition-all duration-200"
     >
       <div>
-        {/* Header: Brand Logo / Name & Price Segment Badge */}
-        <div className="flex items-center justify-between gap-2 mb-3.5 pb-3 border-b border-slate-100">
-          <div className="flex items-center gap-2 h-7">
+        {/* Top Section: Clean Product Graphic Header */}
+        <div className="aspect-[4/3] bg-surface-light rounded-lg overflow-hidden relative mb-4 flex items-center justify-center border border-border-subtle group-hover:border-brand-teal/40 transition-colors p-6">
+          {/* Status Badge Overlay */}
+          {specs.priceSegment && (
+            <div className="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 bg-brand-dark/80 text-white text-[10px] font-mono-tech font-bold rounded backdrop-blur-xs">
+              {specs.priceSegment}
+            </div>
+          )}
+
+          {/* Clean Studio Product Backdrop with Brand Logo */}
+          <div className="w-full h-full flex flex-col items-center justify-center text-center">
             {brandLogoPath ? (
-              <div className="relative h-6 w-20 flex items-center">
-                <Image
-                  src={brandLogoPath}
-                  alt={`${product.brand} logo`}
-                  width={80}
-                  height={24}
-                  className="max-h-6 max-w-full object-contain filter group-hover:brightness-110 transition-all"
-                />
-              </div>
+              <Image
+                src={brandLogoPath}
+                alt={`${product.brand} logo`}
+                width={130}
+                height={48}
+                className="max-h-12 max-w-full object-contain filter group-hover:scale-105 transition-transform duration-300"
+              />
             ) : (
-              <span className="text-xs font-mono-tech font-bold text-cyan-800 uppercase tracking-wide">
+              <span className="text-xl font-mono-tech font-bold text-text-primary uppercase tracking-wide">
                 {product.brand}
               </span>
             )}
+            <span className="mt-2 text-xs font-mono-tech text-text-muted">
+              {specs.portable ? "Taşınabilir Sistem" : "Konsol Tipi Ultrason"}
+            </span>
           </div>
+        </div>
 
-          {specs.priceSegment && (
-            <span className="text-[11px] font-mono-tech font-semibold text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
-              {specs.priceSegment}
+        {/* Brand Logo & Price Segment */}
+        <div className="flex items-center justify-between gap-2 mb-2.5">
+          <div className="flex items-center h-5">
+            <span className="text-xs font-mono-tech font-bold text-brand-teal uppercase tracking-wide">
+              {product.brand}
+            </span>
+          </div>
+          {specs.beamformer && (
+            <span className="text-[10px] font-mono-tech font-medium text-text-muted bg-surface-light border border-border-subtle px-2 py-0.5 rounded">
+              {specs.beamformer}
             </span>
           )}
         </div>
 
-        {/* Visual Telemetry HUD Viewport / Optional Video Preview */}
-        <div className="relative aspect-[16/10] w-full rounded bg-[#060911] border border-slate-800 overflow-hidden mb-4 p-3 flex flex-col justify-between group-hover:border-cyan-600/80 transition-colors">
-          {/* Top HUD Telemetry Info */}
-          <div className="flex items-center justify-between text-[10px] font-mono-tech text-slate-400 z-10">
-            <span className="inline-flex items-center gap-1 text-cyan-400 font-bold">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
-              {product.brand.toUpperCase()}
-            </span>
-            <span className="text-slate-400 font-medium">FREQ: 4.2 MHz</span>
-          </div>
-
-          {/* Video Preview or Fallback SVG Sector Cone & HUD Graphic */}
-          <div className="relative flex-1 flex items-center justify-center my-1 overflow-hidden">
-            {product.previewVideoUrl ? (
-              <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-black">
-                <video
-                  ref={videoRef}
-                  src={product.previewVideoUrl}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-full object-cover opacity-90"
-                />
-                <div className="absolute top-1 right-1 px-1.5 py-0.5 bg-cyan-950/90 text-cyan-400 border border-cyan-800 text-[9px] font-mono-tech font-bold rounded">
-                  DEMO VIDEO
-                </div>
-              </div>
-            ) : (
-              <svg viewBox="0 0 200 110" className="w-full h-full max-h-24 opacity-85">
-                {/* Sector arc gridlines */}
-                <path
-                  d="M100 10 L40 100 A90 90 0 0 0 160 100 Z"
-                  fill="rgba(6, 182, 212, 0.06)"
-                  stroke="rgba(6, 182, 212, 0.3)"
-                  strokeWidth="1"
-                  strokeDasharray="3 2"
-                />
-                <path
-                  d="M100 10 L60 65 A50 50 0 0 0 140 65 Z"
-                  fill="none"
-                  stroke="rgba(6, 182, 212, 0.2)"
-                  strokeWidth="0.75"
-                />
-                <circle cx="100" cy="10" r="2" fill="#ef4444" />
-                {/* Measurement caliper line */}
-                <line x1="80" y1="55" x2="120" y2="65" stroke="#f59e0b" strokeWidth="1" strokeDasharray="2 2" />
-                <circle cx="80" cy="55" r="1.5" fill="#f59e0b" />
-                <circle cx="120" cy="65" r="1.5" fill="#f59e0b" />
-                <text x="124" y="67" fontFamily="IBM Plex Mono" fontSize="6" fill="#f59e0b" fontWeight="bold">
-                  4.8cm
-                </text>
-              </svg>
-            )}
-
-            {/* Model Overlay Name */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-              <span className="text-xs font-display font-bold text-white tracking-wide bg-slate-950/80 px-2 py-1 rounded border border-slate-800/80 backdrop-blur-xs">
-                {product.name}
-              </span>
-            </div>
-          </div>
-
-          {/* Bottom HUD Telemetry Status */}
-          <div className="flex items-center justify-between text-[9px] font-mono-tech text-slate-400 z-10 border-t border-slate-900 pt-1">
-            <span className="text-slate-400">FPS: <strong className="text-cyan-400">58Hz</strong></span>
-            {specs.portable ? (
-              <span className="rounded bg-cyan-950 text-cyan-300 font-bold px-1.5 py-0.5 border border-cyan-800 text-[9px]">
-                POC Taşınabilir
-              </span>
-            ) : (
-              <span className="text-slate-400">Konsol Tipi</span>
-            )}
-          </div>
-        </div>
-
-        {/* Product Title */}
-        <h3 className="font-display text-xl font-bold text-slate-950 tracking-tight group-hover:text-cyan-700 transition-colors">
+        {/* Product Name */}
+        <h3 className="font-sans text-card-title font-semibold text-text-primary group-hover:text-brand-teal transition-colors">
           {product.name}
         </h3>
 
-        {/* Short Description */}
-        <p className="mt-2 text-sm text-slate-600 line-clamp-2 leading-relaxed font-sans">
+        {/* Description */}
+        <p className="text-sm text-text-muted line-clamp-2 mt-1 font-sans">
           {product.description}
         </p>
 
-        {/* Spec Chips (IBM Plex Mono) */}
-        <div className="mt-3.5 flex flex-wrap gap-1.5 text-xs font-mono-tech text-slate-700">
+        {/* Spec Chips */}
+        <div className="mt-3.5 flex flex-wrap gap-1.5 font-mono-tech text-xs">
           {specs.screenSize && (
-            <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-0.5 font-medium border border-slate-200">
-              🖥️ {specs.screenSize}
+            <span className="bg-surface-light text-text-body border border-border-subtle rounded-md px-2 py-0.5">
+              {specs.screenSize}
             </span>
           )}
           {specs.probePorts !== undefined && (
-            <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-2 py-0.5 font-medium border border-slate-200">
-              🔌 {specs.probePorts} Port
-            </span>
-          )}
-          {specs.beamformer && (
-            <span className="inline-flex items-center gap-1 rounded bg-cyan-50 text-cyan-900 px-2 py-0.5 font-medium border border-cyan-200">
-              ⚡ {specs.beamformer}
+            <span className="bg-surface-light text-text-body border border-border-subtle rounded-md px-2 py-0.5">
+              {specs.probePorts} Port
             </span>
           )}
         </div>
 
-        {/* Spec Highlights Bullet Points */}
+        {/* Highlights */}
         {highlights.length > 0 && (
-          <ul className="mt-3.5 space-y-1 border-t border-slate-100 pt-3 text-xs font-mono-tech text-slate-600">
+          <ul className="mt-4 space-y-1 text-xs font-sans text-text-muted">
             {highlights.slice(0, 3).map((item, idx) => (
               <li key={idx} className="flex items-start gap-1.5">
-                <span className="text-cyan-600 font-bold text-sm leading-none">•</span>
+                <span className="text-brand-teal font-bold text-sm leading-none mt-0.5">•</span>
                 <span className="leading-snug">{item}</span>
               </li>
             ))}
@@ -268,14 +163,14 @@ export default function ProductCard({
         )}
       </div>
 
-      {/* Action Footer */}
-      <div className="mt-5 flex items-center justify-between border-t border-slate-200 pt-3.5 gap-3">
-        <label className="inline-flex items-center gap-2 cursor-pointer text-xs font-mono-tech font-semibold text-slate-700 hover:text-slate-950 transition-colors">
+      {/* Footer Action Bar */}
+      <div className="mt-5 flex items-center justify-between border-t border-border-subtle pt-4 gap-3">
+        <label className="inline-flex items-center gap-2 cursor-pointer text-xs font-sans font-semibold text-text-primary hover:text-brand-teal transition-colors">
           <input
             type="checkbox"
             checked={compared}
             onChange={handleCompareClick}
-            className="h-4 w-4 rounded border-slate-300 text-cyan-600 focus:ring-0 cursor-pointer accent-cyan-600"
+            className="h-4 w-4 rounded border-border-subtle text-brand-teal focus:ring-0 cursor-pointer accent-brand-teal"
           />
           <span>Karşılaştır</span>
         </label>
@@ -289,7 +184,7 @@ export default function ProductCard({
               productName: `${product.brand} ${product.name}`,
             });
           }}
-          className="inline-flex items-center gap-1.5 rounded bg-slate-950 hover:bg-cyan-700 px-3.5 py-1.5 text-xs font-semibold text-white transition-colors border border-slate-800 font-mono-tech"
+          className="rounded-pill bg-brand text-white hover:bg-brand-teal px-4 py-2 text-xs font-semibold transition-colors flex items-center gap-1 font-sans"
         >
           <span>Detay</span>
           <span>→</span>
@@ -298,4 +193,3 @@ export default function ProductCard({
     </div>
   );
 }
-

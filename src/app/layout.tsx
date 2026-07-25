@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ConsentBanner from "@/components/ConsentBanner";
+import AnnouncementBar from "@/components/AnnouncementBar";
+import MobileStickyBar from "@/components/MobileStickyBar";
 import "./globals.css";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "leadUsg | Medikal Ultrason Sistemleri & Karşılaştırma Platformu",
-  description: "Türkiye'nin en kapsamlı biyomedikal ultrason karşılaştırma ve teknik analiz platformu.",
+  title: "leadUsg | Türkiye'nin Güvenilir Ultrason Karşılaştırma Platformu",
+  description:
+    "Bağımsız, tarafsız, şeffaf. Medikal ultrason cihazlarını teknik parametreleriyle karşılaştırın, uzman danışmanlık alın.",
 };
 
 export default function RootLayout({
@@ -17,64 +20,73 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className="h-full scroll-smooth">
-      <body className="antialiased flex flex-col min-h-screen bg-slate-50 text-slate-900 selection:bg-cyan-500 selection:text-white">
+      <body className="antialiased flex flex-col min-h-screen bg-surface-canvas text-text-primary">
         
-        {/* TOP CLINICAL TELEMETRY BAR */}
-        <div className="bg-slate-950 text-slate-400 text-xs font-mono-tech border-b border-slate-800 py-2 px-4 md:px-8 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <span className="inline-flex items-center gap-1.5 text-cyan-400 font-medium">
-              <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse"></span>
-              LEADUSG CLINICAL TELEMETRY v2.6
-            </span>
-            <span className="hidden md:inline text-slate-600">|</span>
-            <span className="hidden md:inline text-slate-400">Doğrulanmış Üretici Veritabanı: GE, Philips, Samsung, Siemens, Canon, Mindray</span>
-          </div>
-          <div className="flex items-center gap-6">
-            <span className="text-slate-400">Karşılaştırma Engine <code>v2.6</code></span>
-            <Link href="/teklif-al" className="text-cyan-400 hover:underline">Uzman Danışmanlığı ↗</Link>
-          </div>
-        </div>
+        {/* ANIMATED ANNOUNCEMENT BAR */}
+        <AnnouncementBar />
 
-        {/* MAIN HEADER */}
-        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200">
-          <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        {/* MAIN HEADER — Glassmorphism */}
+        <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-border-subtle shadow-header">
+          <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 lg:h-[72px] flex items-center justify-between">
+            
             {/* LOGO */}
-            <Link href="/" className="flex items-center gap-3">
-              <div className="h-9 w-9 bg-slate-950 border border-slate-800 rounded flex items-center justify-center text-cyan-400">
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <div className="h-9 w-9 bg-brand-teal rounded-lg flex items-center justify-center text-white transition-transform group-hover:scale-105">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 3L3 20A14 14 0 0 0 21 20L12 3Z" stroke="#0ea5e9" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M7.5 14A8 8 0 0 0 16.5 14" stroke="#06b6d4" strokeDasharray="2 2"/>
-                  <circle cx="12" cy="4" r="1.5" fill="#ef4444"/>
+                  <path d="M12 3L3 20A14 14 0 0 0 21 20L12 3Z" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M7.5 14A8 8 0 0 0 16.5 14" stroke="white" strokeOpacity="0.6" strokeDasharray="2 2"/>
+                  <circle cx="12" cy="4" r="1.5" fill="white"/>
                 </svg>
               </div>
               <div>
-                <span className="font-display text-xl font-bold tracking-tight text-slate-950">lead<span className="text-cyan-600">USG</span></span>
-                <span className="block text-[10px] font-mono-tech tracking-widest text-slate-500 uppercase">Ultrasound Intelligence</span>
+                <span className="text-xl font-bold tracking-tight text-text-primary">
+                  lead<span className="text-brand-teal">USG</span>
+                </span>
+                <span className="hidden sm:block text-[10px] font-mono-tech tracking-widest text-text-muted uppercase">
+                  Ultrasound Intelligence
+                </span>
               </div>
             </Link>
 
-            {/* NAV LINKS */}
-            <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
-              <Link href="/urunler/ultrason" className="hover:text-cyan-600 transition-colors">Ultrason Kataloğu</Link>
-              <Link href="/#kategoriler" className="hover:text-cyan-600 transition-colors">Uzmanlık Alanları</Link>
-              <Link href="/#markalar" className="hover:text-cyan-600 transition-colors">Marka Portföyü</Link>
-              <Link href="/karsilastir" className="hover:text-cyan-600 transition-colors flex items-center gap-1.5">
-                <span>Karşılaştırma Matrix</span>
-                <span className="text-[10px] font-mono-tech px-1.5 py-0.5 bg-amber-100 text-amber-800 rounded">LIVE</span>
+            {/* NAV LINKS — Center */}
+            <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-text-body">
+              <Link href="/urunler/ultrason" className="link-underline hover:text-text-primary transition-colors py-1">
+                Cihazlar
+              </Link>
+              <Link href="/karsilastir" className="link-underline hover:text-text-primary transition-colors py-1">
+                Karşılaştır
+              </Link>
+              <Link href="/#markalar" className="link-underline hover:text-text-primary transition-colors py-1">
+                Markalar
+              </Link>
+              <Link href="/#kategoriler" className="link-underline hover:text-text-primary transition-colors py-1">
+                Uzmanlık Alanları
               </Link>
             </div>
 
-            {/* ACTION CTA */}
+            {/* RIGHT ACTIONS */}
             <div className="flex items-center gap-3">
-              <Link href="/karsilastir" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-slate-800 bg-slate-100 border border-slate-300 hover:bg-slate-200 px-4 py-2 rounded transition-all">
-                Matrix&apos;e Git
+              <Link
+                href="/karsilastir"
+                className="hidden md:inline-flex items-center gap-2 text-sm font-medium text-text-body border border-border-subtle hover:border-brand-teal hover:text-brand-teal px-4 py-2 rounded-pill transition-all"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
+                </svg>
+                Matrix
               </Link>
-              <Link href="/teklif-al" className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-slate-900 border border-slate-800 hover:bg-cyan-700 px-4 py-2 rounded transition-all shadow-sm">
-                <span>Teklif & Danışmanlık</span>
+              <Link
+                href="/teklif-al"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-white bg-brand-teal hover:bg-brand-teal-hover px-5 py-2.5 rounded-pill transition-all shadow-sm"
+              >
+                <span>Teklif Al</span>
                 <span>→</span>
               </Link>
-              <Link href="/admin" className="text-xs font-mono-tech text-slate-400 hover:text-slate-700 transition-colors">
-                AM Giriş
+              <Link
+                href="/admin"
+                className="hidden lg:inline text-xs font-mono-tech text-text-subtle hover:text-text-muted transition-colors"
+              >
+                AM
               </Link>
             </div>
           </nav>
@@ -85,19 +97,119 @@ export default function RootLayout({
           {children}
         </main>
 
-        {/* FOOTER */}
-        <footer className="bg-slate-950 text-slate-400 py-10 text-xs font-mono-tech border-t border-slate-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div>
-              <span className="font-display text-sm font-bold text-white">LEADUSG PLATFORMS © {new Date().getFullYear()}</span>
-              <p className="text-slate-500 mt-0.5">Medikal Ultrason Broker ve Teknik Telemetri Sistemi</p>
+        {/* PREMIUM 4-COLUMN FOOTER */}
+        <footer className="bg-brand-dark text-white/60 border-t border-white/5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+              
+              {/* Column 1: Brand & Mission */}
+              <div className="sm:col-span-2 lg:col-span-1">
+                <div className="flex items-center gap-2.5 mb-4">
+                  <div className="h-8 w-8 bg-brand-teal rounded-lg flex items-center justify-center text-white">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 3L3 20A14 14 0 0 0 21 20L12 3Z" stroke="white" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <span className="text-lg font-bold text-white tracking-tight">
+                    lead<span className="text-brand-teal">USG</span>
+                  </span>
+                </div>
+                <p className="text-sm text-white/40 leading-relaxed max-w-xs">
+                  Türkiye&apos;nin bağımsız medikal ultrason karşılaştırma ve broker platformu.
+                  Tarafsız teknik veri, şeffaf süreç.
+                </p>
+              </div>
+
+              {/* Column 2: Quick Links */}
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
+                  Platform
+                </h4>
+                <ul className="space-y-3 text-sm">
+                  <li>
+                    <Link href="/urunler/ultrason" className="text-white/50 hover:text-white transition-colors">
+                      Ultrason Kataloğu
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/karsilastir" className="text-white/50 hover:text-white transition-colors">
+                      Cihaz Karşılaştırma
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/teklif-al" className="text-white/50 hover:text-white transition-colors">
+                      Teklif Al
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/#kategoriler" className="text-white/50 hover:text-white transition-colors">
+                      Uzmanlık Alanları
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 3: Legal */}
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
+                  Yasal
+                </h4>
+                <ul className="space-y-3 text-sm">
+                  <li>
+                    <Link href="/kvkk" className="text-white/50 hover:text-white transition-colors">
+                      KVKK Aydınlatma Metni
+                    </Link>
+                  </li>
+                  <li>
+                    <span className="text-white/50">
+                      Kullanım Koşulları
+                    </span>
+                  </li>
+                  <li>
+                    <span className="text-white/50">
+                      Çerez Politikası
+                    </span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 4: Contact */}
+              <div>
+                <h4 className="text-xs font-semibold uppercase tracking-widest text-white/30 mb-5">
+                  İletişim
+                </h4>
+                <ul className="space-y-3 text-sm">
+                  <li className="flex items-center gap-2 text-white/50">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/>
+                    </svg>
+                    <span>Bize Ulaşın</span>
+                  </li>
+                  <li className="flex items-center gap-2 text-white/50">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="2" y="4" width="20" height="16" rx="2"/>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                    <span>info@leadusg.com</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div className="flex items-center gap-6">
-              <Link href="/kvkk" className="hover:text-cyan-400">KVKK Aydınlatma Metni</Link>
-              <Link href="#" className="hover:text-cyan-400">Biyomedikal Standartlar</Link>
+
+            {/* Bottom Bar */}
+            <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
+              <p className="text-xs text-white/30">
+                © {new Date().getFullYear()} leadUSG Platforms. Tüm hakları saklıdır.
+              </p>
+              <p className="text-xs text-white/20 font-mono-tech">
+                Bağımsız Medikal Cihaz Broker Platformu
+              </p>
             </div>
           </div>
         </footer>
+
+        {/* Mobile Sticky CTA */}
+        <MobileStickyBar />
 
         {/* Consent Banner */}
         <ConsentBanner />

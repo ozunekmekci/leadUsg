@@ -55,26 +55,26 @@ export default async function NewArrivalsStrip() {
   });
 
   return (
-    <section className="py-12 bg-slate-900 text-white border-b border-slate-800">
+    <section className="py-section-sm md:py-section-md lg:py-section-lg bg-surface-canvas">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header with Title and View All link */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 lg:mb-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-amber-950/80 border border-amber-800/80 rounded text-[11px] font-mono-tech text-amber-400 font-bold uppercase tracking-wider mb-2">
-              <span>SON EKLENENLER</span>
-            </div>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <span className="text-eyebrow font-semibold uppercase tracking-widest text-brand-teal">
+              SON EKLENENLER
+            </span>
+            <h2 className="font-display text-section-title font-semibold text-text-primary mt-2">
               Yeni Eklenen Cihazlar
             </h2>
-            <p className="text-slate-400 text-sm mt-1">
+            <p className="text-text-muted text-sm mt-2 max-w-md">
               Kataloğumuza son eklenen sistemler ve teknik güncellemeler
             </p>
           </div>
 
           <Link
             href="/urunler/ultrason"
-            className="inline-flex items-center gap-1.5 text-xs font-mono-tech font-bold text-cyan-400 hover:text-cyan-300 transition-colors uppercase tracking-wider group"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-teal link-underline group"
           >
             <span>Tüm Kataloğu Gör</span>
             <span className="group-hover:translate-x-1 transition-transform">→</span>

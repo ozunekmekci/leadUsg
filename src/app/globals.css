@@ -1,45 +1,165 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+/* ─── Google Fonts ─── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─── CSS Custom Properties (Design Tokens) ─── */
 :root {
-  --bg-main: #f8fafc;
-  --surface-white: #ffffff;
-  --surface-dark: #090d16;
-  --border-sharp: #e2e8f0;
-  --text-main: #0f172a;
-  --teal-clinical: #0284c7;
-  --cyan-bright: #06b6d4;
-  --amber-diff: #d97706;
+  --bg-main: #F9F9F8;
+  --bg-cream: #F3F1ED;
+  --surface-white: #FFFFFF;
+  --surface-dark: #0B0F19;
+  --border-subtle: #E5E5E0;
+  --text-primary: #1A1A1A;
+  --text-body: #374151;
+  --text-muted: #666666;
+  --brand-teal: #0D9488;
+  --brand-teal-hover: #0F766E;
+  --brand-teal-light: #CCFBF1;
+  --brand-gold: #C5A059;
+  --brand-gold-light: #F5EFE0;
+  --clinical-cyan: #06B6D4;
+  --clinical-amber: #D97706;
+  --doppler-red: #EF4444;
+  --doppler-blue: #3B82F6;
 }
 
+/* ─── Base Styles ─── */
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background-color: var(--bg-main);
-  color: var(--text-main);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── Typography Utility Classes ─── */
 .font-mono-tech {
   font-family: 'IBM Plex Mono', monospace;
 }
 
 .font-display {
-  font-family: 'Space Grotesk', sans-serif;
-  letter-spacing: -0.03em;
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-/* Grid backdrop for medical precision feel */
+.font-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+}
+
+/* ─── Announcement Bar Gradient Animation ─── */
+.announcement-gradient {
+  background: linear-gradient(90deg, #1A1A1A, #0D9488, #1A1A1A, #0F766E, #1A1A1A);
+  background-size: 300% 300%;
+  animation: gradient-shift 6s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── Hero Video Overlay ─── */
+.hero-video-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(11, 15, 25, 0.75) 0%,
+    rgba(11, 15, 25, 0.3) 40%,
+    rgba(11, 15, 25, 0.1) 60%,
+    rgba(11, 15, 25, 0.35) 100%
+  );
+}
+
+/* ─── Staggered Fade-In Animation ─── */
+.animate-stagger > * {
+  opacity: 0;
+  animation: fade-in-up 0.7s ease-out forwards;
+}
+.animate-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.animate-stagger > *:nth-child(2) { animation-delay: 100ms; }
+.animate-stagger > *:nth-child(3) { animation-delay: 200ms; }
+.animate-stagger > *:nth-child(4) { animation-delay: 300ms; }
+.animate-stagger > *:nth-child(5) { animation-delay: 400ms; }
+.animate-stagger > *:nth-child(6) { animation-delay: 500ms; }
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Card Hover Elevation ─── */
+.card-premium {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s ease;
+}
+
+.card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Image Cross-Fade (Product Cards) ─── */
+.img-crossfade .img-secondary {
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.img-crossfade:hover .img-secondary {
+  opacity: 1;
+}
+
+.img-crossfade:hover .img-primary {
+  opacity: 0;
+}
+
+.img-crossfade .img-primary {
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Quick View Slide-Up ─── */
+.quick-view-trigger {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.group:hover .quick-view-trigger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Underline Link Animation ─── */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease-out;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ─── Preserved: Diagnostic HUD Console (used on product detail pages) ─── */
 .clinical-grid-bg {
-  background-image: 
+  background-image:
     linear-gradient(rgba(14, 165, 233, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-/* Diagnostics HUD Monitor */
 .ultrasound-console {
   background: #060911;
   border: 1px solid #1e293b;
@@ -55,22 +175,14 @@ body {
   z-index: 10;
 }
 
-/* ECG Waveform animation */
-@keyframes ecgPulse {
-  0% { stroke-dashoffset: 600; }
-  100% { stroke-dashoffset: 0; }
-}
-
 .ecg-line {
   stroke-dasharray: 600;
   animation: ecgPulse 3s linear infinite;
 }
 
-/* Sector scanner line */
-@keyframes sectorSweep {
-  0% { transform: rotate(-35deg); }
-  50% { transform: rotate(35deg); }
-  100% { transform: rotate(-35deg); }
+@keyframes ecgPulse {
+  0% { stroke-dashoffset: 600; }
+  100% { stroke-dashoffset: 0; }
 }
 
 .sweep-beam {
@@ -78,8 +190,31 @@ body {
   animation: sectorSweep 2.4s ease-in-out infinite;
 }
 
+@keyframes sectorSweep {
+  0% { transform: rotate(-35deg); }
+  50% { transform: rotate(35deg); }
+  100% { transform: rotate(-35deg); }
+}
+
 .delta-badge {
   background: rgba(217, 119, 6, 0.1);
   border: 1px solid rgba(217, 119, 6, 0.3);
   color: #d97706;
+}
+
+/* ─── Premium Section Divider ─── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+}
+
+/* ─── Scroll Smooth Behavior ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Selection Color ─── */
+::selection {
+  background-color: var(--brand-teal-light);
+  color: var(--text-primary);
 }
