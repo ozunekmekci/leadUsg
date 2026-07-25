@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { FALLBACK_PRODUCTS } from "@/lib/fallbackProducts";
 import CompareView from "@/components/products/CompareView";
 import { ProductItem, ProductSpecs } from "@/components/products/ProductCard";
 import { redirect } from "next/navigation";
@@ -43,16 +44,32 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
     targetIds = uniqueIds.slice(0, 4);
   }
 
-  const dbProducts = await prisma.product.findMany({
-    where: {
-      id: {
-        in: targetIds,
+  type ProductRecord = {
+    id: number;
+    slug: string;
+    name: string;
+    brand: string;
+    category: string;
+    description: string;
+    specs: unknown;
+  };
+
+  let dbProducts: ProductRecord[] = [];
+  try {
+    dbProducts = await prisma.product.findMany({
+      where: {
+        id: {
+          in: targetIds,
+        },
       },
-    },
-  });
+    });
+  } catch (error) {
+    console.error("ComparePage DB fetch error, using fallback data:", error);
+    dbProducts = FALLBACK_PRODUCTS.filter((p) => targetIds.includes(p.id));
+  }
 
   if (dbProducts.length < 2) {
-    redirect("/urunler/ultrason");
+    dbProducts = FALLBACK_PRODUCTS.slice(0, 2);
   }
 
   const orderedProducts = targetIds

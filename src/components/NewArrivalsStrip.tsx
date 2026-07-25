@@ -1,25 +1,43 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import { FALLBACK_PRODUCTS } from "@/lib/fallbackProducts";
 import NewArrivalsCarousel, { NewArrivalItem } from "./NewArrivalsCarousel";
 import { ProductSpecs } from "./products/ProductCard";
 
+type ProductRecord = {
+  id: number;
+  slug: string;
+  name: string;
+  brand: string;
+  category: string;
+  specs: unknown;
+  createdAt?: Date | string;
+};
+
 export default async function NewArrivalsStrip() {
-  const rawProducts = await prisma.product.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-    take: 10,
-  });
+  let rawProducts: ProductRecord[] = [];
+
+  try {
+    rawProducts = await prisma.product.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 10,
+    });
+  } catch (error) {
+    console.error("NewArrivalsStrip DB fetch error, using fallback data:", error);
+    rawProducts = FALLBACK_PRODUCTS;
+  }
 
   if (!rawProducts || rawProducts.length === 0) {
-    return null;
+    rawProducts = FALLBACK_PRODUCTS;
   }
 
   const now = Date.now();
 
   const items: NewArrivalItem[] = rawProducts.map((p) => {
     const specs = (p.specs as unknown as ProductSpecs) || {};
-    const createdTime = new Date(p.createdAt).getTime();
+    const createdTime = p.createdAt ? new Date(p.createdAt).getTime() : now;
     const daysAgo = Math.max(0, Math.floor((now - createdTime) / (1000 * 60 * 60 * 24)));
 
     // Create a 1-line tech summary

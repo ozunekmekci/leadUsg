@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { FALLBACK_PRODUCTS } from "@/lib/fallbackProducts";
 import ProductCard, { ProductItem, ProductSpecs } from "@/components/products/ProductCard";
 import ProductFilters from "@/components/products/ProductFilters";
 import EmptyState from "@/components/products/EmptyState";
@@ -15,6 +16,16 @@ interface CategoryPageProps {
   };
 }
 
+type ProductRecord = {
+  id: number;
+  slug: string;
+  name: string;
+  brand: string;
+  category: string;
+  description: string;
+  specs: unknown;
+};
+
 export const dynamic = "force-dynamic";
 
 export default async function CategoryPage({ params, searchParams }: CategoryPageProps) {
@@ -27,15 +38,24 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     notFound();
   }
 
-  // Fetch all products for the current category from PostgreSQL via Prisma
-  const dbProducts = await prisma.product.findMany({
-    where: {
-      category: currentCategory,
-    },
-    orderBy: {
-      id: "asc",
-    },
-  });
+  let dbProducts: ProductRecord[] = [];
+  try {
+    dbProducts = await prisma.product.findMany({
+      where: {
+        category: currentCategory,
+      },
+      orderBy: {
+        id: "asc",
+      },
+    });
+  } catch (error) {
+    console.error("CategoryPage DB fetch error, using fallback data:", error);
+    dbProducts = FALLBACK_PRODUCTS.filter((p) => p.category === currentCategory);
+  }
+
+  if (!dbProducts || dbProducts.length === 0) {
+    dbProducts = FALLBACK_PRODUCTS.filter((p) => p.category === currentCategory);
+  }
 
   // Map JSON specs type
   const allProducts: ProductItem[] = dbProducts.map((p) => ({
@@ -138,4 +158,3 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     </div>
   );
 }
-

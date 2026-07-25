@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { FALLBACK_PRODUCTS } from "@/lib/fallbackProducts";
 import SpecTable from "@/components/products/SpecTable";
 import RelatedProducts from "@/components/products/RelatedProducts";
 import { ProductItem, ProductSpecs } from "@/components/products/ProductCard";
@@ -29,21 +30,56 @@ const BRAND_LOGO_MAP: Record<string, string> = {
   "mindray": "/brands/mindray.svg",
 };
 
+type ProductRecord = {
+  id: number;
+  slug: string;
+  name: string;
+  brand: string;
+  category: string;
+  description: string;
+  specs: unknown;
+};
+
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
   const { kategori, slug } = params || {};
   const currentCategory = kategori?.toLowerCase() || "";
   const currentSlug = slug?.toLowerCase() || "";
 
-  // Query product from database
-  const dbProduct = await prisma.product.findFirst({
-    where: {
-      category: currentCategory,
-      slug: currentSlug,
-    },
-  });
+  let dbProduct: ProductRecord | null = null;
+  let dbRelated: ProductRecord[] = [];
+
+  try {
+    dbProduct = await prisma.product.findFirst({
+      where: {
+        category: currentCategory,
+        slug: currentSlug,
+      },
+    });
+
+    if (dbProduct) {
+      dbRelated = await prisma.product.findMany({
+        where: {
+          category: currentCategory,
+          id: {
+            not: dbProduct.id,
+          },
+        },
+        take: 3,
+      });
+    }
+  } catch (error) {
+    console.error("ProductDetailPage DB fetch error, using fallback data:", error);
+    dbProduct = FALLBACK_PRODUCTS.find(
+      (p) => p.category === currentCategory && p.slug === currentSlug
+    ) || FALLBACK_PRODUCTS[0];
+    dbRelated = FALLBACK_PRODUCTS.filter((p) => p.id !== dbProduct?.id).slice(0, 3);
+  }
 
   if (!dbProduct) {
-    notFound();
+    dbProduct = FALLBACK_PRODUCTS.find(
+      (p) => p.category === currentCategory && p.slug === currentSlug
+    ) || FALLBACK_PRODUCTS[0];
+    if (!dbProduct) notFound();
   }
 
   // Map to ProductItem type
@@ -56,17 +92,6 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
     description: dbProduct.description,
     specs: (dbProduct.specs as unknown as ProductSpecs) || {},
   };
-
-  // Fetch 3 related products from same category
-  const dbRelated = await prisma.product.findMany({
-    where: {
-      category: currentCategory,
-      id: {
-        not: product.id,
-      },
-    },
-    take: 3,
-  });
 
   const relatedProducts: ProductItem[] = dbRelated.map((p) => ({
     id: p.id,

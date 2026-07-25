@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { FALLBACK_PRODUCTS } from "@/lib/fallbackProducts";
 
 export default async function TrustStatsBar() {
   // Calculate dynamic stats from database
@@ -13,7 +14,14 @@ export default async function TrustStatsBar() {
     });
     brandCount = distinctBrands.length;
   } catch (error) {
-    console.error("TrustStatsBar DB count error:", error);
+    console.error("TrustStatsBar DB count error, using fallback counts:", error);
+    productCount = FALLBACK_PRODUCTS.length;
+    brandCount = new Set(FALLBACK_PRODUCTS.map((p) => p.brand)).size;
+  }
+
+  if (productCount === 0) {
+    productCount = FALLBACK_PRODUCTS.length;
+    brandCount = new Set(FALLBACK_PRODUCTS.map((p) => p.brand)).size;
   }
 
   // Format strings
@@ -74,4 +82,3 @@ export default async function TrustStatsBar() {
     </section>
   );
 }
-
