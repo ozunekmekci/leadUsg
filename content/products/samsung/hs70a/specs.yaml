@@ -1,0 +1,24 @@
+# TODO: teknik specler üretici datasheet'inden eklenecek
+brand: "Samsung"
+model: "HS70A"
+tier: "HIGH_END"
+clinicalUnits:
+  - RADIOLOGY
+  - CARDIOLOGY
+competitors:
+  "GE": "Logiq S8 XDClear"
+  "Siemens": "Acuson S3000"
+  "Philips": "EPIQ 5 w/xMatrix"
+  "Canon": "Aplio i600"
+
+specs:
+  signalProcessing: "CrystalBeam, S-Vision Architecture"
+  probeTechnology: "S-Vue Technology, Matrix Transducers"
+  autoOptimization: "QuickScan"
+  compoundImaging: "MultiVision"
+  speckleReduction: "ClearVision"
+  flowImaging: "S-Flow, MV-Flow, LumiFlow"
+  workflowProtocol: "EZ Exam+"
+  shearwave: "Point & 2D Shearwave (S-Shearwave)"
+  fusionImaging: "S-Fusion"
+  fourDImaging: "Realistic Vue, Crystal Vue"

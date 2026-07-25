@@ -1,0 +1,20 @@
+# TODO: teknik specler üretici datasheet'inden eklenecek
+brand: "Canon"
+model: "Aplio i800"
+tier: "HIGH_END"
+clinicalUnits:
+  - RADIOLOGY
+  - OBGYN
+competitors: {}
+
+specs:
+  signalProcessing: "iBeam & aBeam High-Density Architecture"
+  probeTechnology: "iDMS, Dynamic Micro Slice, XBT Transducers"
+  autoOptimization: "Quick Scan, TSO"
+  compoundImaging: "ApliPure+"
+  speckleReduction: "Precision Imaging"
+  flowImaging: "S.M.I. (Superb Micro-vascular Imaging), Advanced Dynamic Flow"
+  workflowProtocol: "Quick Assist Protocol"
+  shearwave: "Smart Maps 2D Shearwave"
+  fusionImaging: "Smart Fusion"
+  fourDImaging: "Luminance, Shadow Glass"

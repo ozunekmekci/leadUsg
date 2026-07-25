@@ -1,0 +1,19 @@
+# TODO: teknik specler üretici datasheet'inden eklenecek
+brand: "Siemens"
+model: "Acuson Sequoia"
+tier: "PREMIUM"
+clinicalUnits:
+  - RADIOLOGY
+competitors: {}
+
+specs:
+  signalProcessing: "BioAcoustic, SieStream Core Architecture"
+  probeTechnology: "DAX, HD Single Crystal, Multi-D Array, Hanafy Lens"
+  autoOptimization: "TEQ (Tissue Equalization)"
+  compoundImaging: "Advanced SieClear Spatial Compounding"
+  speckleReduction: "DTCE (Dynamic Tissue Contrast Enhancement)"
+  flowImaging: "Sie-Flow, Clarify VE, Doppler Tissue Energy"
+  workflowProtocol: "eSieScan Protocol"
+  shearwave: "Virtual Touch IQ (ARFI Technology)"
+  fusionImaging: "eSieFusion"
+  fourDImaging: "4D Cardiology & Fetal Echo Modül"

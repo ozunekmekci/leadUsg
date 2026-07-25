@@ -313,3 +313,22 @@
 6. **Statik Prototip ve Testler (`test.html`):**
    - Eski ve devre dışı bırakılan karşılaştırma/kategori bölümleri `test.html` içerisinden tamamen kaldırıldı; hero ve marka portföyü metinleri yenilendi.
    - Next.js production build başarıyla tamamlandı, E2E entegrasyon testlerinin tamamı (8/8) yeşil geçti.
+
+## 🎬 ✅ CP-016 TAMAMLANDI — Ürün Kataloğu Yükleme (Gerçek Marka Verisi)
+
+**Yapılanlar:**
+1. **Veritabanı Şeması Güncellemesi (`prisma/schema.prisma`):**
+   - `DeviceTier` (`PREMIUM`, `HIGH_END`, `MID_RANGE`, `LOW_END`) ve `ClinicalUnit` (`RADIOLOGY`, `OBGYN`, `CARDIOLOGY`, `PORTABLE`) enum'ları eklendi.
+   - `Product` modeline `tier` (`DeviceTier?`), `clinicalUnits` (`ClinicalUnit[]`), `competitors` (`Json?`) alanları eklendi.
+2. **Migration Geçişi (`prisma/migrations/20260725210000_add_tier_clinical_units/`):**
+   - `add-tier-clinical-units` migration dosyası SQL scripti olarak üretildi, veritabanına uygulandı ve Prisma Migrate geçmişine işlendi.
+   - `prisma generate` ile Prisma Client tipleri başarıyla güncellendi.
+3. **Klasör Ağacı ve Specs Scaffold (`scripts/scaffold-products.ts`):**
+   - `urun-katalogu-seed.json` verisi okunarak `content/products/{brand-kebab}/{model-kebab}/specs.yaml` yapısında 27 cihazın dosya ağacı scaffold edildi.
+   - Cihaz klasörlerinde boş `images/` ve `docs/` alt klasörleri `.gitkeep` ile hazırlandı.
+4. **Zod Doğrulamalı Ingest Pipeline (`scripts/ingest-products.ts`):**
+   - `content/products/` ağacındaki `specs.yaml` dosyalarını tarayan, Zod şemasıyla doğrulayan ve `prisma.product.upsert()` ile veritabanına upsert eden ingest scripti yazıldı.
+   - 27 ürünün tamamı veritabanına aktarıldı.
+5. **Doğrulama ve Tip Kontrolü:**
+   - Veritabanındaki `tier` ve `clinicalUnits` bilgisi eksiksiz 27 seed ürünü teyit edildi.
+   - `npx tsc --noEmit` ile TypeScript tip kontrolü 0 hata ile doğrulandı.

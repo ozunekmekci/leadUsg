@@ -1,0 +1,21 @@
+# TODO: teknik specler üretici datasheet'inden eklenecek
+brand: "GE"
+model: "Vivid E95"
+tier: "PREMIUM"
+clinicalUnits:
+  - CARDIOLOGY
+competitors:
+  "Philips": "EPIQ Elite CVx"
+  "Canon": "Aplio i900 CV"
+
+specs:
+  signalProcessing: "cSound, Agile & Radiance Architecture"
+  probeTechnology: "Matrix Array, XDclear Technology, Acoustic Amplifier"
+  autoOptimization: "ATO (Auto Tissue Optimization)"
+  compoundImaging: "CrossXBeam"
+  speckleReduction: "SRI (Speckle Reduction Imaging)"
+  flowImaging: "B-Flow, HD-Flow, SlowFlowHD, RadiantFlow"
+  workflowProtocol: "Scan Assistant"
+  shearwave: "2D Shearwave Elastography"
+  fusionImaging: "Volume Navigation (VNav)"
+  fourDImaging: "HDlive, HDlive Silhouette, HDlive Studio"

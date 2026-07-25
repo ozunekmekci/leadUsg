@@ -6,17 +6,34 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum DeviceTier {
+  PREMIUM
+  HIGH_END
+  MID_RANGE
+  LOW_END
+}
+
+enum ClinicalUnit {
+  RADIOLOGY
+  OBGYN
+  CARDIOLOGY
+  PORTABLE
+}
+
 model Product {
-  id          Int      @id @default(autoincrement())
-  slug        String   @unique
-  name        String
-  brand       String
-  category    String
-  specs       Json     // Technical specs JSON object
-  description String
-  previewVideoUrl String? @map("preview_video_url")
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  id              Int            @id @default(autoincrement())
+  slug            String         @unique
+  name            String
+  brand           String
+  category        String
+  specs           Json           // Technical specs JSON object
+  description     String
+  previewVideoUrl String?        @map("preview_video_url")
+  tier            DeviceTier?
+  clinicalUnits   ClinicalUnit[]
+  competitors     Json?
+  createdAt       DateTime       @default(now()) @map("created_at")
+  updatedAt       DateTime       @updatedAt @map("updated_at")
 
   @@map("products")
 }

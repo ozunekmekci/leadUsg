@@ -1,0 +1,24 @@
+# TODO: teknik specler üretici datasheet'inden eklenecek
+brand: "Samsung"
+model: "HS50"
+tier: "MID_RANGE"
+clinicalUnits:
+  - RADIOLOGY
+  - OBGYN
+competitors:
+  "GE": "Logiq P9"
+  "Siemens": "Juniper"
+  "Philips": "Affiniti 70"
+  "Canon": "Aplio a550"
+
+specs:
+  signalProcessing: "CrystalBeam, S-Vision Architecture"
+  probeTechnology: "S-Vue Technology, Matrix Transducers"
+  autoOptimization: "QuickScan"
+  compoundImaging: "MultiVision"
+  speckleReduction: "ClearVision"
+  flowImaging: "S-Flow, MV-Flow, LumiFlow"
+  workflowProtocol: "EZ Exam+"
+  shearwave: "Point & 2D Shearwave (S-Shearwave)"
+  fusionImaging: "S-Fusion"
+  fourDImaging: "Realistic Vue, Crystal Vue"

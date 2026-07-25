@@ -1,0 +1,38 @@
+{
+  "note": "Kaynak: Promedis rakip karşılaştırma tabloları (Radyoloji, Kadın Doğum, Eko, Portable). Tier 4 seviyeye sadeleştirildi. competitors alanı ilgili segmentteki muadil cihazları gösterir, teknik spec değildir.",
+  "products": [
+    { "brand": "Samsung", "model": "RS85 Prestige", "tier": "PREMIUM", "clinicalUnits": ["RADIOLOGY"], "competitors": { "GE": "Logiq E10", "Siemens": "Acuson Sequoia" } },
+    { "brand": "Samsung", "model": "RS85", "tier": "PREMIUM", "clinicalUnits": ["RADIOLOGY"], "competitors": { "GE": "Logiq E10", "Siemens": "Acuson Sequoia", "Philips": "EPIQ Elite w/xMatrix" } },
+    { "brand": "Samsung", "model": "RS80 Evo", "tier": "HIGH_END", "clinicalUnits": ["RADIOLOGY"], "competitors": { "GE": "Logiq E9 / S8 XDClear", "Siemens": "Acuson Redwood", "Philips": "EPIQ 7 w/xMatrix", "Canon": "Aplio i800" } },
+    { "brand": "Samsung", "model": "HS70A", "tier": "HIGH_END", "clinicalUnits": ["RADIOLOGY", "CARDIOLOGY"], "competitors": { "GE": "Logiq S8 XDClear", "Siemens": "Acuson S3000", "Philips": "EPIQ 5 w/xMatrix", "Canon": "Aplio i600" } },
+    { "brand": "Samsung", "model": "HS60", "tier": "HIGH_END", "clinicalUnits": ["RADIOLOGY", "OBGYN"], "competitors": { "GE": "Logiq S7 Expert", "Siemens": "Acuson S2000", "Philips": "Affiniti 70" } },
+    { "brand": "Samsung", "model": "HS50", "tier": "MID_RANGE", "clinicalUnits": ["RADIOLOGY", "OBGYN"], "competitors": { "GE": "Logiq P9", "Siemens": "Juniper", "Philips": "Affiniti 70", "Canon": "Aplio a550" } },
+    { "brand": "Samsung", "model": "HS40", "tier": "MID_RANGE", "clinicalUnits": ["RADIOLOGY", "OBGYN", "CARDIOLOGY"], "competitors": { "GE": "Logiq P7", "Siemens": "Juniper", "Philips": "Affiniti 50", "Canon": "Aplio a450" } },
+    { "brand": "Samsung", "model": "HS30", "tier": "LOW_END", "clinicalUnits": ["RADIOLOGY", "OBGYN"], "competitors": { "GE": "Logiq F8", "Siemens": "Acuson NX3", "Philips": "Affiniti 30" } },
+
+    { "brand": "Samsung", "model": "HERA i10", "tier": "PREMIUM", "clinicalUnits": ["OBGYN"], "competitors": {} },
+    { "brand": "Samsung", "model": "HERA W10", "tier": "PREMIUM", "clinicalUnits": ["OBGYN"], "competitors": { "GE": "Voluson E10" } },
+    { "brand": "Samsung", "model": "HERA W9", "tier": "PREMIUM", "clinicalUnits": ["OBGYN"], "competitors": { "GE": "Voluson E8" } },
+    { "brand": "Samsung", "model": "WS80A Elite", "tier": "HIGH_END", "clinicalUnits": ["OBGYN"], "competitors": { "GE": "Voluson E8", "Philips": "EPIQ Elite w/xMatrix", "Canon": "Aplio i800" } },
+    { "brand": "Samsung", "model": "HS70A with Prime", "tier": "HIGH_END", "clinicalUnits": ["OBGYN"], "competitors": { "GE": "Voluson E6", "Philips": "EPIQ 5 w/xMatrix" } },
+
+    { "brand": "Samsung", "model": "HM70A", "tier": "HIGH_END", "clinicalUnits": ["PORTABLE"], "competitors": { "Philips": "CX50 w/Purewave" } },
+
+    { "brand": "GE", "model": "Logiq E10", "tier": "PREMIUM", "clinicalUnits": ["RADIOLOGY"], "competitors": {} },
+    { "brand": "GE", "model": "Voluson E10", "tier": "PREMIUM", "clinicalUnits": ["OBGYN"], "competitors": {} },
+    { "brand": "GE", "model": "Vivid E95", "tier": "PREMIUM", "clinicalUnits": ["CARDIOLOGY"], "competitors": { "Philips": "EPIQ Elite CVx", "Canon": "Aplio i900 CV" } },
+    { "brand": "GE", "model": "Voluson S10 Expert", "tier": "HIGH_END", "clinicalUnits": ["OBGYN"], "competitors": {} },
+    { "brand": "GE", "model": "Voluson E6", "tier": "HIGH_END", "clinicalUnits": ["OBGYN"], "competitors": {} },
+
+    { "brand": "Philips", "model": "EPIQ Elite", "tier": "PREMIUM", "clinicalUnits": ["RADIOLOGY", "OBGYN"], "competitors": {} },
+    { "brand": "Philips", "model": "Affiniti 70", "tier": "MID_RANGE", "clinicalUnits": ["RADIOLOGY", "OBGYN", "CARDIOLOGY"], "competitors": {} },
+    { "brand": "Philips", "model": "Affiniti 50", "tier": "MID_RANGE", "clinicalUnits": ["RADIOLOGY", "CARDIOLOGY"], "competitors": {} },
+    { "brand": "Philips", "model": "CX50 w/Purewave", "tier": "HIGH_END", "clinicalUnits": ["PORTABLE"], "competitors": {} },
+
+    { "brand": "Canon", "model": "Aplio i800", "tier": "HIGH_END", "clinicalUnits": ["RADIOLOGY", "OBGYN"], "competitors": {} },
+    { "brand": "Canon", "model": "Aplio i900 CV", "tier": "PREMIUM", "clinicalUnits": ["CARDIOLOGY"], "competitors": {} },
+
+    { "brand": "Siemens", "model": "Acuson Sequoia", "tier": "PREMIUM", "clinicalUnits": ["RADIOLOGY"], "competitors": {} },
+    { "brand": "Siemens", "model": "SC2000 Prime", "tier": "HIGH_END", "clinicalUnits": ["CARDIOLOGY"], "competitors": {} }
+  ]
+}
