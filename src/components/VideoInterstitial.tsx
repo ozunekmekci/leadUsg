@@ -52,7 +52,7 @@ export default function VideoInterstitial({
           <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none"></div>
           <div className="absolute bottom-8 lg:bottom-12 inset-x-0 px-4 flex flex-col items-center justify-center text-center z-10">
             <span className="text-brand-teal-light font-mono-tech text-xs uppercase tracking-widest font-semibold mb-2">
-              CANLI KLİNİK DEMO & GÖRÜNTÜLEME
+              CİHAZI KULLANIMDA GÖRÜN
             </span>
             <p className="font-display text-2xl sm:text-3xl lg:text-4xl text-white font-semibold max-w-4xl drop-shadow-md">
               {caption}

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "KVKK Aydınlatma Metni | leadUsg",
-  description: "leadUsg Medikal Brokerlik Platformu Çerez ve Kişisel Verilerin Korunması Kanunu (KVKK) Aydınlatma Metni.",
+  description: "leadUsg Medikal Karşılaştırma ve Danışmanlık Platformu Çerez ve Kişisel Verilerin Korunması Kanunu (KVKK) Aydınlatma Metni.",
 };
 
 export default function KvkkPage() {
@@ -23,7 +23,7 @@ export default function KvkkPage() {
               <span className="text-blue-500">1.</span> Veri Sorumlusu
             </h2>
             <p>
-              Bu Aydınlatma Metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, <strong>leadUsg Medikal Brokerlik Platformu</strong> (“Platform”) olarak, kullanıcılarımızın kişisel verilerinin işlenmesine ilişkin usul ve esasları açıklamak amacıyla hazırlanmıştır.
+              Bu Aydınlatma Metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca, <strong>leadUsg Medikal Karşılaştırma ve Danışmanlık Platformu</strong> (“Platform”) olarak, kullanıcılarımızın kişisel verilerinin işlenmesine ilişkin usul ve esasları açıklamak amacıyla hazırlanmıştır.
             </p>
           </section>
 

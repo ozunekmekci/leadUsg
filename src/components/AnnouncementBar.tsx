@@ -26,7 +26,7 @@ export default function AnnouncementBar() {
     <div className="announcement-gradient h-9 flex items-center justify-center px-4 relative w-full z-50">
       <div className="flex-1 flex items-center justify-center">
         <span className="text-white text-xs font-medium tracking-wide text-center truncate">
-          Tüm Sistemler Yetkili Servis Garantili · Ücretsiz Teknik Danışmanlık
+          6 global üretici, 12&apos;den fazla premium sistem, tek bağımsız kaynaktan karşılaştırın.
         </span>
         <Link 
           href="/teklif-al" 

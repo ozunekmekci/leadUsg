@@ -115,7 +115,7 @@ export default function RootLayout({
                   </span>
                 </div>
                 <p className="text-sm text-white/40 leading-relaxed max-w-xs">
-                  Türkiye&apos;nin bağımsız medikal ultrason karşılaştırma ve broker platformu.
+                  Türkiye&apos;nin bağımsız medikal ultrason karşılaştırma ve danışmanlık platformu.
                   Tarafsız teknik veri, şeffaf süreç.
                 </p>
               </div>
@@ -202,7 +202,7 @@ export default function RootLayout({
                 © {new Date().getFullYear()} leadUSG Platforms. Tüm hakları saklıdır.
               </p>
               <p className="text-xs text-white/20 font-mono-tech">
-                Bağımsız Medikal Cihaz Broker Platformu
+                Medikal Ultrason Karşılaştırma ve Danışmanlık Platformu
               </p>
             </div>
           </div>

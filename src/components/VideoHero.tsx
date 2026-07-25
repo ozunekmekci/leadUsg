@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TrustStatsBar from "./TrustStatsBar";
 
 export default function VideoHero() {
   return (
@@ -25,16 +26,16 @@ export default function VideoHero() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-brand-teal/20 border border-brand-teal/40 rounded-full mb-6 backdrop-blur-md">
             <span className="h-2 w-2 rounded-full bg-brand-teal animate-pulse"></span>
             <span className="font-sans uppercase tracking-widest text-brand-teal-light text-xs font-semibold">
-              BAĞIMSIZ MEDİKAL CİHAZ BROKER PLATFORMU
+              ◆ ULTRASON SEÇİMİNDE BAĞIMSIZ TEKNİK REHBER
             </span>
           </div>
           
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white font-bold leading-tight mb-6 drop-shadow-sm">
-            Türkiye&apos;nin En Güvenilir Ultrason Karşılaştırma Platformu.
+            Ultrason seçimi, tahminle değil ölçülebilir veriyle olmalı.
           </h1>
           
           <p className="text-lg text-white/85 max-w-xl mb-10 mx-auto lg:mx-0 leading-relaxed font-sans drop-shadow-sm">
-            Jenerik pazarlama katalogları yerine; kristal matris probları, Doppler hassasiyeti ve ışın oluşturma kanallarını yan yana karşılaştırın. Bağımsız, tarafsız, şeffaf.
+            Prob tipini, Doppler hassasiyetini ve ışın oluşturma mimarisini yan yana görün — kataloğun değil, cihazın kendisini karşılaştırın.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center gap-4 mb-16 lg:mb-20 justify-center lg:justify-start">
@@ -53,26 +54,7 @@ export default function VideoHero() {
           </div>
           
           {/* Trust Stats */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-8 gap-y-6 pt-8 border-t border-white/15 backdrop-blur-xs">
-            <div className="flex flex-col items-center lg:items-start">
-              <span className="font-display text-3xl font-bold text-white mb-1">12+</span>
-              <span className="font-mono-tech text-xs text-white/60 tracking-wider uppercase">Premium Sistem</span>
-            </div>
-            
-            <div className="w-px h-10 bg-white/15 hidden sm:block"></div>
-            
-            <div className="flex flex-col items-center lg:items-start">
-              <span className="font-display text-3xl font-bold text-white mb-1">06</span>
-              <span className="font-mono-tech text-xs text-white/60 tracking-wider uppercase">Global Üretici</span>
-            </div>
-            
-            <div className="w-px h-10 bg-white/15 hidden sm:block"></div>
-            
-            <div className="flex flex-col items-center lg:items-start">
-              <span className="font-display text-3xl font-bold text-brand-teal-light mb-1">%100</span>
-              <span className="font-mono-tech text-xs text-white/60 tracking-wider uppercase">Bağımsız Veri</span>
-            </div>
-          </div>
+          <TrustStatsBar variant="hero" />
         </div>
       </div>
     </section>

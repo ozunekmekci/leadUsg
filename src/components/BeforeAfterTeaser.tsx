@@ -37,11 +37,11 @@ export default function BeforeAfterTeaser() {
             TEKNİK KARŞILAŞTIRMA
           </span>
           <h2 className="font-display text-section-title font-bold text-text-primary tracking-tight">
-            Pazarlama Değil, Gerçek Veri.
+            Karar Vermeden Önce Görmeniz Gerekenler
           </h2>
           <p className="text-text-muted text-sm sm:text-base mt-3 leading-relaxed">
-            Broşürlerdeki belirsiz vaatler yerine, yatırım yapacağınız cihazın
-            teknik sınırlarını ve ölçülebilir parametrelerini görün.
+            Yatırım yapmadan önce, cihazın teknik sınırlarını ve ölçülebilir
+            parametrelerini kendi gözünüzle görün.
           </p>
         </div>
 
@@ -53,10 +53,10 @@ export default function BeforeAfterTeaser() {
               {/* Header Badge */}
               <div className="flex items-center justify-between pb-3 border-b border-border-subtle mb-4">
                 <span className="text-xs font-mono-tech font-bold text-text-muted uppercase tracking-wider">
-                  PAZARLAMA BROŞÜRÜ
+                  TİPİK ÜRETİCİ SUNUMU
                 </span>
                 <span className="text-[11px] font-mono-tech bg-surface-cream text-text-muted px-2.5 py-0.5 rounded font-medium border border-border-subtle">
-                  Soyut &amp; Belirsiz
+                  Genel İfadeler
                 </span>
               </div>
 
@@ -82,9 +82,7 @@ export default function BeforeAfterTeaser() {
               </div>
 
               <div className="mt-6 p-3.5 bg-amber-50 border border-amber-200/80 rounded-lg text-xs font-mono-tech text-amber-900">
-                <span className="font-bold">⚠️ Pazarlama Problemi:</span> Somut
-                prob frekansı, aktif port sayısı veya elastografi tipi verilmez;
-                karşılaştırma yapmak imkansızlaşır.
+                Bu tür açıklamalarda genellikle prob frekansı, port sayısı veya elastografi tipi gibi karşılaştırılabilir teknik detaylar yer almaz.
               </div>
             </div>
 

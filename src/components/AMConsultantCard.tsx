@@ -40,9 +40,8 @@ export default function AMConsultantCard() {
               Uzman Hesap Yöneticiniz
             </h2>
             <p className="text-base text-text-body leading-relaxed mb-8 max-w-lg">
-              Tüm süreciniz boyunca size özel atanmış bir Biyomedikal Hesap Yöneticisi eşlik eder. 
-              Karar verme sürecinizden, kurulum ve yetkili servis aşamalarına kadar her adımda 
-              bağımsız danışmanınız yanınızdadır.
+              Süreç boyunca size özel bir Biyomedikal Hesap Yöneticisi atanır —
+              karar aşamasından kurulumun tamamlanmasına kadar yanınızda olur.
             </p>
             
             <ul className="space-y-4 mb-10">
@@ -56,7 +55,7 @@ export default function AMConsultantCard() {
                 <div className="w-6 h-6 rounded-full bg-brand-teal/10 flex items-center justify-center flex-shrink-0">
                   <CheckIcon />
                 </div>
-                <span className="text-text-primary text-sm">Ücretsiz teknik danışmanlık ve cihaz karşılaştırma desteği</span>
+                <span className="text-text-primary text-sm">Teknik sorularınıza doğrudan mühendislik desteği</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-6 h-6 rounded-full bg-brand-teal/10 flex items-center justify-center flex-shrink-0">
@@ -90,9 +89,9 @@ export default function AMConsultantCard() {
                 </p>
                 
                 <div className="w-full space-y-3 mb-8">
-                  <a href="tel:+905320000000" className="group flex items-center justify-center p-3 rounded-lg bg-surface-light hover:bg-surface-cream transition-colors">
+                  <a href="tel:+905329998877" className="group flex items-center justify-center p-3 rounded-lg bg-surface-light hover:bg-surface-cream transition-colors">
                     <PhoneIcon />
-                    <span className="text-sm font-medium text-text-primary ml-3">0532 XXX XX XX</span>
+                    <span className="text-sm font-medium text-text-primary ml-3">0532 999 88 77</span>
                   </a>
                   <a href="mailto:info@leadusg.com" className="group flex items-center justify-center p-3 rounded-lg bg-surface-light hover:bg-surface-cream transition-colors">
                     <MailIcon />

@@ -30,10 +30,10 @@ export default function Home() {
               ÖNDE GELEN ÜRETİCİLER
             </span>
             <h2 className="font-display text-section-title font-semibold text-text-primary mt-3">
-              Global Ultrason Marka Portföyü
+              Çalıştığımız Üretici Markalar
             </h2>
             <p className="text-text-muted text-base mt-3 max-w-xl mx-auto">
-              Sistemimizdeki tüm cihazlar yetkili distribütör garantili ve güncel teknik servis standartlarıyla eşleştirilir.
+              Listelediğimiz her cihaz, yetkili distribütör garantisi ve güncel teknik servis desteğiyle gelir.
             </p>
           </div>
 
@@ -89,8 +89,8 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════ */}
       <EditorialSplit
         eyebrow="NEDEN LEADUSG?"
-        title="Bağımsız Broker, Tarafsız Veri."
-        description="Distribütör broşürleri tek markayı övmek zorundadır. Biz olmak zorunda değiliz. Tüm premium ultrason markalarını eşit şartlarda, doğrulanmış teknik parametreleriyle karşılaştırın."
+        title="Hiçbir Üreticiye Bağlı Değiliz."
+        description="Tek bir üreticiyle çalışmadığımız için, size hangi cihazı önerdiğimizin hiçbir ticari karşılığı yok. Karşılaştırmalarımız satıcı sunumlarına değil, üretici teknik dokümantasyonuna dayanır."
         ctaText="Cihazları İncele"
         ctaHref="/urunler/ultrason"
         videoSrc="/assets/main (1).mp4"
@@ -103,7 +103,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════ */}
       <VideoInterstitial
         videoSrc="/assets/main (3).mp4"
-        caption="Ultrason teknolojisini yakından tanıyın."
+        caption="Ekran görüntüsü değil, gerçek tarama."
       />
 
       {/* ═══════════════════════════════════════════════════ */}
@@ -115,9 +115,9 @@ export default function Home() {
       {/* 8. EDİTORYAL SPLIT BLOK 2: AM Danışmanlığı          */}
       {/* ═══════════════════════════════════════════════════ */}
       <EditorialSplit
-        eyebrow="AM DANIŞMANLIĞI"
-        title="Satıcı Değil, Teknik Danışmanınız."
-        description="Biyomedikal mühendis geçmişli Account Manager'ımız, cihaz seçiminden teklif sürecine kadar yanınızda. Tarafsız karşılaştırma, teknik destek ve satın alma rehberliği — tek görüşmede."
+        eyebrow="BİREBİR DESTEK"
+        title="Sürecin Her Adımında Yanınızda."
+        description="Size atanan hesap yöneticiniz biyomedikal mühendislik geçmişinden geliyor — cihaz seçiminden teklif karşılaştırmasına, satın alma sonrasına kadar yanınızda oluyor."
         ctaText="Danışmanla Görüş"
         ctaHref="/teklif-al"
         videoSrc="/assets/main (2).mp4"

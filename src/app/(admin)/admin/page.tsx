@@ -56,7 +56,7 @@ export default function AdminLoginPage() {
           </div>
           <h2 className="text-xl font-bold text-white tracking-tight">Account Manager Girişi</h2>
           <p className="text-xs text-slate-400 text-center">
-            Yalnızca yetkili Biyomedikal Broker ekibi içindir.
+            Yalnızca yetkili Biyomedikal Hesap Yöneticileri içindir.
           </p>
         </div>
 

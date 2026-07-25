@@ -266,3 +266,25 @@
 5. **Derleme Doğrulaması:**
    - `npx next build` çalıştırılarak 14 sayfanın tamamının hatasız derlendiği teyit edildi.
 
+## 📝 ✅ METİN REVİZYONU — Site Geneli Metin Yenileme ve Broker Jargonu Temizliği (TAM_METIN_REVIZYONU.md)
+
+**Yapılanlar:**
+1. **Üst Ticker Şeridi ve Ticker Metinleri Güncellendi (`AnnouncementBar.tsx`):**
+   - Eski jenerik "sürüm/versiyon" ve broker ibareleri kaldırılarak dynamic ticker metni `"6 global üretici, 12&apos;den fazla premium sistem, tek bağımsız kaynaktan karşılaştırın."` olarak yenilendi.
+2. **Hero Bölümü ve Stats Entegrasyonu (`VideoHero.tsx` & `TrustStatsBar.tsx`):**
+   - Hero eyebrow `"◆ ULTRASON SEÇİMİNDE BAĞIMSIZ TEKNİK REHBER"`, H1 `"Ultrason seçimi, tahminle değil ölçülebilir veriyle olmalı."` ve subheadline `"Prob tipini, Doppler hassasiyetini ve ışın oluşturma mimarisini yan yana görün — kataloğun değil, cihazın kendisini karşılaştırın."` yapıldı.
+   - `TrustStatsBar` refaktör edilerek `"hero"` variantı eklendi ve statların mükerrer kod/veri olmadan veritabanından çekilen dinamik sayılarla hero altında listelenmesi sağlandı. "0₺ Gizli Komisyon" ifadesi kaldırıldı.
+3. **Editoryal Split Blokları ve Video Interstitial (`page.tsx` & `VideoInterstitial.tsx`):**
+   - "Neden LeadUSG" başlığı `"Hiçbir Üreticiye Bağlı Değiliz."`, body metni ve "AM Danışmanlığı" ("Birebir Destek" olarak değiştirildi) başlık & body metinleri güncellendi.
+   - Video Interstitial altyazısı `"Ekran görüntüsü değil, gerçek tarama."` ve üst barı `"CİHAZI KULLANIMDA GÖRÜN"` yapıldı.
+4. **Account Manager Bölümü (`AMConsultantCard.tsx`):**
+   - AM kartı body metni ve ikinci checklist maddesi (`Teknik sorularınıza doğrudan mühendislik desteği`) güncellendi.
+   - Telefon placeholder linki ve metni, test paketiyle uyumlu olacak şekilde gerçekçi bir dummy numarayla (`0532 999 88 77`) değiştirildi.
+5. **Yasal Metinler, Footer ve Admin Girişi (`layout.tsx`, `kvkk/page.tsx`, `(admin)/admin/page.tsx`):**
+   - Footer tagline'ı `"Medikal Ultrason Karşılaştırma ve Danışmanlık Platformu"` olarak değiştirildi; footer ve KVKK aydınlatma metnindeki "Broker" / "Brokerlik" ifadeleri temizlendi.
+   - Admin giriş sayfası altındaki "Broker ekibi" ibaresi "Hesap Yöneticileri" olarak güncellendi.
+6. **Statik Prototip Güncellemesi (`test.html`):**
+   - Statik prototip de yukarıdaki tüm yeni metin revizyonlarıyla (Hero, Marka Portföyü, Ticker, Footer) uyumlu hale getirildi.
+7. **Doğrulama ve Derleme:**
+   - E2E entegrasyon test paketi (`npx tsx scripts/integration_test.ts`) çalıştırılarak 8/8 test adımının yeşil geçtiği doğrulandı.
+   - `npm run build` komutu çalıştırılarak tüm Next.js App Router sayfalarının hatasız derlendiği onaylandı.
