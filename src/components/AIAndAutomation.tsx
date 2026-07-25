@@ -3,22 +3,22 @@ export default function AIAndAutomation() {
     {
       title: "Otomatik Fetal Biyometri (OB/GYN)",
       desc: "BPD, HC, AC ve FL gibi fetal parametreleri yapay zeka ile saniyeler içinde otomatik algılar ve ölçer.",
-      icon: "🤰",
+      code: "01",
     },
     {
       title: "Akıllı Kardiyak Analiz",
       desc: "Sol ventrikül ejeksiyon fraksiyonunu (EF) ve strain parametrelerini tek tıkla otomatik hesaplar.",
-      icon: "🫀",
+      code: "02",
     },
     {
       title: "Lezyon ve Doku Sınıflandırma (Radyoloji)",
       desc: "Meme ve tiroit kitlelerinde BI-RADS ve TI-RADS standartlarına uygun otomatik sınıflandırma ve boyutlandırma desteği sunar.",
-      icon: "🩺",
+      code: "03",
     },
     {
       title: "Görüntü Optimizasyonu",
       desc: "Manuel tuş ayarı ihtiyacını azaltan, B-Mode ve Doppler parametrelerini derinliğe göre otomatik ayarlayan akıllı doku tanıma.",
-      icon: "⚙️",
+      code: "04",
     },
   ];
 
@@ -46,8 +46,8 @@ export default function AIAndAutomation() {
               key={idx} 
               className="bg-white p-6 rounded-card border border-border-subtle shadow-card-rest flex gap-4 hover:border-brand-teal transition-all duration-300"
             >
-              <div className="h-12 w-12 rounded-xl bg-brand-teal/10 flex items-center justify-center text-xl shrink-0">
-                {feat.icon}
+              <div className="h-12 w-12 rounded-xl bg-brand-teal/10 text-brand-teal font-mono-tech font-bold flex items-center justify-center text-sm shrink-0">
+                {feat.code}
               </div>
               <div className="space-y-1">
                 <h4 className="font-sans font-bold text-text-primary text-sm sm:text-base">

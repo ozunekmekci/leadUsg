@@ -80,13 +80,13 @@ export default async function NewArrivalsStrip() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 lg:mb-10">
           <div>
             <span className="text-eyebrow font-semibold uppercase tracking-widest text-brand-teal">
-              SON EKLENENLER
+              ÖNE ÇIKANLAR
             </span>
             <h2 className="font-display text-section-title font-semibold text-text-primary mt-2">
-              Yeni Eklenen Cihazlar
+              Öne Çıkan Ürünler
             </h2>
             <p className="text-text-muted text-sm mt-2 max-w-md">
-              Kataloğumuza son eklenen sistemler ve teknik güncellemeler
+              Kataloğumuzda öne çıkan en güncel ultrason sistemleri
             </p>
           </div>
 

@@ -117,8 +117,8 @@ export default function ProposalForm() {
   return (
     <div className="rounded border border-slate-800 bg-slate-900 p-6 sm:p-8 shadow-2xl font-mono-tech">
       <div className="flex flex-col gap-2 border-b border-slate-800 pb-6 mb-6">
-        <h1 className="font-display text-2xl font-bold text-white tracking-tight">Biyomedikal Danışmanlık & Teklif Talebi</h1>
-        <p className="text-xs text-slate-400">
+        <h1 className="font-display text-2xl font-bold text-sky-400 tracking-tight">Biyomedikal Danışmanlık &amp; Teklif Talebi</h1>
+        <p className="text-xs text-sky-200/90 leading-relaxed font-sans">
           Klinik ve bütçe hedeflerinize uygun ultrason ve görüntüleme sistemi tekliflerini hazırlayalım.
         </p>
         {selectedProductIds && (

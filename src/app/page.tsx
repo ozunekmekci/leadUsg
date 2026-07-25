@@ -4,7 +4,8 @@ import { FALLBACK_PRODUCTS } from "@/lib/fallbackProducts";
 import { ProductSpecs } from "@/components/products/ProductCard";
 import VideoHero from "@/components/VideoHero";
 import TrustStatsBar from "@/components/TrustStatsBar";
-import SpecialtiesSection from "@/components/SpecialtiesSection";
+import BrandsBanner from "@/components/BrandsBanner";
+import NewArrivalsStrip from "@/components/NewArrivalsStrip";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import QualityAndPrecision from "@/components/QualityAndPrecision";
 import AIAndAutomation from "@/components/AIAndAutomation";
@@ -49,33 +50,36 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-surface-canvas text-text-primary">
       
-      {/* 2. Hero Bölümü (Ana Karşılama Ekranı) */}
+      {/* 1. Hero Bölümü */}
       <VideoHero />
 
-      {/* 5. Hizmet Standartlarımız (Metrics Bar Yerine) */}
+      {/* 2. Hizmet Standartlarımız (Metrics Bar Yerine) */}
       <TrustStatsBar />
 
-      {/* 3. Uzmanlık Alanları (Specialties Section) */}
-      <SpecialtiesSection />
+      {/* 3. Çalıştığımız Üretici Markalar (Brands Banner) */}
+      <BrandsBanner />
 
-      {/* 4. Öne Çıkan Ürünler (Featured Products) */}
+      {/* 4. Öne Çıkan Ürünler (Yeni Eklenen Cihazlar Carousel) */}
+      <NewArrivalsStrip />
+
+      {/* 5. KATALOG VE MODELLER (Interactive Product Filter Tabs) */}
       <Suspense fallback={<div className="text-center py-20">Katalog yükleniyor...</div>}>
         <FeaturedProducts />
       </Suspense>
 
-      {/* 6. Görüntü Kalitesi & Hassasiyet (SEO Odaklı Metin) */}
+      {/* 6. Görüntü Kalitesi & Hassasiyet */}
       <QualityAndPrecision />
 
-      {/* 7. Yapay Zeka & Otomasyon (SEO & Global Markalar Standartında Banner) */}
+      {/* 7. Yapay Zeka & Otomasyon */}
       <AIAndAutomation />
 
-      {/* 8. Akıllı Karşılaştırma Aracı (Comparison Section) */}
+      {/* 8. Akıllı Karşılaştırma Aracı */}
       <SmartComparison products={products} />
 
-      {/* 9. Satış Sonrası & Hizmet Güvencesi (Service Section) */}
+      {/* 9. Satış Sonrası & Hizmet Güvencesi */}
       <AfterSalesAndSupport />
 
-      {/* 10. Teklif & Demo Formu (Contact Section) */}
+      {/* 10. Teklif & Demo Formu */}
       <section id="teklif" className="py-section-sm md:py-section-md lg:py-section-lg bg-white border-b border-border-subtle">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -134,7 +138,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 11. Bilgi Merkezi & SEO Rehberi (Blog Section) */}
+      {/* 11. Bilgi Merkezi & SEO Rehberi */}
       <InformationCenter />
 
       {/* Trust Badge Strip */}
