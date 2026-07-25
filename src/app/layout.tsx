@@ -3,6 +3,8 @@ import Link from "next/link";
 import ConsentBanner from "@/components/ConsentBanner";
 import "./globals.css";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "leadUsg | Medikal Ultrason Sistemleri & Karşılaştırma Platformu",
   description: "Türkiye'nin en kapsamlı biyomedikal ultrason karşılaştırma ve teknik analiz platformu.",

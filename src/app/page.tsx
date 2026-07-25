@@ -4,6 +4,8 @@ import TrustStatsBar from "@/components/TrustStatsBar";
 import BeforeAfterTeaser from "@/components/BeforeAfterTeaser";
 import TrustBadgeStrip from "@/components/TrustBadgeStrip";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
